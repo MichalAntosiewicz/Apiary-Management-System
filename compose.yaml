@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: apiary-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: apiary_db
+      POSTGRES_USER: apiary_user
+      POSTGRES_PASSWORD: apiary_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker-data/postgres:/var/lib/postgresql/data
