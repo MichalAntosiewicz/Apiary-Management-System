@@ -1,10 +1,6 @@
-### 1. Pobierz aktywne alerty dla Ula 1 (Z migracji V2)
+
 GET http://localhost:8080/api/v1/hives/b1000000-0000-0000-0000-000000000001/alerts
 
-###
-
-### 2. TEST REŻIMU SANITARNEGO: Próba miodobrania na Ulu 2 (w trakcie leczenia)
-# Powinno zwrócić HTTP 409 Conflict z informacją o leku Apivar
 POST http://localhost:8080/api/v1/hives/b2000000-0000-0000-0000-000000000002/harvest
 Content-Type: application/json
 
@@ -13,10 +9,6 @@ Content-Type: application/json
   "operatorNotes": "Attempting summer honey harvest"
 }
 
-###
-
-### 3. TEST DSS: Zgłoszenie inspekcji z objawami CICHEJ WYMIANY (Hive 3)
-# Powinno zwrócić HTTP 201 Created oraz alert SUPERSEDURE: "Do NOT destroy queen cells"
 POST http://localhost:8080/api/v1/inspections
 Content-Type: application/json
 
@@ -37,10 +29,6 @@ Content-Type: application/json
   "notes": "Testing supersedure detection via HTTP"
 }
 
-###
-
-### 4. TEST DSS: Zgłoszenie inspekcji z objawami KRYTYCZNEJ RÓJKI (Hive 1)
-# Powinno zwrócić HTTP 201 Created oraz alert REPRODUCTIVE_SWARM (CRITICAL)
 POST http://localhost:8080/api/v1/inspections
 Content-Type: application/json
 
