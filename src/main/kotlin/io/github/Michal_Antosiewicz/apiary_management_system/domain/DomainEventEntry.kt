@@ -1,4 +1,4 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.domain
+package io.github.Michal_Antosiewicz.apiary_management_system.domain
 
 import jakarta.persistence.*
 import org.hibernate.annotations.JdbcTypeCode

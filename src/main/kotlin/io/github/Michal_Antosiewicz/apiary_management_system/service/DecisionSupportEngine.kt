@@ -1,10 +1,10 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.service
+package io.github.Michal_Antosiewicz.apiary_management_system.service
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.*
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.event.InspectionRecordedEvent
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.DecisionAlertRepository
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.HiveRepository
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.QueenRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.*
+import io.github.Michal_Antosiewicz.apiary_management_system.event.InspectionRecordedEvent
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.DecisionAlertRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.HiveRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.QueenRepository
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

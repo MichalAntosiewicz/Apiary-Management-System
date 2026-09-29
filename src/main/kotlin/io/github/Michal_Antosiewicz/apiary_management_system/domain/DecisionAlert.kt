@@ -1,9 +1,12 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.domain
+package io.github.Michal_Antosiewicz.apiary_management_system.domain
 
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
+
+import org.hibernate.annotations.JdbcType
+import org.hibernate.dialect.PostgreSQLEnumJdbcType
 
 @Entity
 @Table(name = "decision_alerts")
@@ -16,10 +19,12 @@ class DecisionAlert(
     var hive: Hive,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "alert_type", nullable = false)
     var alertType: AlertType,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "severity", nullable = false)
     var severity: AlertSeverity,
 

@@ -1,6 +1,8 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.domain
+package io.github.Michal_Antosiewicz.apiary_management_system.domain
 
 import jakarta.persistence.*
+import org.hibernate.annotations.JdbcType
+import org.hibernate.dialect.PostgreSQLEnumJdbcType
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
@@ -34,6 +36,7 @@ class Inspection(
     var queenSeen: Boolean = false,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "brood_pattern", nullable = false)
     var broodPattern: BroodPattern,
 
@@ -41,10 +44,12 @@ class Inspection(
     var queenCellsCount: Int = 0,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "queen_cells_placement", nullable = false)
     var queenCellsPlacement: CellPlacement = CellPlacement.NONE,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "queen_cells_stage", nullable = false)
     var queenCellsStage: CellStage = CellStage.NONE,
 

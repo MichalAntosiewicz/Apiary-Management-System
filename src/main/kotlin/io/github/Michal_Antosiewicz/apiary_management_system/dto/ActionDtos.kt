@@ -1,4 +1,4 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.dto
+package io.github.Michal_Antosiewicz.apiary_management_system.dto
 
 import java.time.Instant
 import java.util.UUID

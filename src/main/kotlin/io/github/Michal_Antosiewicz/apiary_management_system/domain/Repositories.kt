@@ -1,6 +1,6 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.repository
+package io.github.Michal_Antosiewicz.apiary_management_system.repository
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.*
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.*
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

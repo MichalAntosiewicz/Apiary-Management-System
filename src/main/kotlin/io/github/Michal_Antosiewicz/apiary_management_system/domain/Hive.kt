@@ -1,6 +1,8 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.domain
+package io.github.Michal_Antosiewicz.apiary_management_system.domain
 
 import jakarta.persistence.*
+import org.hibernate.annotations.JdbcType
+import org.hibernate.dialect.PostgreSQLEnumJdbcType
 import java.time.Instant
 import java.util.UUID
 
@@ -21,10 +23,12 @@ class Hive(
     var hiveType: String,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "operational_state", nullable = false)
     var operationalState: OperationalState = OperationalState.PREPARATION,
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
     @Column(name = "biological_state", nullable = false)
     var biologicalState: BiologicalState = BiologicalState.NOMINAL,
 

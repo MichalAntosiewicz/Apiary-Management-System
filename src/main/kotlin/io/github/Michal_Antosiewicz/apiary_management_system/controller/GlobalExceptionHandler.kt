@@ -1,7 +1,7 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.controller
+package io.github.Michal_Antosiewicz.apiary_management_system.controller
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.SanitaryViolationException
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.dto.ErrorResponse
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.SanitaryViolationException
+import io.github.Michal_Antosiewicz.apiary_management_system.dto.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler

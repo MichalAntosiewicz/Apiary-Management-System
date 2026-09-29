@@ -1,10 +1,10 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.dto
+package io.github.Michal_Antosiewicz.apiary_management_system.dto
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.AlertSeverity
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.AlertType
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.BroodPattern
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.CellPlacement
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.CellStage
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.AlertSeverity
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.AlertType
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.BroodPattern
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.CellPlacement
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.CellStage
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID

@@ -1,8 +1,8 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.controller
+package io.github.Michal_Antosiewicz.apiary_management_system.controller
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.dto.CreateInspectionRequest
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.dto.InspectionResponse
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.service.InspectionService
+import io.github.Michal_Antosiewicz.apiary_management_system.dto.CreateInspectionRequest
+import io.github.Michal_Antosiewicz.apiary_management_system.dto.InspectionResponse
+import io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 

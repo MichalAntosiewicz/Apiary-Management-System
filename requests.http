@@ -1,0 +1,62 @@
+### 1. Pobierz aktywne alerty dla Ula 1 (Z migracji V2)
+GET http://localhost:8080/api/v1/hives/b1000000-0000-0000-0000-000000000001/alerts
+
+###
+
+### 2. TEST REŻIMU SANITARNEGO: Próba miodobrania na Ulu 2 (w trakcie leczenia)
+# Powinno zwrócić HTTP 409 Conflict z informacją o leku Apivar
+POST http://localhost:8080/api/v1/hives/b2000000-0000-0000-0000-000000000002/harvest
+Content-Type: application/json
+
+{
+  "targetSuperCount": 2,
+  "operatorNotes": "Attempting summer honey harvest"
+}
+
+###
+
+### 3. TEST DSS: Zgłoszenie inspekcji z objawami CICHEJ WYMIANY (Hive 3)
+# Powinno zwrócić HTTP 201 Created oraz alert SUPERSEDURE: "Do NOT destroy queen cells"
+POST http://localhost:8080/api/v1/inspections
+Content-Type: application/json
+
+{
+  "hiveId": "b3000000-0000-0000-0000-000000000003",
+  "framesOfBees": 8,
+  "framesOfBrood": 4,
+  "honeyStoresKg": 6.50,
+  "freeCombSpacePercent": 35.00,
+  "queenSeen": true,
+  "broodPattern": "SPOTTY",
+  "queenCellsCount": 2,
+  "queenCellsPlacement": "CENTRAL",
+  "queenCellsStage": "OPEN_WITH_LARVA",
+  "varroaMiteCount": 2,
+  "signsOfPests": false,
+  "temperamentScore": 5,
+  "notes": "Testing supersedure detection via HTTP"
+}
+
+###
+
+### 4. TEST DSS: Zgłoszenie inspekcji z objawami KRYTYCZNEJ RÓJKI (Hive 1)
+# Powinno zwrócić HTTP 201 Created oraz alert REPRODUCTIVE_SWARM (CRITICAL)
+POST http://localhost:8080/api/v1/inspections
+Content-Type: application/json
+
+{
+  "hiveId": "b1000000-0000-0000-0000-000000000001",
+  "framesOfBees": 12,
+  "framesOfBrood": 8,
+  "honeyStoresKg": 16.00,
+  "freeCombSpacePercent": 4.00,
+  "queenSeen": true,
+  "broodPattern": "SOLID_COMPACT",
+  "queenCellsCount": 9,
+  "queenCellsPlacement": "MARGINAL",
+  "queenCellsStage": "SEALED",
+  "varroaMiteCount": 1,
+  "signsOfPests": false,
+  "temperamentScore": 4,
+  "notes": "Colony heavily congested, multiple swarm cells on bottom bars"
+}

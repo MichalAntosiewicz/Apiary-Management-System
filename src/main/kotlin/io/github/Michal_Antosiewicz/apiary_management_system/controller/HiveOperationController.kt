@@ -1,16 +1,16 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.controller
+package io.github.Michal_Antosiewicz.apiary_management_system.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.DecisionAlert
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.DomainEventEntry
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.Treatment
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.dto.*
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.event.HoneyHarvestAttemptedEvent
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.event.TreatmentAppliedEvent
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.DecisionAlertRepository
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.DomainEventEntryRepository
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.HiveRepository
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.repository.TreatmentRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.DecisionAlert
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.DomainEventEntry
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.Treatment
+import io.github.Michal_Antosiewicz.apiary_management_system.dto.*
+import io.github.Michal_Antosiewicz.apiary_management_system.event.HoneyHarvestAttemptedEvent
+import io.github.Michal_Antosiewicz.apiary_management_system.event.TreatmentAppliedEvent
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.DecisionAlertRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.DomainEventEntryRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.HiveRepository
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.TreatmentRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional

@@ -1,8 +1,8 @@
-package io.github.Michal_Antosiewicz.apiarymanagementsystem.event
+package io.github.Michal_Antosiewicz.apiary_management_system.event
 
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.BroodPattern
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.CellPlacement
-import io.github.Michal_Antosiewicz.apiarymanagementsystem.domain.CellStage
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.BroodPattern
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.CellPlacement
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.CellStage
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
