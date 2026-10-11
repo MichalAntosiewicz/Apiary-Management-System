@@ -1,6 +1,8 @@
 
 GET http://localhost:8080/api/v1/hives/b1000000-0000-0000-0000-000000000001/alerts
 
+###
+
 POST http://localhost:8080/api/v1/hives/b2000000-0000-0000-0000-000000000002/harvest
 Content-Type: application/json
 
@@ -8,7 +10,7 @@ Content-Type: application/json
   "targetSuperCount": 2,
   "operatorNotes": "Attempting summer honey harvest"
 }
-
+###
 POST http://localhost:8080/api/v1/inspections
 Content-Type: application/json
 
@@ -28,7 +30,7 @@ Content-Type: application/json
   "temperamentScore": 5,
   "notes": "Testing supersedure detection via HTTP"
 }
-
+###
 POST http://localhost:8080/api/v1/inspections
 Content-Type: application/json
 

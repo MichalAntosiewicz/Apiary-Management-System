@@ -24,9 +24,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-database-postgresql")
+	implementation("junit:junit:4.13.1")
+	implementation("org.junit.jupiter:junit-jupiter:5.8.1")
 	runtimeOnly("org.postgresql:postgresql")
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -35,6 +38,7 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.mockito:mockito-core:5.14.2")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
