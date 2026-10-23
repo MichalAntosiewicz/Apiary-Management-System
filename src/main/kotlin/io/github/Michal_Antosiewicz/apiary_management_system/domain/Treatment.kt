@@ -23,8 +23,8 @@ class Treatment(
     @Column(name = "start_date", nullable = false)
     var startDate: Instant,
 
-    @Column(name = "end_date")
-    var endDate: Instant? = null,
+    @Column(name = "treatment_end_date", nullable = false)
+    var treatmentEndDate: Instant,
 
     @Column(name = "withdrawal_days", nullable = false)
     var withdrawalDays: Int,

@@ -323,19 +323,15 @@ class BeewiseEvaluationBenchmarkTest {
         var sumP = 0.0
         var sumR = 0.0
         var sumF1 = 0.0
+        var scoredClassCount = 0
 
         classes.forEachIndexed { i, cls ->
             val tp = matrix[i][i].toDouble()
             val fp = (0 until classes.size).filter { it != i }.sumOf { matrix[it][i] }.toDouble()
             val fn = (0 until classes.size).filter { it != i }.sumOf { matrix[i][it] }.toDouble()
 
-            val p = if (tp + fp > 0) tp / (tp + fp) else 0.0
-            val r = if (tp + fn > 0) tp / (tp + fn) else 0.0
-            val f1 = if (p + r > 0) (2.0 * p * r) / (p + r) else 0.0
-
-            sumP += p
-            sumR += r
-            sumF1 += f1
+            val actualCount = tp + fn
+            val predictedCount = tp + fp
 
             val classNameReadable = when (cls) {
                 EvaluationClass.REPRODUCTIVE_SWARM -> "Reproductive swarming"
@@ -344,12 +340,27 @@ class BeewiseEvaluationBenchmarkTest {
                 EvaluationClass.NOMINAL -> "Nominal"
             }
 
+            if (actualCount == 0.0 && predictedCount == 0.0) {
+                println("%-22s | P:   N/A | R:   N/A | F1:   N/A".format(classNameReadable))
+                return@forEachIndexed
+            }
+
+            val p = if (predictedCount > 0) tp / predictedCount else 0.0
+            val r = if (actualCount > 0) tp / actualCount else 0.0
+            val f1 = if (p + r > 0) (2.0 * p * r) / (p + r) else 0.0
+
+            sumP += p
+            sumR += r
+            sumF1 += f1
+            scoredClassCount++
+
             println("%-22s | P: %5.3f | R: %5.3f | F1: %5.3f".format(classNameReadable, p, r, f1))
         }
 
-        val macroP = sumP / classes.size
-        val macroR = sumR / classes.size
-        val macroF1 = sumF1 / classes.size
+        val denominator = scoredClassCount.coerceAtLeast(1)
+        val macroP = sumP / denominator
+        val macroR = sumR / denominator
+        val macroF1 = sumF1 / denominator
 
         println("-------------------------------------------------------")
         println("%-22s | P: %5.3f | R: %5.3f | F1: %5.3f".format("Macro Average", macroP, macroR, macroF1))

@@ -1,4 +1,4 @@
-package io.github.Michal_Antosiewicz.apiary_management_system.service
+﻿package io.github.Michal_Antosiewicz.apiary_management_system.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -8,10 +8,9 @@ import io.github.Michal_Antosiewicz.apiary_management_system.event.InspectionRec
 import io.github.Michal_Antosiewicz.apiary_management_system.repository.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
-import org.mockito.invocation.InvocationOnMock
+import org.mockito.kotlin.any
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import java.math.BigDecimal
 import java.util.Optional
 import java.util.UUID
@@ -33,21 +32,22 @@ class EndToEndProcessingLatencyBenchmarkTest {
 
     @BeforeEach
     fun setUp() {
-        hiveRepository = mock(HiveRepository::class.java)
-        queenRepository = mock(QueenRepository::class.java)
-        alertRepository = mock(DecisionAlertRepository::class.java)
-        treatmentRepository = mock(TreatmentRepository::class.java)
-        transitionRepository = mock(HiveStateTransitionRepository::class.java)
+        hiveRepository = mock()
+        queenRepository = mock()
+        alertRepository = mock()
+        treatmentRepository = mock()
+        transitionRepository = mock()
 
-        `when`(alertRepository.save(any<DecisionAlert>(DecisionAlert::class.java))).thenAnswer { invocation: InvocationOnMock ->
-            invocation.getArgument<DecisionAlert>(0)
+        whenever(alertRepository.save(any<DecisionAlert>())).thenAnswer { invocation ->
+            invocation.getArgument(0)
         }
-        `when`(hiveRepository.save(any<Hive>(Hive::class.java))).thenAnswer { invocation: InvocationOnMock ->
-            invocation.getArgument<Hive>(0)
+        whenever(hiveRepository.save(any<Hive>())).thenAnswer { invocation ->
+            invocation.getArgument(0)
         }
-        `when`(transitionRepository.save(any<HiveStateTransition>(HiveStateTransition::class.java))).thenAnswer { invocation: InvocationOnMock ->
-            invocation.getArgument<HiveStateTransition>(0)
+        whenever(transitionRepository.save(any<HiveStateTransition>())).thenAnswer { invocation ->
+            invocation.getArgument(0)
         }
+        whenever(treatmentRepository.findActiveTreatmentsByHiveId(any(), any())).thenReturn(emptyList())
 
         decisionEngine = DecisionSupportEngine(hiveRepository, queenRepository, alertRepository)
         fsmService = HiveStateMachineService(
@@ -66,7 +66,7 @@ class EndToEndProcessingLatencyBenchmarkTest {
 
         val hiveUuid = UUID.randomUUID()
 
-        val dummyApiary = mock(Apiary::class.java)
+        val dummyApiary = mock<Apiary>()
         val dummyHive = Hive(
             id = hiveUuid,
             apiary = dummyApiary,
@@ -82,8 +82,8 @@ class EndToEndProcessingLatencyBenchmarkTest {
             isActive = true
         )
 
-        `when`(hiveRepository.findById(hiveUuid)).thenReturn(Optional.of(dummyHive))
-        `when`(queenRepository.findByHiveIdAndIsActiveTrue(hiveUuid)).thenReturn(Optional.of(dummyQueen))
+        whenever(hiveRepository.findById(hiveUuid)).thenReturn(Optional.of(dummyHive))
+        whenever(queenRepository.findByHiveIdAndIsActiveTrue(hiveUuid)).thenReturn(Optional.of(dummyQueen))
 
         // Pre-generate benchmark event payloads
         val testEvents = (0 until (n + warmupIterations)).map { i ->

@@ -20,7 +20,7 @@ class HiveStateMachineService(
     private val alertRepository: DecisionAlertRepository
 ) {
 
-    // Handles biological state transitions triggered by field inspection data
+    // Handles biological and operational state transitions triggered by field inspection data
     @EventListener
     @Transactional
     fun onInspectionRecorded(event: InspectionRecordedEvent) {
@@ -44,8 +44,15 @@ class HiveStateMachineService(
             event.freeCombSpacePercent <= BigDecimal("10.0") && currentBioState == BiologicalState.NOMINAL ->
                 BiologicalState.CONGESTED
 
-            // Fallback recovery if previous conditions subsided
-            currentBioState in listOf(BiologicalState.CONGESTED, BiologicalState.SWARM_PREPARATION) &&
+            // Stress and absconding recovery when parasite and store indicators normalize
+            currentBioState == BiologicalState.ABSCONDING_RISK &&
+                    event.varroaMiteCount < 10 &&
+                    event.honeyStoresKg >= BigDecimal("3.00") &&
+                    !event.signsOfPests ->
+                BiologicalState.NOMINAL
+
+            // Congestion recovery; SWARM_PREPARATION resolves only via swarm intervention
+            currentBioState == BiologicalState.CONGESTED &&
                     event.queenCellsCount == 0 && event.freeCombSpacePercent > BigDecimal("20.0") ->
                 BiologicalState.NOMINAL
 
@@ -58,12 +65,14 @@ class HiveStateMachineService(
                 fsmType = "BIOLOGICAL_DYNAMICS",
                 fromState = currentBioState.name,
                 toState = targetBioState.name,
-                triggerEvent = "InspectionRecordedEvent",
+                event = event,
                 reason = "Automated biological state transition based on inspection indicators"
             )
             hive.biologicalState = targetBioState
             hiveRepository.save(hive)
         }
+
+        evaluateOperationalStateOnInspection(hive, event)
     }
 
     // Handles operational state transition when veterinary treatment is initiated
@@ -78,7 +87,7 @@ class HiveStateMachineService(
             fsmType = "OPERATIONAL_LIFECYCLE",
             fromState = previousState.name,
             toState = OperationalState.TREATMENT_IN_PROGRESS.name,
-            triggerEvent = "TreatmentAppliedEvent",
+            event = event,
             reason = "Administered ${event.medicineName}; withdrawal period set until ${event.withdrawalEndDate}"
         )
 
@@ -114,7 +123,7 @@ class HiveStateMachineService(
                 fsmType = "OPERATIONAL_LIFECYCLE",
                 fromState = hive.operationalState.name,
                 toState = hive.operationalState.name,
-                triggerEvent = "HoneyHarvestAttemptedEvent",
+                event = event,
                 reason = "REJECTED: Active withdrawal restriction for ${conflictingTreatment.medicineName}"
             )
 
@@ -132,7 +141,7 @@ class HiveStateMachineService(
                 fsmType = "OPERATIONAL_LIFECYCLE",
                 fromState = hive.operationalState.name,
                 toState = OperationalState.ACTIVE_HONEY_FLOW.name,
-                triggerEvent = "HoneyHarvestAttemptedEvent",
+                event = event,
                 reason = "Sanitary guard cleared. Transitioned to active harvest state"
             )
             hive.operationalState = OperationalState.ACTIVE_HONEY_FLOW
@@ -140,7 +149,7 @@ class HiveStateMachineService(
         }
     }
 
-    //Resolves swarm preparation state following successful beekeeper intervention.
+    // Resolves swarm preparation state following successful beekeeper intervention
     @EventListener
     @Transactional
     fun onSwarmInterventionApplied(event: SwarmInterventionAppliedEvent) {
@@ -152,7 +161,7 @@ class HiveStateMachineService(
                 fsmType = "BIOLOGICAL_DYNAMICS",
                 fromState = hive.biologicalState.name,
                 toState = BiologicalState.NOMINAL.name,
-                triggerEvent = "SwarmInterventionAppliedEvent",
+                event = event,
                 reason = "Swarm intervention applied (${event.interventionType}); state reset to nominal"
             )
             hive.biologicalState = BiologicalState.NOMINAL
@@ -160,7 +169,7 @@ class HiveStateMachineService(
         }
     }
 
-    //Concludes supersedure cycle upon verified queen replacement.
+    // Concludes supersedure cycle upon verified queen replacement
     @EventListener
     @Transactional
     fun onQueenReplaced(event: QueenReplacedEvent) {
@@ -172,10 +181,49 @@ class HiveStateMachineService(
                 fsmType = "BIOLOGICAL_DYNAMICS",
                 fromState = hive.biologicalState.name,
                 toState = BiologicalState.NOMINAL.name,
-                triggerEvent = "QueenReplacedEvent",
+                event = event,
                 reason = "New queen installed (${event.breedLine}); supersedure cycle concluded"
             )
             hive.biologicalState = BiologicalState.NOMINAL
+            hiveRepository.save(hive)
+        }
+    }
+
+    private fun evaluateOperationalStateOnInspection(hive: Hive, event: InspectionRecordedEvent) {
+        val now = Instant.now()
+        val activeTreatments = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, now)
+
+        // Rule A: treatment administration ended while withdrawal remains active
+        if (hive.operationalState == OperationalState.TREATMENT_IN_PROGRESS) {
+            val treatmentPastAdmin = activeTreatments.firstOrNull { treatment ->
+                !now.isBefore(treatment.treatmentEndDate) && now.isBefore(treatment.withdrawalEndDate)
+            }
+            if (treatmentPastAdmin != null) {
+                recordTransition(
+                    hive = hive,
+                    fsmType = "OPERATIONAL_LIFECYCLE",
+                    fromState = hive.operationalState.name,
+                    toState = OperationalState.WITHDRAWAL.name,
+                    event = event,
+                    reason = "Treatment administration ended for ${treatmentPastAdmin.medicineName}; entering withdrawal until ${treatmentPastAdmin.withdrawalEndDate}"
+                )
+                hive.operationalState = OperationalState.WITHDRAWAL
+                hiveRepository.save(hive)
+                return
+            }
+        }
+
+        // Rule B: withdrawal cleared when no active treatments remain
+        if (hive.operationalState == OperationalState.WITHDRAWAL && activeTreatments.isEmpty()) {
+            recordTransition(
+                hive = hive,
+                fsmType = "OPERATIONAL_LIFECYCLE",
+                fromState = hive.operationalState.name,
+                toState = OperationalState.PREPARATION.name,
+                event = event,
+                reason = "Withdrawal period completed; sanitary clearance restored"
+            )
+            hive.operationalState = OperationalState.PREPARATION
             hiveRepository.save(hive)
         }
     }
@@ -185,7 +233,7 @@ class HiveStateMachineService(
         fsmType: String,
         fromState: String,
         toState: String,
-        triggerEvent: String,
+        event: ApiaryDomainEvent,
         reason: String
     ) {
         transitionRepository.save(
@@ -194,7 +242,7 @@ class HiveStateMachineService(
                 fsmType = fsmType,
                 fromState = fromState,
                 toState = toState,
-                triggerEvent = triggerEvent,
+                triggerEvent = "${event::class.simpleName}:${event.eventId}",
                 reason = reason,
                 transitionTimestamp = Instant.now()
             )

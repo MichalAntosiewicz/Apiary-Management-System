@@ -137,7 +137,7 @@ class SanitaryGuardFsmVerificationTest {
             medicineName = "FormicPro",
             activeSubstance = "Formic Acid",
             startDate = now,
-            withdrawalDays = 0,
+            treatmentEndDate = now.plus(7, ChronoUnit.DAYS),
             withdrawalEndDate = now.plus(7, ChronoUnit.DAYS)
         )
 

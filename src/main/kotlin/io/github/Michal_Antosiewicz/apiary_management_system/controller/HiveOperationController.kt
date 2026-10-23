@@ -88,7 +88,7 @@ class HiveOperationController(
                 medicineName = request.medicineName,
                 activeSubstance = request.activeSubstance,
                 startDate = now,
-                endDate = treatmentEndDate,
+                treatmentEndDate = treatmentEndDate,
                 withdrawalDays = request.withdrawalDays,
                 withdrawalEndDate = withdrawalEndDate
             )
@@ -100,7 +100,7 @@ class HiveOperationController(
             medicineName = treatment.medicineName,
             activeSubstance = treatment.activeSubstance,
             startDate = treatment.startDate,
-            withdrawalDays = treatment.withdrawalDays,
+            treatmentEndDate = treatment.treatmentEndDate,
             withdrawalEndDate = treatment.withdrawalEndDate
         )
 
@@ -122,6 +122,7 @@ class HiveOperationController(
             hiveId = hive.id,
             medicineName = treatment.medicineName,
             startDate = treatment.startDate,
+            treatmentEndDate = treatment.treatmentEndDate,
             withdrawalEndDate = treatment.withdrawalEndDate,
             hiveOperationalState = hive.operationalState.name
         )

@@ -33,7 +33,7 @@ VALUES
     ('c4000000-0000-0000-0000-000000000004', 'b4000000-0000-0000-0000-000000000004', 2025, 'Carnica', 'WHITE', false, true);
 
 -- 4. Veterinary Treatments (HIVE-02 currently under withdrawal restriction)
-INSERT INTO treatments (id, hive_id, medicine_name, active_substance, start_date, end_date, withdrawal_days, withdrawal_end_date)
+INSERT INTO treatments (id, hive_id, medicine_name, active_substance, start_date, treatment_end_date, withdrawal_days, withdrawal_end_date)
 VALUES (
            'd2000000-0000-0000-0000-000000000001',
            'b2000000-0000-0000-0000-000000000002',
@@ -82,7 +82,7 @@ VALUES
         'f2000000-0000-0000-0000-000000000002',
         'b2000000-0000-0000-0000-000000000002',
         'TreatmentAppliedEvent',
-        '{"medicine": "Apivar", "activeSubstance": "Amitraz", "withdrawalDays": 14}',
+        '{"medicineName": "Apivar", "activeSubstance": "Amitraz", "startDate": "2025-01-01T00:00:00Z", "treatmentEndDate": "2025-01-15T00:00:00Z", "withdrawalEndDate": "2025-01-29T00:00:00Z"}',
         NOW() - INTERVAL '5 days'
     );
 

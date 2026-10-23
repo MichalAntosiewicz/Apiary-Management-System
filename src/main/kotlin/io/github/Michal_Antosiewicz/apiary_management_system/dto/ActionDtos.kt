@@ -16,6 +16,7 @@ data class TreatmentResponse(
     val hiveId: UUID,
     val medicineName: String,
     val startDate: Instant,
+    val treatmentEndDate: Instant,
     val withdrawalEndDate: Instant,
     val hiveOperationalState: String
 )

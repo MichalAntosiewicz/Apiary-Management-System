@@ -14,10 +14,9 @@ import io.github.Michal_Antosiewicz.apiary_management_system.repository.Treatmen
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
-import org.mockito.invocation.InvocationOnMock
+import org.mockito.kotlin.any
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.Optional
@@ -43,30 +42,31 @@ class AuditReplayProvenanceTest {
 
     @BeforeEach
     fun setUp() {
-        hiveRepository = mock(HiveRepository::class.java)
-        treatmentRepository = mock(TreatmentRepository::class.java)
-        transitionRepository = mock(HiveStateTransitionRepository::class.java)
-        alertRepository = mock(DecisionAlertRepository::class.java)
+        hiveRepository = mock()
+        treatmentRepository = mock()
+        transitionRepository = mock()
+        alertRepository = mock()
 
         recordedTransitions.clear()
         domainEventsJsonStore.clear()
 
         dummyHive = Hive(
             id = hiveId,
-            apiary = mock(Apiary::class.java),
+            apiary = mock(),
             hiveNumber = "H-AUDIT-01",
             hiveType = "LANGSTROTH",
             operationalState = OperationalState.PREPARATION,
             biologicalState = BiologicalState.NOMINAL
         )
 
-        `when`(hiveRepository.findById(hiveId)).thenReturn(Optional.of(dummyHive))
-        `when`(hiveRepository.save(any<Hive>(Hive::class.java))).thenAnswer { invocation: InvocationOnMock ->
-            invocation.getArgument<Hive>(0)
+        whenever(hiveRepository.findById(hiveId)).thenReturn(Optional.of(dummyHive))
+        whenever(hiveRepository.save(any<Hive>())).thenAnswer { invocation ->
+            invocation.getArgument(0)
         }
+        whenever(treatmentRepository.findActiveTreatmentsByHiveId(any(), any())).thenReturn(emptyList())
 
         // Intercept FSM state transitions for audit verification
-        `when`(transitionRepository.save(any<HiveStateTransition>(HiveStateTransition::class.java))).thenAnswer { invocation: InvocationOnMock ->
+        whenever(transitionRepository.save(any<HiveStateTransition>())).thenAnswer { invocation ->
             val transition = invocation.getArgument<HiveStateTransition>(0)
             recordedTransitions.add(transition)
             transition
@@ -81,6 +81,10 @@ class AuditReplayProvenanceTest {
             transitionRepository,
             alertRepository
         )
+
+        val treatmentStart = Instant.now()
+        val treatmentEnd = treatmentStart.plusSeconds(7 * 86400)
+        val withdrawalEnd = treatmentStart.plusSeconds(14 * 86400)
 
         // 1. Define sequence of domain events
         val eventSequence = listOf<Any>(
@@ -115,9 +119,9 @@ class AuditReplayProvenanceTest {
                 treatmentId = UUID.randomUUID(),
                 medicineName = "Apivar",
                 activeSubstance = "Amitraz",
-                startDate = Instant.now(),
-                withdrawalDays = 14,
-                withdrawalEndDate = Instant.now().plusSeconds(14 * 86400)
+                startDate = treatmentStart,
+                treatmentEndDate = treatmentEnd,
+                withdrawalEndDate = withdrawalEnd
             )
         )
 

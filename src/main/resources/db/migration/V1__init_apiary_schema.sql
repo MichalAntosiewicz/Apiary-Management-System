@@ -3,7 +3,7 @@ CREATE TYPE operational_state_enum AS ENUM (
     'PREPARATION',
     'ACTIVE_HONEY_FLOW',
     'TREATMENT_IN_PROGRESS',
-    'WITHDRAWAL_PERIOD',
+    'WITHDRAWAL',
     'WINTERING',
     'DECOMMISSIONED'
 );
@@ -70,7 +70,7 @@ CREATE TABLE treatments (
                             medicine_name VARCHAR(100) NOT NULL,
                             active_substance VARCHAR(100) NOT NULL,
                             start_date TIMESTAMP WITH TIME ZONE NOT NULL,
-                            end_date TIMESTAMP WITH TIME ZONE,
+                            treatment_end_date TIMESTAMP WITH TIME ZONE NOT NULL,
                             withdrawal_days INT NOT NULL,
                             withdrawal_end_date TIMESTAMP WITH TIME ZONE NOT NULL
 );

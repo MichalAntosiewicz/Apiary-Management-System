@@ -40,7 +40,7 @@ data class TreatmentAppliedEvent(
     val medicineName: String,
     val activeSubstance: String,
     val startDate: Instant,
-    val withdrawalDays: Int,
+    val treatmentEndDate: Instant,
     val withdrawalEndDate: Instant
 ) : ApiaryDomainEvent
 
