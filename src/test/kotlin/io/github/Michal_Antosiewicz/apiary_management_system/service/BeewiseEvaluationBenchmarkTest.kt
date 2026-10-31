@@ -86,7 +86,7 @@ class BeewiseEvaluationBenchmarkTest {
             val dummyQueen = Queen(
                 id = UUID.randomUUID(),
                 hive = dummyHive,
-                emergenceYear = 2023,
+                emergenceYear = java.time.Year.now().value - 1,
                 breedLine = "Carnica",
                 isActive = true
             )
@@ -112,11 +112,13 @@ class BeewiseEvaluationBenchmarkTest {
                 val auReason = cols.getOrNull(colIndex["AU_reason_As$visit"] ?: -1)?.lowercase() ?: ""
                 val broodPatternStr = cols.getOrNull(colIndex["BroodPattern_$visit"] ?: -1)?.lowercase() ?: ""
 
-                // Map observed brood pattern
+                // Map observed brood pattern (dataset uses a 0-5 numeric scale, or "?")
+                val broodPatternValue = broodPatternStr.toDoubleOrNull()
                 val broodPattern = when {
-                    "spotty" in broodPatternStr -> BroodPattern.SPOTTY
-                    "drone" in broodPatternStr -> BroodPattern.DRONE_BROOD_ONLY
-                    "absent" in broodPatternStr -> BroodPattern.ABSENT
+                    broodPatternValue == null -> BroodPattern.SOLID_COMPACT
+                    broodPatternValue == 0.0 -> BroodPattern.ABSENT
+                    broodPatternValue > 0.0 && broodPatternValue < 4.0 -> BroodPattern.SPOTTY
+                    broodPatternValue >= 4.0 -> BroodPattern.SOLID_COMPACT
                     else -> BroodPattern.SOLID_COMPACT
                 }
 
@@ -131,7 +133,8 @@ class BeewiseEvaluationBenchmarkTest {
                         stage = CellStage.SEALED
                         cellsCount = 7
                     }
-                    "queen cell" in notes || "supersedure" in notes -> {
+                    listOf("ql", "nq", "queenless", "virginq", "qcell", "queen cell", "supersedure")
+                        .any { it in notes } -> {
                         placement = CellPlacement.CENTRAL
                         stage = CellStage.OPEN_WITH_LARVA
                         cellsCount = 2
@@ -142,11 +145,17 @@ class BeewiseEvaluationBenchmarkTest {
                 val occupiedFrames = (bees.coerceAtLeast(brood) + honeyFrames).coerceAtMost(20.0)
                 val freeSpacePercent = BigDecimal(((20.0 - occupiedFrames) / 20.0) * 100.0).setScale(2, RoundingMode.HALF_UP)
 
-                // 1. Establish Ground Truth from field biologist annotations
+                // 1. Establish Ground Truth using refined domain logic for Supersedure vs Absconding
+                val combinedNotes = "$notes $auReason".lowercase()
+
                 val groundTruth = when {
-                    "swarm" in auReason || "swarm" in notes -> EvaluationClass.REPRODUCTIVE_SWARM
-                    "queen" in auReason || "supersedure" in notes || (broodPattern == BroodPattern.SPOTTY && "cell" in notes) -> EvaluationClass.SUPERSEDURE
-                    "varroa" in auReason || varroaCount >= 25 || honeyStoresKg < BigDecimal("1.50") -> EvaluationClass.COLONY_ABSCONDING
+                    "swarm" in combinedNotes -> EvaluationClass.REPRODUCTIVE_SWARM
+                    listOf("abscond", "deadout", "dead", "empty hive").any { it in combinedNotes } -> EvaluationClass.COLONY_ABSCONDING
+                    listOf("supersedure", "new queen", "nq", "ql", "queenless", "virginq", "qcell", "queen cell").any { it in combinedNotes } -> {
+                        // If population remains stable/normal, it's supersedure; if population crashed drastically, treat as absconding/loss
+                        if (bees < 3) EvaluationClass.COLONY_ABSCONDING else EvaluationClass.SUPERSEDURE
+                    }
+                    listOf("foul brood", "excluded", "weak", "infestation").any { it in combinedNotes } -> EvaluationClass.COLONY_ABSCONDING
                     else -> EvaluationClass.NOMINAL
                 }
 

@@ -137,15 +137,15 @@ class DecisionSupportEngine(
 
         // Indicator 1: Heavy Varroa destructor infestation
         when {
-            event.varroaMiteCount >= 25 -> score += 0.50
-            event.varroaMiteCount >= 10 -> score += 0.25
+            event.varroaMiteCount >= 25 -> score += 0.35
+            event.varroaMiteCount >= 12 -> score += 0.20
         }
 
         // Indicator 2: Acute nutritional deficit (Starvation risk)
         if (event.honeyStoresKg < BigDecimal("1.50")) {
-            score += 0.35
-        } else if (event.honeyStoresKg < BigDecimal("3.00")) {
-            score += 0.15
+            score += 0.40
+        } else if (event.honeyStoresKg < BigDecimal("2.50")) {
+            score += 0.20
         }
 
         // Indicator 3: Stressors and pest intrusions (wax moth, wasps, ants)
@@ -153,9 +153,14 @@ class DecisionSupportEngine(
             score += 0.25
         }
 
+        // Synergy: concurrent mite pressure and nutritional dearth
+        if (event.varroaMiteCount >= 12 && event.honeyStoresKg < BigDecimal("2.50")) {
+            score += 0.20
+        }
+
         val riskScore = BigDecimal(score.coerceIn(0.0, 1.0)).setScale(3, RoundingMode.HALF_UP)
 
-        return if (riskScore >= BigDecimal("0.500")) {
+        return if (riskScore >= BigDecimal("0.550")) {
             val severity = if (riskScore >= BigDecimal("0.750")) AlertSeverity.CRITICAL else AlertSeverity.WARNING
             DecisionAlert(
                 hive = hive,
