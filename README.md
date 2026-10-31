@@ -24,6 +24,11 @@ docker compose up -d
 ## How to run (Command Line / Terminal)
 Make sure Docker Desktop and the database are running, then execute in the project root:
 
+**To start the application:**
+```bash
+# On Mac/Linux, you may need to grant execution rights first: chmod +x gradlew
+./gradlew bootRun
+```
 
 **To run the test suite:**
 ```bash
