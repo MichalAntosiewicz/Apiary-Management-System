@@ -74,12 +74,13 @@ class AuditReplayProvenanceTest {
     }
 
     @Test
-    fun `verify deterministic event replay and complete causal provenance chain`() {
+    fun `verify JSON serialization and a three-event transition trace`() {
         val fsmService = HiveStateMachineService(
             hiveRepository,
             treatmentRepository,
             transitionRepository,
-            alertRepository
+            alertRepository,
+            mock()
         )
 
         val treatmentStart = Instant.now()
@@ -152,7 +153,7 @@ class AuditReplayProvenanceTest {
         assertEquals(1, opTransitions.size)
         assertEquals(OperationalState.TREATMENT_IN_PROGRESS.name, opTransitions[0].toState)
 
-        println("Audit Replay Verification: 100% Deterministic State Equivalence Confirmed.")
+        println("In-memory JSON trace check: three expected transitions observed; no full-system replay claim.")
         println("Recorded Transitions in Audit Log: ${recordedTransitions.size}")
     }
 

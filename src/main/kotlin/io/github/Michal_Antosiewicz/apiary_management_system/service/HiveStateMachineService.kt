@@ -7,17 +7,20 @@ import io.github.Michal_Antosiewicz.apiary_management_system.repository.HiveRepo
 import io.github.Michal_Antosiewicz.apiary_management_system.repository.HiveStateTransitionRepository
 import io.github.Michal_Antosiewicz.apiary_management_system.repository.TreatmentRepository
 import org.springframework.context.event.EventListener
+import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
 import java.time.Instant
+import io.github.Michal_Antosiewicz.apiary_management_system.repository.HarvestDecisionRepository
 
 @Service
 class HiveStateMachineService(
     private val hiveRepository: HiveRepository,
     private val treatmentRepository: TreatmentRepository,
     private val transitionRepository: HiveStateTransitionRepository,
-    private val alertRepository: DecisionAlertRepository
+    private val alertRepository: DecisionAlertRepository,
+    private val decisionRepository: HarvestDecisionRepository
 ) {
 
     // Handles biological and operational state transitions triggered by field inspection data
@@ -25,6 +28,7 @@ class HiveStateMachineService(
     @Transactional
     fun onInspectionRecorded(event: InspectionRecordedEvent) {
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
+        require(hive.operationalState != OperationalState.DECOMMISSIONED) { "Cannot inspect a decommissioned hive" }
         val currentBioState = hive.biologicalState
 
         val targetBioState = when {
@@ -80,6 +84,7 @@ class HiveStateMachineService(
     @Transactional
     fun onTreatmentApplied(event: TreatmentAppliedEvent) {
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
+        require(hive.operationalState != OperationalState.DECOMMISSIONED) { "Cannot treat a decommissioned hive" }
         val previousState = hive.operationalState
 
         recordTransition(
@@ -95,58 +100,41 @@ class HiveStateMachineService(
         hiveRepository.save(hive)
     }
 
-    // Sanitary Guard: validates honey harvesting attempts against active treatment withdrawal periods
+    // A business rejection is a persisted result, never an exception that rolls back its own audit.
     @EventListener
+    @Order(0)
     @Transactional
     fun onHoneyHarvestAttempted(event: HoneyHarvestAttemptedEvent) {
-        val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
-        val now = Instant.now()
-        val activeTreatments = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, now)
-
-        if (activeTreatments.isNotEmpty()) {
-            val conflictingTreatment = activeTreatments.first()
-
-            // Record sanitary violation alert
-            alertRepository.save(
-                DecisionAlert(
-                    hive = hive,
-                    alertType = AlertType.SANITARY_VIOLATION,
-                    severity = AlertSeverity.CRITICAL,
-                    riskScore = BigDecimal("1.000"),
-                    recommendationText = "CRITICAL: Honey harvest blocked. Hive is under active withdrawal for ${conflictingTreatment.medicineName} until ${conflictingTreatment.withdrawalEndDate}."
-                )
-            )
-
-            // Audit rejected transition attempt
-            recordTransition(
-                hive = hive,
-                fsmType = "OPERATIONAL_LIFECYCLE",
-                fromState = hive.operationalState.name,
-                toState = hive.operationalState.name,
-                event = event,
-                reason = "REJECTED: Active withdrawal restriction for ${conflictingTreatment.medicineName}"
-            )
-
-            throw SanitaryViolationException(
-                hiveId = hive.id,
-                medicineName = conflictingTreatment.medicineName,
-                withdrawalEndDate = conflictingTreatment.withdrawalEndDate
-            )
+        if (decisionRepository.existsById(event.eventId)) return
+        val hive = hiveRepository.findById(event.hiveId).orElseThrow { IllegalArgumentException("Hive not found") }
+        val unavailable = hive.operationalState in setOf(OperationalState.DECOMMISSIONED, OperationalState.WINTERING)
+        val active = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, event.occurredAt)
+        val conflict = active.maxByOrNull { it.withdrawalEndDate }
+        val approved = !unavailable && conflict == null
+        val reason = when {
+            unavailable -> "OPERATIONAL_STATE_BLOCKED"
+            conflict != null -> "ACTIVE_WITHDRAWAL"
+            else -> "SANITARY_GUARD_CLEARED"
         }
-
-        // Guard passed: allow transition to honey flow if not already active
-        if (hive.operationalState != OperationalState.ACTIVE_HONEY_FLOW) {
-            recordTransition(
-                hive = hive,
-                fsmType = "OPERATIONAL_LIFECYCLE",
-                fromState = hive.operationalState.name,
-                toState = OperationalState.ACTIVE_HONEY_FLOW.name,
-                event = event,
-                reason = "Sanitary guard cleared. Transitioned to active harvest state"
-            )
-            hive.operationalState = OperationalState.ACTIVE_HONEY_FLOW
+        val message = when {
+            unavailable -> "Harvest rejected in operational state ${hive.operationalState}"
+            conflict != null -> "Harvest rejected: ${conflict.medicineName} restriction lasts until ${conflict.withdrawalEndDate}"
+            else -> "No recorded treatment restriction is active; harvest permitted"
+        }
+        if (conflict != null && !unavailable) {
+            alertRepository.save(DecisionAlert(hive = hive, alertType = AlertType.SANITARY_VIOLATION,
+                severity = AlertSeverity.CRITICAL, riskScore = BigDecimal("1.000"),
+                recommendationText = message, eventId = event.eventId, createdAt = event.occurredAt))
+        }
+        val target = if (approved) OperationalState.ACTIVE_HONEY_FLOW else hive.operationalState
+        recordTransition(hive, "OPERATIONAL_LIFECYCLE", hive.operationalState.name, target.name,
+            event, "${if (approved) "APPROVED" else "REJECTED"}: $reason; $message")
+        if (hive.operationalState != target) {
+            hive.operationalState = target
             hiveRepository.save(hive)
         }
+        decisionRepository.save(HarvestDecision(event.eventId, hive, approved, reason, message,
+            event.occurredAt, if (!unavailable) conflict?.withdrawalEndDate else null))
     }
 
     // Resolves swarm preparation state following successful beekeeper intervention
@@ -155,7 +143,9 @@ class HiveStateMachineService(
     fun onSwarmInterventionApplied(event: SwarmInterventionAppliedEvent) {
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
 
-        if (hive.biologicalState == BiologicalState.SWARM_PREPARATION) {
+        if (hive.operationalState != OperationalState.DECOMMISSIONED &&
+            hive.biologicalState == BiologicalState.SWARM_PREPARATION &&
+            (event.artificialSwarmCreated || event.queenCellsDestroyed)) {
             recordTransition(
                 hive = hive,
                 fsmType = "BIOLOGICAL_DYNAMICS",
@@ -175,7 +165,7 @@ class HiveStateMachineService(
     fun onQueenReplaced(event: QueenReplacedEvent) {
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
 
-        if (hive.biologicalState == BiologicalState.SUPERSEDURE_ACTIVE) {
+        if (hive.operationalState != OperationalState.DECOMMISSIONED && hive.biologicalState == BiologicalState.SUPERSEDURE_ACTIVE) {
             recordTransition(
                 hive = hive,
                 fsmType = "BIOLOGICAL_DYNAMICS",
@@ -190,40 +180,18 @@ class HiveStateMachineService(
     }
 
     private fun evaluateOperationalStateOnInspection(hive: Hive, event: InspectionRecordedEvent) {
-        val now = Instant.now()
-        val activeTreatments = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, now)
-
-        // Rule A: treatment administration ended while withdrawal remains active
-        if (hive.operationalState == OperationalState.TREATMENT_IN_PROGRESS) {
-            val treatmentPastAdmin = activeTreatments.firstOrNull { treatment ->
-                !now.isBefore(treatment.treatmentEndDate) && now.isBefore(treatment.withdrawalEndDate)
-            }
-            if (treatmentPastAdmin != null) {
-                recordTransition(
-                    hive = hive,
-                    fsmType = "OPERATIONAL_LIFECYCLE",
-                    fromState = hive.operationalState.name,
-                    toState = OperationalState.WITHDRAWAL.name,
-                    event = event,
-                    reason = "Treatment administration ended for ${treatmentPastAdmin.medicineName}; entering withdrawal until ${treatmentPastAdmin.withdrawalEndDate}"
-                )
-                hive.operationalState = OperationalState.WITHDRAWAL
-                hiveRepository.save(hive)
-                return
-            }
+        if (hive.operationalState == OperationalState.DECOMMISSIONED) return
+        val active = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, event.occurredAt)
+        val target = when {
+            active.any { event.occurredAt.isBefore(it.treatmentEndDate) } -> OperationalState.TREATMENT_IN_PROGRESS
+            active.isNotEmpty() -> OperationalState.WITHDRAWAL
+            hive.operationalState in setOf(OperationalState.TREATMENT_IN_PROGRESS, OperationalState.WITHDRAWAL) -> OperationalState.PREPARATION
+            else -> hive.operationalState
         }
-
-        // Rule B: withdrawal cleared when no active treatments remain
-        if (hive.operationalState == OperationalState.WITHDRAWAL && activeTreatments.isEmpty()) {
-            recordTransition(
-                hive = hive,
-                fsmType = "OPERATIONAL_LIFECYCLE",
-                fromState = hive.operationalState.name,
-                toState = OperationalState.PREPARATION.name,
-                event = event,
-                reason = "Withdrawal period completed; sanitary clearance restored"
-            )
-            hive.operationalState = OperationalState.PREPARATION
+        if (target != hive.operationalState) {
+            recordTransition(hive, "OPERATIONAL_LIFECYCLE", hive.operationalState.name, target.name,
+                event, "Treatment status reconciled at event time ${event.occurredAt}")
+            hive.operationalState = target
             hiveRepository.save(hive)
         }
     }
@@ -244,7 +212,8 @@ class HiveStateMachineService(
                 toState = toState,
                 triggerEvent = "${event::class.simpleName}:${event.eventId}",
                 reason = reason,
-                transitionTimestamp = Instant.now()
+                transitionTimestamp = event.occurredAt,
+                eventId = event.eventId
             )
         )
     }

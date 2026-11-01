@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:54:00.890Z" time="1.987">
+  <testcase name="field-data representation experiments match independent Python transcription()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="1.949" />
+  <testcase name="author scenarios retain documented SUP-08 disagreement()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="0.037" />
+</testsuite>

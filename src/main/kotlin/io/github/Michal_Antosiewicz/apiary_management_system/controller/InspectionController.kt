@@ -5,6 +5,7 @@ import io.github.Michal_Antosiewicz.apiary_management_system.dto.InspectionRespo
 import io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import jakarta.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/inspections")
@@ -14,7 +15,7 @@ class InspectionController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun recordInspection(@RequestBody request: CreateInspectionRequest): InspectionResponse {
+    fun recordInspection(@Valid @RequestBody request: CreateInspectionRequest): InspectionResponse {
         return inspectionService.recordInspection(request)
     }
 }

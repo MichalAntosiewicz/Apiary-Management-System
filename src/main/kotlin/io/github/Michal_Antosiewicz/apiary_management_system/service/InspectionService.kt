@@ -15,6 +15,10 @@ import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
+import java.time.Clock
+import java.time.temporal.ChronoUnit
+import jakarta.validation.Validator
+import io.github.Michal_Antosiewicz.apiary_management_system.domain.OperationalState
 import java.util.UUID
 
 @Service
@@ -24,19 +28,24 @@ class InspectionService(
     private val domainEventRepository: DomainEventEntryRepository,
     private val alertRepository: DecisionAlertRepository,
     private val eventPublisher: ApplicationEventPublisher,
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
+    private val validator: Validator,
+    private val clock: Clock
 ) {
 
     @Transactional
     fun recordInspection(request: CreateInspectionRequest): InspectionResponse {
-        val hive = hiveRepository.findById(request.hiveId)
+        val errors = validator.validate(request)
+        require(errors.isEmpty()) { errors.joinToString("; ") { "${it.propertyPath}: ${it.message}" } }
+        val hive = hiveRepository.findByIdForUpdate(request.hiveId)
             .orElseThrow { IllegalArgumentException("Hive not found with ID: ${request.hiveId}") }
 
+        require(hive.operationalState != OperationalState.DECOMMISSIONED) { "Cannot inspect a decommissioned hive" }
         val inspection = inspectionRepository.save(
             Inspection(
                 id = UUID.randomUUID(),
                 hive = hive,
-                inspectionDate = Instant.now(),
+                inspectionDate = Instant.now(clock).truncatedTo(ChronoUnit.MICROS),
                 framesOfBees = request.framesOfBees,
                 framesOfBrood = request.framesOfBrood,
                 honeyStoresKg = request.honeyStoresKg,
@@ -72,9 +81,9 @@ class InspectionService(
             temperamentScore = inspection.temperamentScore
         )
 
-        // Persist immutable event log with JSONB payload
+        // Persist event JSON before synchronous consumers create foreign-key references
         val payloadJson = objectMapper.writeValueAsString(domainEvent)
-        domainEventRepository.save(
+        domainEventRepository.saveAndFlush(
             DomainEventEntry(
                 id = domainEvent.eventId,
                 hive = hive,
@@ -87,8 +96,8 @@ class InspectionService(
         // Publish event to invoke FSM transitions and DSS rule engine listeners
         eventPublisher.publishEvent(domainEvent)
 
-        // Fetch unacknowledged alerts produced during this cycle for immediate client feedback
-        val activeAlerts = alertRepository.findByHiveIdAndIsAcknowledgedFalseOrderByCreatedAtDesc(hive.id)
+        // Return only alerts linked to this inspection event; historical active alerts have a separate endpoint
+        val activeAlerts = alertRepository.findByEventId(domainEvent.eventId)
             .map { alert ->
                 InspectionAlertDto(
                     alertType = alert.alertType,

@@ -1,0 +1,7 @@
+case_id,source_row,inspection_date,missing_fields,raw_varroa
+40909_B3-V3,9,2025-05-20,Varroa;BroodPattern,--
+40827_A2-V2,25,2025-04-28,Varroa,efbx
+40868_A3-V2,27,2025-04-28,Varroa,null
+40868_A3-V3,27,2025-05-20,Varroa;BroodPattern,--
+40888_B2-V3,116,2025-05-20,Varroa;BroodPattern,
+40858_B2-V2,121,2025-04-29,Varroa;BroodPattern,removed

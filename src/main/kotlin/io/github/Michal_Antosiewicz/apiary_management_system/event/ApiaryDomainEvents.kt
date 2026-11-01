@@ -49,7 +49,8 @@ data class HoneyHarvestAttemptedEvent(
     override val hiveId: UUID,
     override val occurredAt: Instant = Instant.now(),
     val requestedByUserId: String? = null,
-    val targetSuperCount: Int = 1
+    val targetSuperCount: Int = 1,
+    val operatorNotes: String? = null
 ) : ApiaryDomainEvent
 
 data class SwarmInterventionAppliedEvent(

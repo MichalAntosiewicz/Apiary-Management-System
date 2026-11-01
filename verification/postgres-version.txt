@@ -1,0 +1,1 @@
+PostgreSQL 14.22, compiled by Visual C++ build 1944, 64-bit

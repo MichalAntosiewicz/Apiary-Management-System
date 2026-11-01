@@ -1,0 +1,598 @@
+{
+  "source_commit": "41521e6",
+  "dataset_doi": "10.5281/zenodo.21907271",
+  "dataset_md5": "4550fcf8b5de34d723a2662944f021e5",
+  "input_sha256": {
+    "Beewise_Colony_Assessment_2025_Data.csv": "76b1b9ac4ba6109016fd424a08482178ec67ab5abf92e817b4fe2813f68949de",
+    "literature_benchmark_20.csv": "33d08261e451b33a9ed5c6464daab0fc707b2646734a0fd50d2195827aa5a97f",
+    "BeewiseEvaluationBenchmarkTest.kt": "eba89d0acf391c234e860da03143bd7b9e4372563ba50725ebc418b47b0d4cd4",
+    "DecisionSupportEngine.kt": "b1dfa4ef1d8eb34e827aa1edd75d7ff23d431cba40e219aac3e0e75924c15392"
+  },
+  "python_version": "3.12.14",
+  "data_rows": 120,
+  "unique_hives": 120,
+  "candidate_visits": 360,
+  "analyzed_visits": 359,
+  "skipped_visits": [
+    {
+      "case_id": "40858_B2-V3",
+      "source_row": 121,
+      "reason": "missing_or_unparseable_Lieb_Bees"
+    }
+  ],
+  "assessment_date_counts": {
+    "1": {
+      "2025-03-24": 56,
+      "2025-03-25": 64
+    },
+    "2": {
+      "2025-04-28": 48,
+      "2025-04-29": 48,
+      "2025-04-30": 24
+    },
+    "3": {
+      "2025-05-20": 119
+    }
+  },
+  "duplicate_csv_headers": [
+    "Qstatus_3"
+  ],
+  "raw_brood_values": {
+    "3": 143,
+    "?": 17,
+    "": 30,
+    "2": 40,
+    "4": 75,
+    "0": 9,
+    "5": 25,
+    "2.5": 2,
+    "1": 7,
+    "2--3": 1,
+    "2 --3": 1,
+    "3 --4": 2,
+    "4.5": 3,
+    "3.5": 4
+  },
+  "missing_or_unparseable": {
+    "BroodPattern": 51,
+    "Varroa": 6
+  },
+  "proxy_label_rules": {
+    "default_no_keyword_match": 250,
+    "swarm_keyword": 38,
+    "queen_keyword:queen cell;bees>=3": 9,
+    "queen_keyword:qcell;bees>=3": 10,
+    "queen_keyword:ql;bees>=3": 20,
+    "queen_keyword:queenless;bees<3": 2,
+    "queen_keyword:new queen;bees>=3": 5,
+    "queen_keyword:nq;bees<3": 1,
+    "queen_keyword:ql;bees<3": 6,
+    "problem_keyword:excluded": 2,
+    "queen_keyword:queen cell;bees<3": 4,
+    "queen_keyword:qcell;bees<3": 1,
+    "problem_keyword:foul brood": 7,
+    "queen_keyword:new queen;bees<3": 2,
+    "loss_keyword:dead": 1,
+    "problem_keyword:infestation": 1
+  },
+  "quantitative_excluded_cases": [
+    {
+      "case_id": "40909_B3-V3",
+      "source_row": 9,
+      "inspection_date": "2025-05-20",
+      "missing_fields": "Varroa;BroodPattern",
+      "raw_varroa": "--"
+    },
+    {
+      "case_id": "40827_A2-V2",
+      "source_row": 25,
+      "inspection_date": "2025-04-28",
+      "missing_fields": "Varroa",
+      "raw_varroa": "efbx"
+    },
+    {
+      "case_id": "40868_A3-V2",
+      "source_row": 27,
+      "inspection_date": "2025-04-28",
+      "missing_fields": "Varroa",
+      "raw_varroa": "null"
+    },
+    {
+      "case_id": "40868_A3-V3",
+      "source_row": 27,
+      "inspection_date": "2025-05-20",
+      "missing_fields": "Varroa;BroodPattern",
+      "raw_varroa": "--"
+    },
+    {
+      "case_id": "40888_B2-V3",
+      "source_row": 116,
+      "inspection_date": "2025-05-20",
+      "missing_fields": "Varroa;BroodPattern",
+      "raw_varroa": ""
+    },
+    {
+      "case_id": "40858_B2-V2",
+      "source_row": 121,
+      "inspection_date": "2025-04-29",
+      "missing_fields": "Varroa;BroodPattern",
+      "raw_varroa": "removed"
+    }
+  ],
+  "raw_varroa_count_summary": {
+    "n": 353,
+    "minimum": 0,
+    "maximum": 86,
+    "median": 8,
+    "zeros": 7,
+    "measurement": "Raw integer Varroa assessment count; not normalized per 100 sampled bees"
+  },
+  "assumed_queen_age_years": 1,
+  "variants": {
+    "legacy_note_features": {
+      "n": 359,
+      "matrix": [
+        [
+          20,
+          1,
+          0,
+          17
+        ],
+        [
+          0,
+          13,
+          0,
+          31
+        ],
+        [
+          0,
+          4,
+          3,
+          20
+        ],
+        [
+          0,
+          0,
+          4,
+          246
+        ]
+      ],
+      "class_order": [
+        "REPRODUCTIVE_SWARM",
+        "SUPERSEDURE",
+        "COLONY_ABSCONDING",
+        "NOMINAL"
+      ],
+      "per_class": {
+        "REPRODUCTIVE_SWARM": {
+          "support": 38,
+          "predicted": 20,
+          "precision": 1.0,
+          "recall": 0.5263157894736842,
+          "f1": 0.6896551724137931
+        },
+        "SUPERSEDURE": {
+          "support": 44,
+          "predicted": 18,
+          "precision": 0.7222222222222222,
+          "recall": 0.29545454545454547,
+          "f1": 0.41935483870967744
+        },
+        "COLONY_ABSCONDING": {
+          "support": 27,
+          "predicted": 7,
+          "precision": 0.42857142857142855,
+          "recall": 0.1111111111111111,
+          "f1": 0.17647058823529413
+        },
+        "NOMINAL": {
+          "support": 250,
+          "predicted": 314,
+          "precision": 0.7834394904458599,
+          "recall": 0.984,
+          "f1": 0.8723404255319149
+        }
+      },
+      "matching": 282,
+      "agreement": 0.7855153203342619,
+      "macro_f1": 0.5394552562226699,
+      "macro_class_count": 4,
+      "exclusions": {},
+      "emitted_alert_counts": {
+        "REPRODUCTIVE_SWARM": 20,
+        "SUPERSEDURE": 18,
+        "COLONY_ABSCONDING": 8
+      },
+      "cases_with_multiple_alerts": 1
+    },
+    "no_note_features": {
+      "n": 359,
+      "matrix": [
+        [
+          0,
+          0,
+          1,
+          37
+        ],
+        [
+          0,
+          0,
+          0,
+          44
+        ],
+        [
+          0,
+          0,
+          3,
+          24
+        ],
+        [
+          0,
+          0,
+          4,
+          246
+        ]
+      ],
+      "class_order": [
+        "REPRODUCTIVE_SWARM",
+        "SUPERSEDURE",
+        "COLONY_ABSCONDING",
+        "NOMINAL"
+      ],
+      "per_class": {
+        "REPRODUCTIVE_SWARM": {
+          "support": 38,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "SUPERSEDURE": {
+          "support": 44,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "COLONY_ABSCONDING": {
+          "support": 27,
+          "predicted": 8,
+          "precision": 0.375,
+          "recall": 0.1111111111111111,
+          "f1": 0.17142857142857143
+        },
+        "NOMINAL": {
+          "support": 250,
+          "predicted": 351,
+          "precision": 0.7008547008547008,
+          "recall": 0.984,
+          "f1": 0.8186356073211315
+        }
+      },
+      "matching": 249,
+      "agreement": 0.6935933147632312,
+      "macro_f1": 0.24751604468742572,
+      "macro_class_count": 4,
+      "exclusions": {},
+      "emitted_alert_counts": {
+        "REPRODUCTIVE_SWARM": 0,
+        "SUPERSEDURE": 0,
+        "COLONY_ABSCONDING": 8
+      },
+      "cases_with_multiple_alerts": 0
+    },
+    "no_note_numeric_complete": {
+      "n": 306,
+      "matrix": [
+        [
+          0,
+          0,
+          1,
+          27
+        ],
+        [
+          0,
+          0,
+          0,
+          32
+        ],
+        [
+          0,
+          0,
+          2,
+          15
+        ],
+        [
+          0,
+          0,
+          4,
+          225
+        ]
+      ],
+      "class_order": [
+        "REPRODUCTIVE_SWARM",
+        "SUPERSEDURE",
+        "COLONY_ABSCONDING",
+        "NOMINAL"
+      ],
+      "per_class": {
+        "REPRODUCTIVE_SWARM": {
+          "support": 28,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "SUPERSEDURE": {
+          "support": 32,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "COLONY_ABSCONDING": {
+          "support": 17,
+          "predicted": 7,
+          "precision": 0.2857142857142857,
+          "recall": 0.11764705882352941,
+          "f1": 0.16666666666666666
+        },
+        "NOMINAL": {
+          "support": 229,
+          "predicted": 299,
+          "precision": 0.7525083612040134,
+          "recall": 0.982532751091703,
+          "f1": 0.8522727272727273
+        }
+      },
+      "matching": 227,
+      "agreement": 0.7418300653594772,
+      "macro_f1": 0.2547348484848485,
+      "macro_class_count": 4,
+      "exclusions": {
+        "incomplete_numeric_inputs_or_brood": 53
+      },
+      "emitted_alert_counts": {
+        "REPRODUCTIVE_SWARM": 0,
+        "SUPERSEDURE": 0,
+        "COLONY_ABSCONDING": 7
+      },
+      "cases_with_multiple_alerts": 0
+    },
+    "brood_agnostic_complete": {
+      "n": 353,
+      "matrix": [
+        [
+          0,
+          0,
+          1,
+          37
+        ],
+        [
+          0,
+          0,
+          0,
+          44
+        ],
+        [
+          0,
+          0,
+          3,
+          20
+        ],
+        [
+          0,
+          0,
+          4,
+          244
+        ]
+      ],
+      "class_order": [
+        "REPRODUCTIVE_SWARM",
+        "SUPERSEDURE",
+        "COLONY_ABSCONDING",
+        "NOMINAL"
+      ],
+      "per_class": {
+        "REPRODUCTIVE_SWARM": {
+          "support": 38,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "SUPERSEDURE": {
+          "support": 44,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "COLONY_ABSCONDING": {
+          "support": 23,
+          "predicted": 8,
+          "precision": 0.375,
+          "recall": 0.13043478260869565,
+          "f1": 0.1935483870967742
+        },
+        "NOMINAL": {
+          "support": 248,
+          "predicted": 345,
+          "precision": 0.7072463768115942,
+          "recall": 0.9838709677419355,
+          "f1": 0.8229342327150084
+        }
+      },
+      "matching": 247,
+      "agreement": 0.6997167138810199,
+      "macro_f1": 0.25412065495294567,
+      "macro_class_count": 4,
+      "exclusions": {
+        "incomplete_quantitative_inputs": 6
+      },
+      "emitted_alert_counts": {
+        "REPRODUCTIVE_SWARM": 0,
+        "SUPERSEDURE": 0,
+        "COLONY_ABSCONDING": 8
+      },
+      "cases_with_multiple_alerts": 0
+    }
+  },
+  "changed_predictions_when_note_features_removed": 38,
+  "swarm_notes": 20,
+  "swarm_proxy_labels": 38,
+  "nominal_with_empty_notes_and_reason": 207,
+  "majority_label_reference": {
+    "n": 359,
+    "matrix": [
+      [
+        0,
+        0,
+        0,
+        38
+      ],
+      [
+        0,
+        0,
+        0,
+        44
+      ],
+      [
+        0,
+        0,
+        0,
+        27
+      ],
+      [
+        0,
+        0,
+        0,
+        250
+      ]
+    ],
+    "class_order": [
+      "REPRODUCTIVE_SWARM",
+      "SUPERSEDURE",
+      "COLONY_ABSCONDING",
+      "NOMINAL"
+    ],
+    "per_class": {
+      "REPRODUCTIVE_SWARM": {
+        "support": 38,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "SUPERSEDURE": {
+        "support": 44,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "COLONY_ABSCONDING": {
+        "support": 27,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "NOMINAL": {
+        "support": 250,
+        "predicted": 359,
+        "precision": 0.6963788300835655,
+        "recall": 1.0,
+        "f1": 0.8210180623973727
+      }
+    },
+    "matching": 250,
+    "agreement": 0.6963788300835655,
+    "macro_f1": 0.20525451559934318,
+    "macro_class_count": 4
+  },
+  "author_scenarios": {
+    "n": 20,
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        9,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        5
+      ]
+    ],
+    "class_order": [
+      "REPRODUCTIVE_SWARM",
+      "SUPERSEDURE",
+      "COLONY_ABSCONDING",
+      "NOMINAL"
+    ],
+    "per_class": {
+      "REPRODUCTIVE_SWARM": {
+        "support": 5,
+        "predicted": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "SUPERSEDURE": {
+        "support": 10,
+        "predicted": 9,
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1": 0.9473684210526315
+      },
+      "COLONY_ABSCONDING": {
+        "support": 0,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null
+      },
+      "NOMINAL": {
+        "support": 5,
+        "predicted": 6,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1": 0.9090909090909091
+      }
+    },
+    "matching": 19,
+    "agreement": 0.95,
+    "macro_f1": 0.9521531100478469,
+    "macro_class_count": 3
+  },
+  "author_scenario_mismatches": [
+    "SUP-08"
+  ],
+  "age_brood_grid_stability": {
+    "n": 353,
+    "stable_over_entire_age_brood_grid": 0,
+    "stable_over_brood_states_by_age": {
+      "0": 353,
+      "1": 353,
+      "2": 0
+    },
+    "interpretation": "Counterfactual coverage of missing inputs, not observed queen ages or biological brood states"
+  },
+  "jvm_fixture_rows": 6692,
+  "interpretation": "Descriptive proxy-label agreement; no held-out biological validation"
+}

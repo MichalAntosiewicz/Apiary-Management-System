@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.AuditReplayProvenanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:54:00.106Z" time="0.778">
+  <testcase name="verify JSON serialization and a three-event transition trace()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.AuditReplayProvenanceTest" time="0.776" />
+</testsuite>

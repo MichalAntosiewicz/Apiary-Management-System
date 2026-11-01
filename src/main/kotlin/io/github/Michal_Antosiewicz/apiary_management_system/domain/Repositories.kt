@@ -3,6 +3,8 @@ package io.github.Michal_Antosiewicz.apiary_management_system.repository
 import io.github.Michal_Antosiewicz.apiary_management_system.domain.*
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.jpa.repository.Lock
+import jakarta.persistence.LockModeType
 import org.springframework.stereotype.Repository
 import java.time.Instant
 import java.util.Optional
@@ -14,6 +16,10 @@ interface ApiaryRepository : JpaRepository<Apiary, UUID>
 @Repository
 interface HiveRepository : JpaRepository<Hive, UUID> {
     fun findByApiaryId(apiaryId: UUID): List<Hive>
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT h FROM Hive h WHERE h.id = :id")
+    fun findByIdForUpdate(id: UUID): Optional<Hive>
 }
 
 @Repository
@@ -29,14 +35,18 @@ interface InspectionRepository : JpaRepository<Inspection, UUID> {
 
 @Repository
 interface TreatmentRepository : JpaRepository<Treatment, UUID> {
-    @Query("SELECT t FROM Treatment t WHERE t.hive.id = :hiveId AND t.withdrawalEndDate > :now")
+    @Query("SELECT t FROM Treatment t WHERE t.hive.id = :hiveId AND t.startDate <= :now AND t.withdrawalEndDate > :now")
     fun findActiveTreatmentsByHiveId(hiveId: UUID, now: Instant = Instant.now()): List<Treatment>
 }
 
 @Repository
 interface DecisionAlertRepository : JpaRepository<DecisionAlert, UUID> {
     fun findByHiveIdAndIsAcknowledgedFalseOrderByCreatedAtDesc(hiveId: UUID): List<DecisionAlert>
+    fun findByEventId(eventId: UUID): List<DecisionAlert>
 }
+
+@Repository
+interface HarvestDecisionRepository : JpaRepository<HarvestDecision, UUID>
 
 @Repository
 interface DomainEventEntryRepository : JpaRepository<DomainEventEntry, UUID> {

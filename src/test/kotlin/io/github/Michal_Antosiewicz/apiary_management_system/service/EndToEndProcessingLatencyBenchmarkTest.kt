@@ -54,12 +54,13 @@ class EndToEndProcessingLatencyBenchmarkTest {
             hiveRepository,
             treatmentRepository,
             transitionRepository,
-            alertRepository
+            alertRepository,
+            mock()
         )
     }
 
     @Test
-    fun `benchmark end-to-end event intake and inference latency across N=1000 events`() {
+    fun `microbenchmark serialization and direct service calls with mock repositories`() {
         val n = 1000
         val warmupIterations = 200
         val latenciesMicros = LongArray(n)
@@ -140,13 +141,13 @@ class EndToEndProcessingLatencyBenchmarkTest {
         val throughputPerSec = (1_000_000.0 / meanMicros).toInt()
 
         println("\n=======================================================")
-        println("END-TO-END PROCESSING LATENCY BENCHMARK (N = $n)")
+        println("IN-MEMORY SERVICE MICROBENCHMARK (N = $n)")
         println("=======================================================")
         println("Mean Latency:       %8.2f µs (%.3f ms)".format(meanMicros, meanMicros / 1000.0))
         println("Median (p50):       %8d µs (%.3f ms)".format(medianMicros, medianMicros / 1000.0))
         println("95th Percentile:    %8d µs (%.3f ms)".format(p95Micros, p95Micros / 1000.0))
         println("99th Percentile:    %8d µs (%.3f ms)".format(p99Micros, p99Micros / 1000.0))
-        println("Estimated Throughput: %6d events / second".format(throughputPerSec))
+        println("Inverse mean time (not system throughput): %6d events / second".format(throughputPerSec))
         println("=======================================================\n")
     }
 }

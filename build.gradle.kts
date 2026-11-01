@@ -1,3 +1,5 @@
+import java.io.File
+
 plugins {
 	kotlin("jvm") version "2.1.10"
 	kotlin("plugin.spring") version "2.1.10"
@@ -28,8 +30,7 @@ dependencies {
 
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-database-postgresql")
-	implementation("junit:junit:4.13.1")
-	implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+	testImplementation("io.zonky.test:embedded-postgres:2.2.2")
 	runtimeOnly("org.postgresql:postgresql")
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -57,4 +58,10 @@ allOpen {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	maxParallelForks = 1
+	// Native Windows initdb needs an ASCII path; allow an explicit portable override.
+	val nativeTemp = providers.gradleProperty("testTempDir")
+		.orElse(File(System.getProperty("java.io.tmpdir"), "apiary-workflow-tests").absolutePath)
+	systemProperty("java.io.tmpdir", nativeTemp.get())
+	doFirst { File(nativeTemp.get()).mkdirs() }
 }

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.EndToEndProcessingLatencyBenchmarkTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:54:02.882Z" time="0.217">
+  <testcase name="microbenchmark serialization and direct service calls with mock repositories()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.EndToEndProcessingLatencyBenchmarkTest" time="0.216" />
+</testsuite>

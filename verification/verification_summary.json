@@ -1,0 +1,74 @@
+{
+  "artifact": "Apiary workflow verification research artifact",
+  "full_suite_command": ".\\gradlew.bat test --no-daemon --offline",
+  "offline_note": "Omit --offline on the first run to obtain public dependencies.",
+  "suites": [
+    {
+      "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.EndToEndProcessingLatencyBenchmarkTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.217"
+    },
+    {
+      "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.AuditReplayProvenanceTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.778"
+    },
+    {
+      "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.987"
+    },
+    {
+      "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.087"
+    },
+    {
+      "name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "tests": "103",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "30.997"
+    }
+  ],
+  "total_tests": 111,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "integration_cases": 103,
+  "matrix_cases": 90,
+  "matrix_http_status_counts": {
+    "200": 8,
+    "201": 50,
+    "409": 22,
+    "400": 10
+  },
+  "matrix_state_mismatches": 0,
+  "boundary_steps": 18,
+  "field_derived_fixture_configurations": 6672,
+  "author_defined_fixture_configurations": 20,
+  "environment": {
+    "operating_system": "Windows",
+    "architecture": "AMD64",
+    "java_version": "21.0.8",
+    "java_implementor": "JetBrains s.r.o.",
+    "gradle_version": "9.7.1",
+    "kotlin_version": "2.1.10",
+    "spring_boot_version": "3.4.3",
+    "postgres_version": "PostgreSQL 14.22, compiled by Visual C++ build 1944, 64-bit"
+  },
+  "junit_export": "Successful test identities and outcomes retained; host names, properties and console streams omitted."
+}

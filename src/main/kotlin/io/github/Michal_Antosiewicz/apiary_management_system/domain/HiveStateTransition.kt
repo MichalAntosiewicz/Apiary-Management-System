@@ -30,5 +30,8 @@ class HiveStateTransition(
     var reason: String? = null,
 
     @Column(name = "transition_timestamp", nullable = false, updatable = false)
-    val transitionTimestamp: Instant = Instant.now()
+    val transitionTimestamp: Instant = Instant.now(),
+
+    @Column(name = "event_id")
+    val eventId: UUID? = null
 )
