@@ -1,0 +1,748 @@
+{
+  "id": "M01",
+  "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt",
+  "title": "Include the withdrawal endpoint",
+  "rationale": "An off-by-one interval error retains a restriction at its exact endpoint.",
+  "patch_sha256": "cc340be6ae0d0359b5eb3b94a76a37dadb6df36b11ce77a93490f87a7cd8ef65",
+  "status": "detected",
+  "exit_code": 1,
+  "cases": 103,
+  "failures": 3,
+  "skipped": 0,
+  "elapsed_seconds": 57.531,
+  "command": [
+    "cmd",
+    "/d",
+    "/c",
+    "gradlew.bat",
+    "test",
+    "--tests",
+    "*WorkflowIntegrationTest",
+    "--no-daemon",
+    "--console=plain",
+    "--offline"
+  ],
+  "tests": [
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "concurrentHarvestWaitsForTreatmentTransactionAndReadsItsCommit()",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "overlappingTreatmentsPreserveAdministrationUntilLastAdministrationEnds()",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <PREPARATION> but was: <WITHDRAWAL>"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "rejectionAuditRemainsCommittedAfterHttp409()",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "PREPARATION/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "ACTIVE_HONEY_FLOW/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "TREATMENT_IN_PROGRESS/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WITHDRAWAL/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "WINTERING/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/NONE/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/NONE/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/NONE/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/ADMINISTRATION/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/ADMINISTRATION/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/ADMINISTRATION/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/WITHDRAWAL/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/WITHDRAWAL/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/WITHDRAWAL/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/EXPIRED/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/EXPIRED/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/EXPIRED/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/OVERLAP/HARVEST",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/OVERLAP/INSPECTION",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "DECOMMISSIONED/OVERLAP/TREATMENT",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[1] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=-1, withdrawalDays=1}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[2] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=0, withdrawalDays=1}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[3] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=-1}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[4] endpoint=treatments, body={medicineName= , activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[5] endpoint=harvest, body={targetSuperCount=0}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "[6] endpoint=treatments, body={hiveId=2282f6ae-c32f-4f90-ab5b-9f3c3b8a4e7d, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "missedWithdrawalWindowAndZeroWithdrawalClearOnNextInspection()",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <PREPARATION> but was: <WITHDRAWAL>"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "unexpectedFailureRollsBackAllPartialAuditAndState()",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "serverTimestampsAgreeAtPostgresMicrosecondPrecision()",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "exactAdministrationAndWithdrawalBoundaries()",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <PREPARATION> but was: <WITHDRAWAL>"
+    }
+  ]
+}

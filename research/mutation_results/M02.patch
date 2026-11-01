@@ -1,0 +1,11 @@
+--- a/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt
++++ b/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt
+@@ -35,7 +35,7 @@
+ 
+ @Repository
+ interface TreatmentRepository : JpaRepository<Treatment, UUID> {
+-    @Query("SELECT t FROM Treatment t WHERE t.hive.id = :hiveId AND t.startDate <= :now AND t.withdrawalEndDate > :now")
++    @Query("SELECT t FROM Treatment t WHERE t.hive.id = :hiveId AND t.startDate < :now AND t.withdrawalEndDate > :now")
+     fun findActiveTreatmentsByHiveId(hiveId: UUID, now: Instant = Instant.now()): List<Treatment>
+ }
+ 

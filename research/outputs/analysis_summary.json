@@ -583,6 +583,11 @@
   "author_scenario_mismatches": [
     "SUP-08"
   ],
+  "selected_output_priority": [
+    "REPRODUCTIVE_SWARM",
+    "SUPERSEDURE",
+    "COLONY_ABSCONDING"
+  ],
   "age_brood_grid_stability": {
     "n": 353,
     "stable_over_entire_age_brood_grid": 0,

@@ -9,7 +9,7 @@
       "failures": "0",
       "errors": "0",
       "skipped": "0",
-      "time": "0.217"
+      "time": "0.147"
     },
     {
       "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.AuditReplayProvenanceTest",
@@ -17,7 +17,7 @@
       "failures": "0",
       "errors": "0",
       "skipped": "0",
-      "time": "0.778"
+      "time": "0.701"
     },
     {
       "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest",
@@ -25,7 +25,7 @@
       "failures": "0",
       "errors": "0",
       "skipped": "0",
-      "time": "1.987"
+      "time": "1.627"
     },
     {
       "name": "io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest",
@@ -33,7 +33,7 @@
       "failures": "0",
       "errors": "0",
       "skipped": "0",
-      "time": "0.087"
+      "time": "0.08"
     },
     {
       "name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -41,7 +41,7 @@
       "failures": "0",
       "errors": "0",
       "skipped": "0",
-      "time": "30.997"
+      "time": "30.364"
     }
   ],
   "total_tests": 111,

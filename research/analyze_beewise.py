@@ -322,7 +322,7 @@ def main() -> None:
                  pests=row["signsOfPests"] == "true")
         age = int(row["queenAgeYears"])
         s = scores(x, age)
-        priority = (CLASSES[1], CLASSES[0], CLASSES[2])  # preserve upstream B convention explicitly
+        priority = CLASSES[:3]  # one reporting convention for all field and authored inputs
         pred = predict(s, priority)
         fixtures.append(fixture(row["scenarioId"], "author_scenarios", "2025-03-24", x, age, row["expectedClass"], s, priority))
         scenario_records.append(dict(case_id=row["scenarioId"], proxy_label=row["expectedClass"], predicted=pred,
@@ -391,6 +391,7 @@ def main() -> None:
                    nominal_with_empty_notes_and_reason=sum(c["proxy_label"] == CLASSES[3] and not c["notes"] and not c["au_reason"] for c in cases),
                    majority_label_reference=majority, author_scenarios=agreement(scenario_records),
                    author_scenario_mismatches=[r["case_id"] for r in scenario_records if not r["matches_scenario"]],
+                   selected_output_priority=list(CLASSES[:3]),
                    age_brood_grid_stability=stability,
                    jvm_fixture_rows=len(fixtures), interpretation="Descriptive proxy-label agreement; no held-out biological validation")
     (OUT / "analysis_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

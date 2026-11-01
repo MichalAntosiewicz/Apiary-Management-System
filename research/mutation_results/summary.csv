@@ -1,0 +1,11 @@
+id,title,status,cases,failures,skipped,elapsed_seconds
+M01,Include the withdrawal endpoint,detected,103,3,0,57.531
+M02,Exclude the treatment start,detected,103,2,0,56.375
+M03,Include the administration endpoint,detected,103,2,0,52.891
+M04,Require every active treatment to be in administration,detected,103,6,0,47.172
+M05,Retain expired treatment state,detected,103,7,0,60.188
+M06,Remove the wintering harvest guard,detected,103,5,0,59.969
+M07,Throw after recording business rejection,detected,103,26,0,55.0
+M08,Remove explicit per-hive write lock,detected,103,1,0,66.187
+M09,Keep nanoseconds in harvest event time,detected,103,1,0,55.438
+M10,Omit transition event association,detected,103,31,0,52.25

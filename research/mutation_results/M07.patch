@@ -1,0 +1,10 @@
+--- a/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
++++ b/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
+@@ -135,6 +135,7 @@
+         }
+         decisionRepository.save(HarvestDecision(event.eventId, hive, approved, reason, message,
+             event.occurredAt, if (!unavailable) conflict?.withdrawalEndDate else null))
++        if (!approved) throw IllegalStateException("Mutation: rejected business decision")
+     }
+ 
+     // Resolves swarm preparation state following successful beekeeper intervention

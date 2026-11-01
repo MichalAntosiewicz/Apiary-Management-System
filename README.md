@@ -20,6 +20,8 @@ The archived run was verified on Windows x86_64. Native PostgreSQL requires comp
 
 The archived run contains **111 passing JUnit cases**: **103 integration cases** using actual HTTP and native PostgreSQL 14.22, and **8 service-level tests**. The workflow matrix covers 90 combinations of six operational states, five treatment conditions and three commands. Additional integration cases cover validation, durable rejection records, rollback, exact time boundaries, overlapping treatments, locking, and timestamp precision. Two service tests compare **6692 generated input configurations** with the Kotlin rule engine.
 
+The additional workflow fault-detection experiment runs the unchanged integration suite against ten specified code mutations. Its manifest, patches and all outcomes are in `research/mutation_results`; reproduction instructions are in [research/README.md](research/README.md#workflow-fault-detection-experiment). The implemented entry paths and reserved enum values are listed in [WORKFLOW_CONTRACT.md](WORKFLOW_CONTRACT.md#state-reachability-and-initialization).
+
 ## Artifact contents
 
 | Path | Purpose |
@@ -27,9 +29,10 @@ The archived run contains **111 passing JUnit cases**: **103 integration cases**
 | `src/main` | Application, transactional command services, event consumers and Flyway migrations |
 | `src/test` | Workflow tests, service tests and generated cross-language fixtures |
 | [WORKFLOW_CONTRACT.md](WORKFLOW_CONTRACT.md) | Command contract, event-time semantics and verified scope |
-| [research/README.md](research/README.md) | Inspection-data experiments, source provenance and output definitions |
+| [research/README.md](research/README.md) | Inspection-data and workflow mutation experiments, provenance and output definitions |
 | `research/upstream_41521e6.zip` | Immutable source snapshot used to reproduce the input adapter |
 | `research/outputs` | Per-case results, representation comparisons and generated tables |
+| `research/mutation_results` | Prespecified faults, patches, complete per-test outcomes and aggregate mutation results |
 | [verification/README.md](verification/README.md) | Interpretation and reproduction of the archived verification results |
 | `verification/junit` | Compact JUnit results without machine names or raw console output |
 | `verification/verification_summary.json` | Test totals, workflow coverage and runtime versions |

@@ -26,3 +26,5 @@ python research/archive_verification.py
 On Windows use `.\gradlew.bat test --no-daemon`. The archive script requires all 111 cases to pass; it rejects partial, failed or skipped runs. Full console output and HTML remain under the ignored `build/` directory. The committed XML export contains the successful outcomes needed to check counts without publishing machine-specific logs.
 
 The test suite verifies the documented workflow and selected controlled interleavings. The service microbenchmark uses mock repositories and is not an HTTP/PostgreSQL throughput result. Fixture concordance measures agreement with explicit representation scenarios, not field diagnostic accuracy.
+
+The separate fault-detection experiment keeps this successful baseline archive intact and executes isolated source variants with the same integration assertions. Its complete manifest, patches and results are under `research/mutation_results`; see [research/README.md](../research/README.md#workflow-fault-detection-experiment). Mutation-induced failures are expected experimental outcomes and are not mixed into the successful baseline totals.

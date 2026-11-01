@@ -1,0 +1,11 @@
+--- a/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
++++ b/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
+@@ -183,7 +183,7 @@
+         if (hive.operationalState == OperationalState.DECOMMISSIONED) return
+         val active = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, event.occurredAt)
+         val target = when {
+-            active.any { event.occurredAt.isBefore(it.treatmentEndDate) } -> OperationalState.TREATMENT_IN_PROGRESS
++            active.any { !event.occurredAt.isAfter(it.treatmentEndDate) } -> OperationalState.TREATMENT_IN_PROGRESS
+             active.isNotEmpty() -> OperationalState.WITHDRAWAL
+             hive.operationalState in setOf(OperationalState.TREATMENT_IN_PROGRESS, OperationalState.WITHDRAWAL) -> OperationalState.PREPARATION
+             else -> hive.operationalState

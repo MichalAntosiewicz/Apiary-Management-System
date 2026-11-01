@@ -1,0 +1,11 @@
+--- a/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
++++ b/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt
+@@ -107,7 +107,7 @@
+     fun onHoneyHarvestAttempted(event: HoneyHarvestAttemptedEvent) {
+         if (decisionRepository.existsById(event.eventId)) return
+         val hive = hiveRepository.findById(event.hiveId).orElseThrow { IllegalArgumentException("Hive not found") }
+-        val unavailable = hive.operationalState in setOf(OperationalState.DECOMMISSIONED, OperationalState.WINTERING)
++        val unavailable = hive.operationalState == OperationalState.DECOMMISSIONED
+         val active = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, event.occurredAt)
+         val conflict = active.maxByOrNull { it.withdrawalEndDate }
+         val approved = !unavailable && conflict == null

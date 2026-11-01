@@ -1,106 +1,106 @@
 <?xml version='1.0' encoding='utf-8'?>
-<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" tests="103" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:53:27.830Z" time="30.997">
-  <testcase name="concurrentHarvestWaitsForTreatmentTransactionAndReadsItsCommit()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="1.384" />
-  <testcase name="overlappingTreatmentsPreserveAdministrationUntilLastAdministrationEnds()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.309" />
-  <testcase name="rejectionAuditRemainsCommittedAfterHttp409()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.11" />
-  <testcase name="PREPARATION/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.12" />
-  <testcase name="PREPARATION/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.107" />
-  <testcase name="PREPARATION/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.108" />
-  <testcase name="PREPARATION/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.107" />
-  <testcase name="PREPARATION/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.105" />
-  <testcase name="PREPARATION/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.102" />
-  <testcase name="PREPARATION/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.118" />
-  <testcase name="PREPARATION/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.125" />
-  <testcase name="PREPARATION/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
-  <testcase name="PREPARATION/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.104" />
-  <testcase name="PREPARATION/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.101" />
-  <testcase name="PREPARATION/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.118" />
-  <testcase name="PREPARATION/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.113" />
-  <testcase name="PREPARATION/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.114" />
-  <testcase name="PREPARATION/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.091" />
-  <testcase name="ACTIVE_HONEY_FLOW/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.105" />
-  <testcase name="ACTIVE_HONEY_FLOW/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.102" />
-  <testcase name="ACTIVE_HONEY_FLOW/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.097" />
-  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.114" />
-  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.103" />
-  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.094" />
-  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
-  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.106" />
-  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.096" />
-  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.097" />
-  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.088" />
-  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.078" />
-  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
-  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
-  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" tests="103" skipped="0" failures="0" errors="0" timestamp="2026-11-01T17:46:10.287Z" time="30.364">
+  <testcase name="concurrentHarvestWaitsForTreatmentTransactionAndReadsItsCommit()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="1.191" />
+  <testcase name="overlappingTreatmentsPreserveAdministrationUntilLastAdministrationEnds()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="2.699" />
+  <testcase name="rejectionAuditRemainsCommittedAfterHttp409()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.113" />
+  <testcase name="PREPARATION/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.576" />
+  <testcase name="PREPARATION/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="1.06" />
+  <testcase name="PREPARATION/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.208" />
+  <testcase name="PREPARATION/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.102" />
+  <testcase name="PREPARATION/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.094" />
+  <testcase name="PREPARATION/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.089" />
+  <testcase name="PREPARATION/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.103" />
+  <testcase name="PREPARATION/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.123" />
+  <testcase name="PREPARATION/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.1" />
+  <testcase name="PREPARATION/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.094" />
+  <testcase name="PREPARATION/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.095" />
+  <testcase name="PREPARATION/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.097" />
+  <testcase name="PREPARATION/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.099" />
+  <testcase name="PREPARATION/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.098" />
+  <testcase name="PREPARATION/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
+  <testcase name="ACTIVE_HONEY_FLOW/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.099" />
+  <testcase name="ACTIVE_HONEY_FLOW/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
+  <testcase name="ACTIVE_HONEY_FLOW/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.075" />
+  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.1" />
+  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.098" />
+  <testcase name="ACTIVE_HONEY_FLOW/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
+  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
+  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.099" />
+  <testcase name="ACTIVE_HONEY_FLOW/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.087" />
+  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
+  <testcase name="ACTIVE_HONEY_FLOW/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
+  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.088" />
+  <testcase name="ACTIVE_HONEY_FLOW/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.075" />
   <testcase name="TREATMENT_IN_PROGRESS/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="TREATMENT_IN_PROGRESS/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
-  <testcase name="TREATMENT_IN_PROGRESS/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
-  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
-  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.074" />
-  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.08" />
-  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
-  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
-  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.073" />
-  <testcase name="WITHDRAWAL/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.086" />
-  <testcase name="WITHDRAWAL/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="WITHDRAWAL/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.099" />
-  <testcase name="WITHDRAWAL/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
-  <testcase name="WITHDRAWAL/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
-  <testcase name="WITHDRAWAL/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.073" />
-  <testcase name="WITHDRAWAL/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
-  <testcase name="WITHDRAWAL/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="WITHDRAWAL/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.075" />
-  <testcase name="WITHDRAWAL/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
-  <testcase name="WITHDRAWAL/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.086" />
-  <testcase name="WITHDRAWAL/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
-  <testcase name="WITHDRAWAL/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.089" />
-  <testcase name="WITHDRAWAL/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.087" />
+  <testcase name="TREATMENT_IN_PROGRESS/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.078" />
+  <testcase name="TREATMENT_IN_PROGRESS/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.074" />
+  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
+  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
+  <testcase name="TREATMENT_IN_PROGRESS/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.089" />
+  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.078" />
+  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.086" />
+  <testcase name="TREATMENT_IN_PROGRESS/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.087" />
+  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.088" />
+  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.096" />
+  <testcase name="TREATMENT_IN_PROGRESS/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
+  <testcase name="TREATMENT_IN_PROGRESS/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
+  <testcase name="WITHDRAWAL/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
+  <testcase name="WITHDRAWAL/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
+  <testcase name="WITHDRAWAL/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.078" />
+  <testcase name="WITHDRAWAL/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="WITHDRAWAL/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.086" />
+  <testcase name="WITHDRAWAL/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
+  <testcase name="WITHDRAWAL/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
+  <testcase name="WITHDRAWAL/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
+  <testcase name="WITHDRAWAL/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
+  <testcase name="WITHDRAWAL/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.093" />
+  <testcase name="WITHDRAWAL/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.104" />
+  <testcase name="WITHDRAWAL/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.087" />
+  <testcase name="WITHDRAWAL/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.101" />
+  <testcase name="WITHDRAWAL/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.1" />
   <testcase name="WITHDRAWAL/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
-  <testcase name="WINTERING/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
-  <testcase name="WINTERING/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.08" />
-  <testcase name="WINTERING/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
-  <testcase name="WINTERING/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="WINTERING/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
-  <testcase name="WINTERING/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.09" />
-  <testcase name="WINTERING/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.078" />
-  <testcase name="WINTERING/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.099" />
-  <testcase name="WINTERING/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
-  <testcase name="WINTERING/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.094" />
-  <testcase name="WINTERING/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.094" />
-  <testcase name="WINTERING/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.089" />
-  <testcase name="WINTERING/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.098" />
-  <testcase name="WINTERING/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.1" />
-  <testcase name="WINTERING/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.095" />
-  <testcase name="DECOMMISSIONED/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.109" />
-  <testcase name="DECOMMISSIONED/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.103" />
-  <testcase name="DECOMMISSIONED/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.08" />
-  <testcase name="DECOMMISSIONED/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
-  <testcase name="DECOMMISSIONED/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.073" />
-  <testcase name="DECOMMISSIONED/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.069" />
-  <testcase name="DECOMMISSIONED/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
-  <testcase name="DECOMMISSIONED/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
-  <testcase name="DECOMMISSIONED/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.067" />
-  <testcase name="DECOMMISSIONED/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
-  <testcase name="DECOMMISSIONED/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
-  <testcase name="DECOMMISSIONED/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
-  <testcase name="DECOMMISSIONED/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
-  <testcase name="DECOMMISSIONED/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.068" />
+  <testcase name="WINTERING/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="WINTERING/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.084" />
+  <testcase name="WINTERING/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.096" />
+  <testcase name="WINTERING/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
+  <testcase name="WINTERING/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.08" />
+  <testcase name="WINTERING/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
+  <testcase name="WINTERING/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.089" />
+  <testcase name="WINTERING/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.08" />
+  <testcase name="WINTERING/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.074" />
+  <testcase name="WINTERING/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.075" />
+  <testcase name="WINTERING/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+  <testcase name="WINTERING/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.081" />
+  <testcase name="WINTERING/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+  <testcase name="WINTERING/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="WINTERING/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.077" />
+  <testcase name="DECOMMISSIONED/NONE/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="DECOMMISSIONED/NONE/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.511" />
+  <testcase name="DECOMMISSIONED/NONE/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.065" />
+  <testcase name="DECOMMISSIONED/ADMINISTRATION/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
+  <testcase name="DECOMMISSIONED/ADMINISTRATION/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.068" />
+  <testcase name="DECOMMISSIONED/ADMINISTRATION/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.068" />
+  <testcase name="DECOMMISSIONED/WITHDRAWAL/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.088" />
+  <testcase name="DECOMMISSIONED/WITHDRAWAL/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.072" />
+  <testcase name="DECOMMISSIONED/WITHDRAWAL/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.083" />
+  <testcase name="DECOMMISSIONED/EXPIRED/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.079" />
+  <testcase name="DECOMMISSIONED/EXPIRED/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.073" />
+  <testcase name="DECOMMISSIONED/EXPIRED/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="DECOMMISSIONED/OVERLAP/HARVEST" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.082" />
+  <testcase name="DECOMMISSIONED/OVERLAP/INSPECTION" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.066" />
   <testcase name="DECOMMISSIONED/OVERLAP/TREATMENT" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.065" />
-  <testcase name="[1] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=-1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.106" />
-  <testcase name="[2] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=0, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.07" />
-  <testcase name="[3] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=-1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.067" />
-  <testcase name="[4] endpoint=treatments, body={medicineName= , activeSubstance=TEST, durationDays=1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.076" />
-  <testcase name="[5] endpoint=harvest, body={targetSuperCount=0}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.07" />
-  <testcase name="[6] endpoint=treatments, body={hiveId=e88cf4ac-42a6-4b20-8997-d6701e66c49a, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.068" />
-  <testcase name="missedWithdrawalWindowAndZeroWithdrawalClearOnNextInspection()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.102" />
-  <testcase name="unexpectedFailureRollsBackAllPartialAuditAndState()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.086" />
+  <testcase name="[1] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=-1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.113" />
+  <testcase name="[2] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=0, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.073" />
+  <testcase name="[3] endpoint=treatments, body={medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=-1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.065" />
+  <testcase name="[4] endpoint=treatments, body={medicineName= , activeSubstance=TEST, durationDays=1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.075" />
+  <testcase name="[5] endpoint=harvest, body={targetSuperCount=0}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.071" />
+  <testcase name="[6] endpoint=treatments, body={hiveId=a6449de3-4fdf-4041-a5e9-ec4a866a8c98, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.072" />
+  <testcase name="missedWithdrawalWindowAndZeroWithdrawalClearOnNextInspection()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.101" />
+  <testcase name="unexpectedFailureRollsBackAllPartialAuditAndState()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.085" />
   <testcase name="serverTimestampsAgreeAtPostgresMicrosecondPrecision()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.098" />
-  <testcase name="exactAdministrationAndWithdrawalBoundaries()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.168" />
+  <testcase name="exactAdministrationAndWithdrawalBoundaries()" classname="io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest" time="0.163" />
 </testsuite>

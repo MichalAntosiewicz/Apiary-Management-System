@@ -18,6 +18,27 @@ An unexpected failure in event processing aborts the transaction: event, outcome
 
 `DECOMMISSIONED` blocks inspection and treatment commands. `WINTERING` blocks harvest but can be inspected and treated. Treatment-related states take precedence during inspection; the application does not preserve a separate seasonal dimension when entering treatment.
 
+## State reachability and initialization
+
+The enum vocabulary is broader than the reachable transitions implemented by the three HTTP commands. New `Hive` objects default to `PREPARATION` and `NOMINAL`. The application has no public command for creating a hive, entering wintering, recording decommissioning, or confirming that a colony has swarmed. Initial states are supplied by database fixtures or another persistence/import path; the integration matrix explicitly initializes all six operational states before exercising commands.
+
+| State | Implemented entry and behavior |
+|---|---|
+| `PREPARATION` | Default operational value; inspection returns an expired treatment/withdrawal state here. |
+| `ACTIVE_HONEY_FLOW` | An approved harvest decision enters this state. |
+| `TREATMENT_IN_PROGRESS` | Treatment recording enters this state; inspection selects it while any administration interval remains active. |
+| `WITHDRAWAL` | Inspection enters this state if a restriction remains and no administration interval is active. |
+| `WINTERING` | No entry command or event is implemented. An initialized wintering hive rejects harvest. Inspection preserves it when no active treatment exists; an active treatment or treatment command supersedes it. |
+| `DECOMMISSIONED` | No entry command or event is implemented. Once initialized, all three commands are rejected and preserve the state. |
+| `NOMINAL` | Default biological value; recovery guards and the two prototype intervention listeners can return to it. |
+| `CONGESTED` | Inspection enters it from `NOMINAL` when free comb space is at most 10%, unless a higher-priority biological guard applies. |
+| `SWARM_PREPARATION` | Inspection enters it when marginal queen cells are present. |
+| `SUPERSEDURE_ACTIVE` | Inspection enters it when one to four central queen cells are present. |
+| `ABSCONDING_RISK` | Inspection enters it under the implemented parasite/store/pest guard when earlier queen-cell guards do not apply. This is a heuristic state label. |
+| `SWARMED` | Reserved enum value with no dedicated entry event or transition. It is not reachable from default states through the supported commands. If supplied externally, an inspection may overwrite it through the general queen-cell or stress guards; otherwise it persists. |
+
+`SwarmInterventionAppliedEvent` and `QueenReplacedEvent` have listeners but no HTTP-producing commands in this artifact. Their listeners reset `SWARM_PREPARATION` or `SUPERSEDURE_ACTIVE`, respectively, to `NOMINAL` under their explicit conditions. They do not create a `SWARMED` state. The tests support the specified operational command contract; the six biological enum values should not be presented as a fully exercised or complete colony lifecycle.
+
 ## Independent test scenarios
 
 `WorkflowIntegrationTest` starts native PostgreSQL on an automatically selected localhost port and the Spring HTTP server on another random port. It runs actual Flyway migrations, Hibernate persistence, transaction proxies, request validation and JSON handling. Its matrix covers:

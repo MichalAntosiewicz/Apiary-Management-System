@@ -1,0 +1,11 @@
+id,title,status,matrix_failures,dedicated_failures,matrix_detected,full_suite_detected
+M01,Include the withdrawal endpoint,detected,0,3,False,True
+M02,Exclude the treatment start,detected,0,2,False,True
+M03,Include the administration endpoint,detected,0,2,False,True
+M04,Require every active treatment to be in administration,detected,5,1,True,True
+M05,Retain expired treatment state,detected,4,3,True,True
+M06,Remove the wintering harvest guard,detected,5,0,True,True
+M07,Throw after recording business rejection,detected,22,4,True,True
+M08,Remove explicit per-hive write lock,detected,0,1,False,True
+M09,Keep nanoseconds in harvest event time,detected,0,1,False,True
+M10,Omit transition event association,detected,30,1,True,True

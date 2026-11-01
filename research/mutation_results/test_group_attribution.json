@@ -1,0 +1,16 @@
+{
+  "planned_faults": 10,
+  "evaluable_faults": 10,
+  "matrix_cases": 90,
+  "dedicated_cases": 13,
+  "faults_detected_by_matrix": 5,
+  "faults_detected_by_full_integration_suite": 10,
+  "faults_detected_only_by_dedicated_cases": [
+    "M01",
+    "M02",
+    "M03",
+    "M08",
+    "M09"
+  ],
+  "interpretation": "Descriptive post-run attribution within the prespecified ten-fault set; test assertions were unchanged."
+}

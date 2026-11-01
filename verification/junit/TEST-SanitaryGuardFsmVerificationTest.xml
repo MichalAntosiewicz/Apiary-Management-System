@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:54:03.101Z" time="0.087">
-  <testcase name="scenario 1 - should reject harvest during active medical treatment and persist rejected decision()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.078" />
-  <testcase name="scenario 4 - should transition to TREATMENT_IN_PROGRESS upon treatment applied()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.002" />
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-01T17:46:44.704Z" time="0.08">
+  <testcase name="scenario 1 - should reject harvest during active medical treatment and persist rejected decision()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.073" />
+  <testcase name="scenario 4 - should transition to TREATMENT_IN_PROGRESS upon treatment applied()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.001" />
   <testcase name="scenario 3 - should accept harvest when sanitary guard cleared with zero active treatments()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.002" />
   <testcase name="scenario 2 - should reject harvest during statutory withdrawal window()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.SanitaryGuardFsmVerificationTest" time="0.002" />
 </testsuite>
