@@ -1,0 +1,98 @@
+--- a/src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowIntegrationTest.kt
++++ b/src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowIntegrationTest.kt
+@@ -6,6 +6,7 @@
+ import io.github.Michal_Antosiewicz.apiary_management_system.event.HoneyHarvestAttemptedEvent
+ import io.github.Michal_Antosiewicz.apiary_management_system.repository.HiveRepository
+ import io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService
++import io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService
+ import io.zonky.test.db.postgres.embedded.EmbeddedPostgres
+ import org.junit.jupiter.api.*
+ import org.junit.jupiter.api.Assertions.*
+@@ -106,6 +107,7 @@
+     @Autowired lateinit var transactions: PlatformTransactionManager
+     @Autowired lateinit var hives: HiveRepository
+     @Autowired lateinit var operations: HiveOperationService
++    @Autowired lateinit var stateMachine: HiveStateMachineService
+     private val matrixRows = mutableListOf("initial_state,treatment_condition,command,http_status,expected_state,actual_state,decision")
+     private val boundaryRows = mutableListOf("scenario,time,command,http_status,actual_state,decision")
+ 
+@@ -147,7 +149,7 @@
+     }
+     private fun post(hive: UUID, command: String): ResponseEntity<JsonNode> = when (command) {
+         "HARVEST" -> http.postForEntity("/api/v1/hives/$hive/harvest", mapOf("targetSuperCount" to 1), JsonNode::class.java)
+-        "TREATMENT" -> http.postForEntity("/api/v1/hives/$hive/treatments", mapOf("medicineName" to "TEST MEDICINE",
++        "TREATMENT" -> http.postForEntity("/api/v1/hives/$hive/treatments", mapOf("hiveId" to hive, "medicineName" to "TEST MEDICINE",
+             "activeSubstance" to "TEST", "durationDays" to 1, "withdrawalDays" to 1), JsonNode::class.java)
+         else -> http.postForEntity("/api/v1/inspections", mapOf("hiveId" to hive, "framesOfBees" to 8,
+             "framesOfBrood" to 4, "honeyStoresKg" to 8, "freeCombSpacePercent" to 30,
+@@ -190,8 +192,58 @@
+             assertEquals(1, db.queryForObject("SELECT count(*) FROM hive_state_transitions WHERE event_id=?", Int::class.java, id))
+             assertEquals(expectedStatus == 200, db.queryForObject("SELECT approved FROM harvest_decisions WHERE event_id=?", Boolean::class.java, id))
+             assertEquals(if (active && !blocked) 1 else 0, count("decision_alerts"))
++            val expectedReason = when {
++                blocked -> "OPERATIONAL_STATE_BLOCKED"
++                active -> "ACTIVE_WITHDRAWAL"
++                else -> "SANITARY_GUARD_CLEARED"
++            }
++            val expectedBlockedUntil = when {
++                blocked || !active -> null
++                treatmentCondition == "WITHDRAWAL" -> origin.plusSeconds(86400)
++                else -> origin.plusSeconds(172800)
++            }
++            val body = response.body!!
++            assertEquals(expectedReason, body.path("reasonCode").asText())
++            assertEquals(expectedReason, db.queryForObject("SELECT reason_code FROM harvest_decisions WHERE event_id=?", String::class.java, id))
++            val blockedUntilNode = body.path("blockedUntil")
++            val actualBlockedUntil = if (blockedUntilNode.isNull || blockedUntilNode.isMissingNode) null else Instant.parse(blockedUntilNode.asText())
++            assertEquals(expectedBlockedUntil, actualBlockedUntil)
++            assertEquals(expectedBlockedUntil, db.queryForObject("SELECT blocked_until FROM harvest_decisions WHERE event_id=?", Timestamp::class.java, id)?.toInstant())
++            val message = body.path("message").asText()
++            assertTrue(message.isNotBlank(), "Every decision must explain its outcome")
++            when {
++                blocked -> {
++                    assertTrue(message.contains("Harvest rejected"), message)
++                    assertTrue(message.contains(initial.name), message)
++                }
++                active -> {
++                    assertTrue(message.contains("Harvest rejected"), message)
++                    assertTrue(message.contains("TEST MEDICINE"), message)
++                    assertTrue(message.contains(expectedBlockedUntil.toString()), message)
++                }
++                else -> assertTrue(message.contains("harvest permitted"), message)
++            }
++            assertEquals(message, db.queryForObject("SELECT message FROM harvest_decisions WHERE event_id=?", String::class.java, id))
++            val auditReason = db.queryForObject("SELECT reason FROM hive_state_transitions WHERE event_id=?", String::class.java, id)!!
++            val expectedOutcome = if (expectedStatus == 200) "APPROVED" else "REJECTED"
++            assertTrue(auditReason.startsWith("$expectedOutcome: $expectedReason;"), auditReason)
++            assertTrue(auditReason.endsWith(message), auditReason)
+         } else if (expectedStatus == 400) {
+             assertEquals(0, count("domain_events"))
++        } else if (command == "INSPECTION") {
++            assertEquals(1, count("domain_events"))
++            val inspectionId = response.body!!.path("inspectionId").asText()
++            val eventId = db.queryForObject("SELECT id FROM domain_events WHERE hive_id=? AND event_type='InspectionRecordedEvent' AND payload->>'inspectionId'=?",
++                UUID::class.java, hive, inspectionId)!!
++            val expectedTransitions = if (initial == expectedState) 0 else 1
++            assertEquals(expectedTransitions, db.queryForObject("SELECT count(*) FROM hive_state_transitions WHERE hive_id=? AND fsm_type='OPERATIONAL_LIFECYCLE'", Int::class.java, hive))
++            if (expectedTransitions == 1) {
++                assertEquals(1, db.queryForObject("""SELECT count(*) FROM hive_state_transitions s
++                    JOIN domain_events e ON e.id=s.event_id WHERE s.hive_id=? AND e.hive_id=s.hive_id
++                    AND s.event_id=? AND s.fsm_type='OPERATIONAL_LIFECYCLE'
++                    AND s.from_state=? AND s.to_state=? AND s.transition_timestamp=e.occurred_at
++                    AND e.occurred_at=?""", Int::class.java, hive, eventId, initial.name, expectedState.name, Timestamp.from(origin)))
++            }
+         }
+     }
+ 
+@@ -202,6 +254,11 @@
+         val id = UUID.fromString(response.body!!.path("eventId").asText())
+         assertEquals(1, db.queryForObject("SELECT count(*) FROM domain_events e JOIN harvest_decisions d ON e.id=d.event_id JOIN decision_alerts a ON a.event_id=e.id JOIN hive_state_transitions t ON t.event_id=e.id WHERE e.id=? AND NOT d.approved", Int::class.java, id))
+         assertEquals("TREATMENT_IN_PROGRESS", state(hive))
++        val originalCounts = listOf("domain_events", "harvest_decisions", "decision_alerts", "hive_state_transitions").associateWith(::count)
++        stateMachine.onHoneyHarvestAttempted(HoneyHarvestAttemptedEvent(eventId = id, hiveId = hive, occurredAt = origin))
++        originalCounts.forEach { (table, size) -> assertEquals(size, count(table), "Redelivery must preserve $table cardinality") }
++        assertEquals("TREATMENT_IN_PROGRESS", state(hive))
++        assertEquals(false, db.queryForObject("SELECT approved FROM harvest_decisions WHERE event_id=?", Boolean::class.java, id))
+         logBoundary("durable_rejection", hive, "HARVEST", response)
+     }
+ 

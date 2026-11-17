@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Execute the prespecified, single-fault workflow mutation experiment.
 
-Each mutant receives an isolated source copy. All 103 existing HTTP/PostgreSQL
+Each mutant receives an isolated source copy. All 115 HTTP/PostgreSQL
 integration cases run, without changing their assertions. Compile errors and
 incomplete runs are reported separately from test-detected faults. No external
 database or application is used. Raw local logs stay in the supplied work dir;
@@ -28,7 +28,7 @@ BASE = "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/"
 FSM = BASE + "service/HiveStateMachineService.kt"
 OPS = BASE + "service/HiveOperationService.kt"
 REPO = BASE + "domain/Repositories.kt"
-EXPECTED_CASES = 103
+EXPECTED_CASES = 115
 
 # Frozen before execution. Each replacement must match exactly once.
 MUTANTS = [
@@ -97,8 +97,8 @@ def main() -> None:
     if work.exists() and any(work.iterdir()):
         raise SystemExit("Work directory must be new or empty; prior experiment evidence is never overwritten")
     baseline = json.loads((ROOT / "verification/verification_summary.json").read_text(encoding="utf-8"))
-    if baseline["total_tests"] != 111 or any(baseline[k] for k in ("failures", "errors", "skipped")):
-        raise SystemExit("First run and archive the complete successful 111-case baseline")
+    if baseline["total_tests"] != 167 or baseline["workflow_integration_cases"] != EXPECTED_CASES or any(baseline[k] for k in ("failures", "errors", "skipped")):
+        raise SystemExit("First run and archive the complete successful 167-case baseline")
     for line in (ROOT / "verification/source_sha256.txt").read_text(encoding="utf-8").splitlines():
         if line.startswith("#") or not line.strip():
             continue

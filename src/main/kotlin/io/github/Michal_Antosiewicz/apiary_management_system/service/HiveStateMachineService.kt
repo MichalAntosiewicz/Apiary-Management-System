@@ -86,18 +86,21 @@ class HiveStateMachineService(
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
         require(hive.operationalState != OperationalState.DECOMMISSIONED) { "Cannot treat a decommissioned hive" }
         val previousState = hive.operationalState
+        val nextState = if (previousState == OperationalState.WINTERING) previousState else OperationalState.TREATMENT_IN_PROGRESS
 
         recordTransition(
             hive = hive,
             fsmType = "OPERATIONAL_LIFECYCLE",
             fromState = previousState.name,
-            toState = OperationalState.TREATMENT_IN_PROGRESS.name,
+            toState = nextState.name,
             event = event,
             reason = "Administered ${event.medicineName}; withdrawal period set until ${event.withdrawalEndDate}"
         )
 
-        hive.operationalState = OperationalState.TREATMENT_IN_PROGRESS
-        hiveRepository.save(hive)
+        if (nextState != previousState) {
+            hive.operationalState = nextState
+            hiveRepository.save(hive)
+        }
     }
 
     // A business rejection is a persisted result, never an exception that rolls back its own audit.
@@ -180,7 +183,7 @@ class HiveStateMachineService(
     }
 
     private fun evaluateOperationalStateOnInspection(hive: Hive, event: InspectionRecordedEvent) {
-        if (hive.operationalState == OperationalState.DECOMMISSIONED) return
+        if (hive.operationalState == OperationalState.DECOMMISSIONED || hive.operationalState == OperationalState.WINTERING) return
         val active = treatmentRepository.findActiveTreatmentsByHiveId(hive.id, event.occurredAt)
         val target = when {
             active.any { event.occurredAt.isBefore(it.treatmentEndDate) } -> OperationalState.TREATMENT_IN_PROGRESS

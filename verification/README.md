@@ -1,6 +1,6 @@
 # Archived workflow verification
 
-The archived run contains **111 passing JUnit cases**: 103 integration cases using actual HTTP and PostgreSQL, plus 8 service-level cases. `verification_summary.json` records the exact runtime versions and aggregate counts.
+The archived run contains **167 passing JUnit cases**: 115 workflow integration cases, 33 decision-policy comparisons, 10 mapped batch-release cases and 9 service and fixture cases. The integration cases use actual HTTP and PostgreSQL. `verification_summary.json` records the exact runtime versions and aggregate counts.
 
 | Artifact | Meaning |
 |---|---|
@@ -13,6 +13,8 @@ The archived run contains **111 passing JUnit cases**: 103 integration cases usi
 
 The matrix has 0 state mismatches: 8 responses with HTTP 200, 50 with 201, 10 with 400 and 22 with 409. All 30 harvest combinations check the event, stored outcome and linked transition. Dedicated integration cases also check persistent audit rows after HTTP 409, complete rollback after an injected technical failure, row-lock serialization of a concurrent command and microsecond consistency of API/JSONB/SQL timestamps.
 
+Twelve sequence cases start with `WINTERING` and cross one or two treatments, the presence or absence of intervening inspections, and harvest one second before, exactly at, or one second after the final restriction endpoint. They check the preserved wintering state, HTTP 409, `OPERATIONAL_STATE_BLOCKED` and event-linked treatment and harvest audit records.
+
 The fault-injection scenario deliberately produces HTTP 500. Its test passes only when no partial event, decision, transition or alert remains. The `decision` column in the boundary CSV contains the response's `status` field: the deliberate HTTP error therefore appears as `500`, while business outcomes appear as `APPROVED` or `REJECTED`. That error is not a persisted business decision.
 
 Reproduce and archive from the repository root:
@@ -23,7 +25,7 @@ sh ./gradlew test --no-daemon
 python research/archive_verification.py
 ```
 
-On Windows use `.\gradlew.bat test --no-daemon`. The archive script requires all 111 cases to pass; it rejects partial, failed or skipped runs. Full console output and HTML remain under the ignored `build/` directory. The committed XML export contains the successful outcomes needed to check counts without publishing machine-specific logs.
+On Windows use `.\gradlew.bat test --no-daemon`. The archive script requires all 167 cases to pass; it rejects partial, failed or skipped runs. Full console output and HTML remain under the ignored `build/` directory. The committed XML export contains the successful outcomes needed to check counts without publishing machine-specific logs.
 
 The test suite verifies the documented workflow and selected controlled interleavings. The service microbenchmark uses mock repositories and is not an HTTP/PostgreSQL throughput result. Fixture concordance measures agreement with explicit representation scenarios, not field diagnostic accuracy.
 

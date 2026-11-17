@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T17:46:42.927Z" time="1.627">
-  <testcase name="field-data representation experiments match independent Python transcription()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="1.597" />
-  <testcase name="author scenarios retain documented SUP-08 disagreement()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="0.027" />
+<testsuite name="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-17T22:38:38.289Z" time="3.028">
+  <testcase name="field-data representation experiments match independent Python transcription()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="1.79" />
+  <testcase name="adapter sensitivity scenarios match Python emitted alerts and selected classes()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="1.217" />
+  <testcase name="author scenarios retain documented SUP-08 disagreement()" classname="io.github.Michal_Antosiewicz.apiary_management_system.service.BeewiseEvaluationBenchmarkTest" time="0.017" />
 </testsuite>

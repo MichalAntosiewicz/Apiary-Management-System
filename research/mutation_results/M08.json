@@ -6,10 +6,10 @@
   "patch_sha256": "a7e3db38056f6be0111a32e97eeba1630ac0469c9ccef35771a46425da78914a",
   "status": "detected",
   "exit_code": 1,
-  "cases": 103,
+  "cases": 115,
   "failures": 1,
   "skipped": 0,
-  "elapsed_seconds": 66.187,
+  "elapsed_seconds": 67.203,
   "command": [
     "cmd",
     "/d",
@@ -711,7 +711,7 @@
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
-      "name": "[6] endpoint=treatments, body={hiveId=2173f935-4829-42bf-8e58-9f16d2660791, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "name": "[6] endpoint=treatments, body={hiveId=90af104b-e094-4862-8f9d-64cc439c6d36, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
@@ -726,6 +726,90 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "unexpectedFailureRollsBackAllPartialAuditAndState()",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=-1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=0",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=-1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=0",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=-1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=0",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=-1",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=0",
+      "outcome": "passed",
+      "failure_type": "",
+      "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=1",
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""

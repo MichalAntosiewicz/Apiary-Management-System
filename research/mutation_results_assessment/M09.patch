@@ -1,0 +1,11 @@
+--- a/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveOperationService.kt
++++ b/src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveOperationService.kt
+@@ -27,7 +27,7 @@
+         validate(request)
+         val hive = hives.findByIdForUpdate(hiveId).orElseThrow { IllegalArgumentException("Hive not found: $hiveId") }
+         // Timestamp after obtaining the per-hive lock. Clients cannot backdate guard checks.
+-        val event = HoneyHarvestAttemptedEvent(hiveId = hiveId, occurredAt = Instant.now(clock).truncatedTo(ChronoUnit.MICROS),
++        val event = HoneyHarvestAttemptedEvent(hiveId = hiveId, occurredAt = Instant.now(clock),
+             targetSuperCount = request.targetSuperCount, operatorNotes = request.operatorNotes)
+         persistAndPublish(hive, event)
+         val decision = decisions.findById(event.eventId).orElseThrow { IllegalStateException("Harvest listener did not record a decision") }

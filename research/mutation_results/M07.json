@@ -3,13 +3,13 @@
   "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
   "title": "Throw after recording business rejection",
   "rationale": "A business rejection is represented as an unchecked exception and rolls back its audit.",
-  "patch_sha256": "c629ad00728a6dd25786856391cdc73e7548c36b7e736abdf114f8ea4a7f3af9",
+  "patch_sha256": "e138349d525eb65184537bd7793769e5b1770b762ee69b2bca361afa0e3ed3ce",
   "status": "detected",
   "exit_code": 1,
-  "cases": 103,
-  "failures": 26,
+  "cases": 115,
+  "failures": 38,
   "skipped": 0,
-  "elapsed_seconds": 55.0,
+  "elapsed_seconds": 55.969,
   "command": [
     "cmd",
     "/d",
@@ -70,7 +70,7 @@
       "name": "PREPARATION/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:49.949+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/293da95f-de6d-4a7a-a2a7-f28087d88b03/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:20.149+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/d5e57f18-a0ad-4dd7-b4b6-582418253098/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -91,7 +91,7 @@
       "name": "PREPARATION/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:50.210+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/f5fa8c10-e0b2-4e4a-9215-e7b504ac0db2/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:20.413+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/fea8f7cb-cf82-40e0-a586-e90529bbd2fb/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -133,7 +133,7 @@
       "name": "PREPARATION/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:50.720+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/655be083-e124-4a4c-8645-302a75eaae13/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:20.902+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/ecb74947-9596-46ca-91fc-4a7ed400db6c/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -175,7 +175,7 @@
       "name": "ACTIVE_HONEY_FLOW/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:51.221+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/e922612b-8521-46bb-9256-37fd2d2e82d2/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:21.437+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/f432e70c-ef50-4b5b-8fc9-9ef0d1d35215/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -196,7 +196,7 @@
       "name": "ACTIVE_HONEY_FLOW/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:51.523+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/230acd52-763d-44dd-9a85-3554b8401d2b/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:21.684+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/13919371-5488-4b56-9353-718f99356119/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -238,7 +238,7 @@
       "name": "ACTIVE_HONEY_FLOW/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:52.060+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/dc32aa17-ab98-457f-a2a7-c6dd44ef82e6/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:22.185+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/82f13c58-ae16-4d2b-9376-391ac005f4ad/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -280,7 +280,7 @@
       "name": "TREATMENT_IN_PROGRESS/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:52.544+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/1968a34c-6451-47eb-8149-35fd099ba7ae/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:22.659+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/e73d6774-0f69-4402-a522-16aa9e42e3aa/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -301,7 +301,7 @@
       "name": "TREATMENT_IN_PROGRESS/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:52.805+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/8571a958-84b4-4824-a1c9-eb9508d140cd/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:22.891+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/e6e4620b-063d-4a19-b11b-2fc307abd916/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -343,7 +343,7 @@
       "name": "TREATMENT_IN_PROGRESS/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:53.296+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/908ebffe-098c-4f46-92cb-2820e36e7506/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:23.369+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/dbee235b-eeb4-48d0-a572-423ac46c1d19/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -385,7 +385,7 @@
       "name": "WITHDRAWAL/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:53.810+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/72304746-5cfe-403d-8679-543e5d508e66/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:23.845+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/51580581-f5cd-4b0d-bba3-4bca929b11e8/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -406,7 +406,7 @@
       "name": "WITHDRAWAL/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:54.047+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/cd8659ff-a500-42f4-82d1-0e6c4542f6fe/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:24.064+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/312665cd-ae33-4766-83a2-21973e72966e/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -448,7 +448,7 @@
       "name": "WITHDRAWAL/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:54.520+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/286fab8b-46ab-4129-9a18-9da6b6c36e19/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:24.530+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/83d71edf-1247-409e-b331-7112153d8e92/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -469,7 +469,7 @@
       "name": "WINTERING/NONE/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:54.751+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/c63e61c0-f3f2-4606-bee5-7179b8a9c3ce/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:24.742+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/0eea9c8d-0d48-4cda-b045-d4223e62e23b/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -490,7 +490,7 @@
       "name": "WINTERING/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:54.988+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/990bf8ec-587f-4d74-a797-6b52daf87282/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:24.974+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/09111a89-3c98-4276-a95c-0934e358e5a8/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -511,7 +511,7 @@
       "name": "WINTERING/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:55.242+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/2ac8c0d3-62f0-4e9a-9259-0fcdcad505e7/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:25.177+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/9bdea3a7-2050-4a97-8bdf-f9445af70d49/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -532,7 +532,7 @@
       "name": "WINTERING/EXPIRED/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:55.481+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/047b0a88-f997-4685-b575-574be6788766/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:25.384+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/7a7b63e2-4504-4cd4-a161-24db0f33afac/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -553,7 +553,7 @@
       "name": "WINTERING/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:55.709+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/14e34b2c-32d1-4ce6-a611-b9971345daca/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:25.598+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/a8a7ba19-fe0f-4e01-b446-e26aa019ad59/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -574,7 +574,7 @@
       "name": "DECOMMISSIONED/NONE/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:55.952+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/c0f1aa29-8514-421b-bfad-2c549d04dbbf/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:25.815+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/4f03d60f-242c-4e80-a060-c05aa6c1a9b8/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -595,7 +595,7 @@
       "name": "DECOMMISSIONED/ADMINISTRATION/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:56.175+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/1f64c7b9-a7f8-44d0-ad18-2a645e7a3791/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:27.948+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/29884cdb-ca3c-4bd8-a051-857a545f1a1c/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -616,7 +616,7 @@
       "name": "DECOMMISSIONED/WITHDRAWAL/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:56.381+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/a576cf60-e208-4844-b966-876bbfc3c111/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:28.138+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/301917b0-d4c4-402b-85ec-fab1b185cb14/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -637,7 +637,7 @@
       "name": "DECOMMISSIONED/EXPIRED/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:56.589+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/e2040411-d07b-42be-83cc-f19fbc43c322/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:28.324+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/45e25f98-21c3-43ab-ab20-bd6a6e1034f2/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -658,7 +658,7 @@
       "name": "DECOMMISSIONED/OVERLAP/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-01T17:53:56.794+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/0ed89dcd-ddf7-45c6-8b7b-b8b9acf1e5fe/harvest\"} ==> expected: <409> but was: <500>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"timestamp\":\"2026-11-17T22:48:28.539+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"path\":\"/api/v1/hives/49863ee2-84aa-4687-98b4-5fe2c504d386/harvest\"} ==> expected: <409> but was: <500>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -711,7 +711,7 @@
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
-      "name": "[6] endpoint=treatments, body={hiveId=94f64ad8-2de6-4d39-81fb-f421a94c82c4, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "name": "[6] endpoint=treatments, body={hiveId=72e55024-848e-44da-a277-f264f99b33ac, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
@@ -729,6 +729,90 @@
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "java.lang.IllegalArgumentException",
+      "failure_message": "java.lang.IllegalArgumentException: Invalid UUID string: "
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",

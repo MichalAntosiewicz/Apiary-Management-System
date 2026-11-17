@@ -1,0 +1,45 @@
+// Opt-in mutation analysis. Run with: gradlew -I research/pit.gradle pitest
+initscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.19.0'
+    }
+}
+
+allprojects { project ->
+    project.plugins.withId('java') {
+        project.apply plugin: info.solidsoft.gradle.pitest.PitestPlugin
+        def nativeTemp = project.providers.gradleProperty('testTempDir').getOrElse(
+            new File(System.getProperty('java.io.tmpdir'), 'apiary-workflow-tests').absolutePath)
+        new File(nativeTemp).mkdirs()
+        project.pitest {
+            pitestVersion.set('1.30.2')
+            junit5PluginVersion.set('1.2.3')
+            targetClasses.set([
+                'io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService*',
+                'io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService*',
+                'io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService*'
+            ])
+            targetTests.set([
+                'io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest'
+            ])
+            mutators.set(['DEFAULTS'])
+            threads.set(1)
+            timeoutFactor.set(new BigDecimal('4.0'))
+            timeoutConstInMillis.set(60000)
+            jvmArgs.set(['-Xmx2048m', '-Dapiary.pit=true', '-Djava.io.tmpdir=' + nativeTemp])
+            mainProcessJvmArgs.set(['-Xmx2048m'])
+            useClasspathFile.set(true)
+            outputFormats.set(['XML', 'HTML', 'CSV'])
+            exportLineCoverage.set(true)
+            timestampedReports.set(false)
+            reportDir.set(project.layout.projectDirectory.dir('research/pit_results'))
+            failWhenNoMutations.set(true)
+            skipFailingTests.set(false)
+            verbosity.set('VERBOSE_NO_SPINNER')
+        }
+    }
+}

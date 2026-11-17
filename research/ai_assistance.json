@@ -1,0 +1,24 @@
+{
+  "tool": "OpenAI Codex",
+  "provider": "OpenAI",
+  "model_identifiers": [
+    {
+      "model": "gpt-6-astra",
+      "recorded_use_dates": ["2026-10-23", "2026-10-31", "2026-11-01", "2026-11-02", "2026-11-17"]
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "recorded_use_dates": ["2026-11-17"]
+    }
+  ],
+  "identifier_source": "Model fields in the task's locally retained turn-context metadata, inspected on 17 November 2026.",
+  "uses": [
+    "Code inspection and implementation",
+    "Test design and implementation",
+    "Analysis-script preparation and execution",
+    "Manuscript drafting and editing",
+    "Preparation of diagram code"
+  ],
+  "numerical_outputs": "Produced by executing the supplied tests and analysis programs.",
+  "responsibility": "The authors are responsible for methods, results, interpretation and manuscript content."
+}

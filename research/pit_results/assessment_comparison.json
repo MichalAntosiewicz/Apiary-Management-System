@@ -1,0 +1,36 @@
+{
+  "same_mutant_identities": true,
+  "same_production_source_hashes_canonical_lf": true,
+  "same_coverage_test_identities": true,
+  "coverage_test_identity_count": 115,
+  "total_mutants": 131,
+  "assessment_A_statuses": {
+    "KILLED": 39,
+    "NO_COVERAGE": 40,
+    "SURVIVED": 52
+  },
+  "assessment_B_statuses": {
+    "EQUIVALENT": 0,
+    "KILLED": 49,
+    "MEMORY_ERROR": 0,
+    "NON_VIABLE": 0,
+    "NOT_STARTED": 0,
+    "NO_COVERAGE": 40,
+    "RUN_ERROR": 0,
+    "STARTED": 0,
+    "SURVIVED": 42,
+    "TIMED_OUT": 0
+  },
+  "status_transitions": {
+    "KILLED -> KILLED": 39,
+    "SURVIVED -> KILLED": 10,
+    "SURVIVED -> SURVIVED": 42,
+    "NO_COVERAGE -> NO_COVERAGE": 40
+  },
+  "test_fixture_sha256_A": "c8093dcd312657415d701dfe687d31d5502ca4e50f2ea8c328a5d9c0b5a7fbc1",
+  "test_fixture_sha256_B": "6c8a1a0067e2d853ca5ba69e42fd1e8f2dc6f00462fc529f4535147a2df0e8aa",
+  "test_fixture_sha256_lf_A": "6534b4ead7792fcadcf153a942a013470e3342a54c73af44a8d29e2489099424",
+  "test_fixture_sha256_lf_B": "82e1e574403babfe05f85c0d55f64abe268e4b6d0f94780a49adb099f58f6da6",
+  "mutations_xml_sha256_A": "2a521c297f540833b7602ca2322b501cc00e10f158cfdd9fc4161608193d2644",
+  "mutations_xml_sha256_B": "6e8807245cc35bc7e2c04b13510f3641dfad966b82d24951165b8982dbb9d413"
+}

@@ -7,6 +7,7 @@ Run after the full Gradle test task from any working directory:
 from __future__ import annotations
 
 import csv
+import argparse
 import hashlib
 import json
 import os
@@ -19,11 +20,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "verification"
-EXPECTED_TESTS = 111
+EXPECTED_TESTS = 167
 
 
 def main() -> None:
-    reports = sorted((ROOT / "build/test-results/test").glob("TEST-*.xml"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--build-dir", type=Path, default=ROOT / "build",
+                        help="Build directory containing the complete test run.")
+    args = parser.parse_args()
+    build_dir = args.build_dir.resolve()
+    reports = sorted((build_dir / "test-results/test").glob("TEST-*.xml"))
     parsed = [(path, ET.parse(path).getroot()) for path in reports]
     total = sum(int(s.attrib["tests"]) for _, s in parsed)
     failures = sum(int(s.attrib["failures"]) for _, s in parsed)
@@ -32,6 +38,15 @@ def main() -> None:
     if total != EXPECTED_TESTS or failures or errors or skipped:
         raise SystemExit(f"Archive requires the complete successful {EXPECTED_TESTS}-case suite; "
                          f"observed tests={total}, failures={failures}, errors={errors}, skipped={skipped}")
+    verification_inputs = {}
+    for name, expected_rows in (("workflow-matrix.csv", 90), ("boundary-sequences.csv", 18),
+                                ("workflow-design-comparison.csv", 33), ("batch-transfer.csv", 10)):
+        path = build_dir / "verification" / name
+        with path.open(encoding="utf-8") as stream:
+            rows = list(csv.DictReader(stream))
+        if len(rows) != expected_rows:
+            raise SystemExit(f"Complete verification requires {expected_rows} rows in {name}; observed {len(rows)}")
+        verification_inputs[name] = rows
     OUT.mkdir(exist_ok=True)
     (OUT / "junit").mkdir(exist_ok=True)
     junit_directory = (OUT / "junit").resolve()
@@ -56,12 +71,10 @@ def main() -> None:
                        ("name", "tests", "failures", "errors", "skipped", "time")})
         ET.indent(suite)
         ET.ElementTree(suite).write(junit_directory / export_name, encoding="utf-8", xml_declaration=True)
-    for name in ("workflow-matrix.csv", "boundary-sequences.csv", "postgres-version.txt"):
-        shutil.copy2(ROOT / "build/verification" / name, OUT / name)
-    with (OUT / "workflow-matrix.csv").open(encoding="utf-8") as stream:
-        matrix = list(csv.DictReader(stream))
-    with (OUT / "boundary-sequences.csv").open(encoding="utf-8") as stream:
-        boundaries = list(csv.DictReader(stream))
+    for name in (*verification_inputs, "postgres-version.txt"):
+        shutil.copy2(build_dir / "verification" / name, OUT / name)
+    matrix = verification_inputs["workflow-matrix.csv"]
+    boundaries = verification_inputs["boundary-sequences.csv"]
     build = (ROOT / "build.gradle.kts").read_text(encoding="utf-8")
     wrapper = (ROOT / "gradle/wrapper/gradle-wrapper.properties").read_text(encoding="utf-8")
     java_release = {}
@@ -77,13 +90,19 @@ def main() -> None:
         "failures": failures,
         "errors": errors,
         "skipped": skipped,
-        "integration_cases": next(int(s["tests"]) for s in suites if s["name"].endswith("WorkflowIntegrationTest")),
+        "workflow_integration_cases": next(int(s["tests"]) for s in suites if s["name"].endswith("WorkflowIntegrationTest")),
+        "design_comparison_cases": 33,
+        "structural_transfer_cases": 10,
+        "integration_cases": sum(int(s["tests"]) for s in suites if s["name"].endswith(("WorkflowIntegrationTest", "WorkflowDesignComparisonTest"))),
+        "service_and_fixture_cases": sum(int(s["tests"]) for s in suites if not s["name"].endswith(("WorkflowIntegrationTest", "WorkflowDesignComparisonTest"))),
         "matrix_cases": len(matrix),
         "matrix_http_status_counts": dict(Counter(row["http_status"] for row in matrix)),
         "matrix_state_mismatches": sum(row["actual_state"] != row["expected_state"] for row in matrix),
         "boundary_steps": len(boundaries),
         "field_derived_fixture_configurations": 6672,
         "author_defined_fixture_configurations": 20,
+        "adapter_sensitivity_fixture_evaluations": 12708,
+        "total_score_fixture_evaluations": 19400,
         "environment": {
             "operating_system": platform.system(),
             "architecture": platform.machine(),

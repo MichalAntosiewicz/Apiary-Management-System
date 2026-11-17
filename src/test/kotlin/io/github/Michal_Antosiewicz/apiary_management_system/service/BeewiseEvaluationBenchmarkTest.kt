@@ -59,6 +59,17 @@ class BeewiseEvaluationBenchmarkTest {
         println("Author-defined scenarios: 19/20 label agreements; SUP-08 remains a recorded specification disagreement.")
     }
 
+    @Test
+    fun `adapter sensitivity scenarios match Python emitted alerts and selected classes`() {
+        val cases = fixtures("adapter_sensitivity_jvm.csv")
+        assertEquals(12708, cases.size)
+        val counts = cases.groupingBy { it.getValue("variant") }.eachCount()
+        assertEquals(36, counts.size)
+        assertTrue(counts.values.all { it == 353 }, "Each adapter scenario must contain the same 353 visits")
+        cases.forEach(::verifyFixture)
+        println("Adapter sensitivity concordance: ${cases.size} evaluations matched Python emitted alerts, scores and selected classes.")
+    }
+
     private fun verifyFixture(row: Map<String, String>) {
         val context = "${row.getValue("variant")}/${row.getValue("case_id")}"
         val hiveRepository = mock(HiveRepository::class.java)
@@ -110,9 +121,9 @@ class BeewiseEvaluationBenchmarkTest {
         assertEquals(row.getValue("expected_prediction"), selected, "$context selected alert class")
     }
 
-    private fun fixtures(): List<Map<String, String>> {
-        val stream = javaClass.classLoader.getResourceAsStream("jvm_cases.csv")
-            ?: error("Missing jvm_cases.csv: regenerate with research/analyze_beewise.py")
+    private fun fixtures(filename: String = "jvm_cases.csv"): List<Map<String, String>> {
+        val stream = javaClass.classLoader.getResourceAsStream(filename)
+            ?: error("Missing $filename: regenerate with the corresponding research analysis script")
         return stream.bufferedReader(Charsets.UTF_8).use { reader ->
             val headers = requireNotNull(reader.readLine()).split(',')
             reader.lineSequence().filter { it.isNotBlank() }.map { line ->

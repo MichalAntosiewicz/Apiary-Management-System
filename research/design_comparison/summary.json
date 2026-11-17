@@ -1,0 +1,46 @@
+{
+  "comparison_cases": 33,
+  "interval_contract_matches": 33,
+  "cached_contract_matches": 33,
+  "differing_decisions": 6,
+  "differing_case_ids": [
+    "D09",
+    "D11",
+    "D15",
+    "D17",
+    "D23",
+    "D25"
+  ],
+  "comparison_groups": {
+    "with_refresh": {
+      "cases": 16,
+      "agreeing_decisions": 16,
+      "interval_approvals": 7,
+      "cached_approvals": 7
+    },
+    "without_refresh": {
+      "cases": 17,
+      "agreeing_decisions": 11,
+      "interval_approvals": 7,
+      "cached_approvals": 1
+    }
+  },
+  "transfer_cases": 10,
+  "transfer_contract_matches": 10,
+  "production_http_decisions_with_verified_audit": 43,
+  "junit": {
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "evidence_scope": "Production HTTP interval decisions compared with a reference cached-phase predicate on the same pre-request state. The batch example tests a structural adapter into the same production guard.",
+  "source_sha256_canonical_lf": {
+    "src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowDesignComparisonTest.kt": "d685454bd357def91057c4907d338cdfb33558a5e6e0c21ada995eb734bf77c6",
+    "src/test/resources/workflow_design_cases.csv": "cab8ac5e887c46288229808b45dff6af047f764c3e1931588b4a34a6e51b6a58",
+    "src/test/resources/batch_transfer_cases.csv": "f5f9064fbd3246d5a3c2f1e317dfa836a7b4db2be0e28ac0118e6427f8fb1a4b",
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt": "8f4dd2ec5fd98b5d8f5ef700bbc594d5887e06c38e6355e866e535061091d07e",
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveOperationService.kt": "f41af4013a079a88f43a034f87b368c1df5bee165f98347a09a299ef862fc229",
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt": "8b4589348f387515312f6084817d390c67c6cf07187fcab2a471126379c6deec"
+  }
+}

@@ -1,6 +1,6 @@
 # Apiary Management System: research artifact
 
-This repository accompanies **Event-Driven State Modelling and Workflow Verification for Apiary Management**. It contains a Kotlin/Spring implementation, executable workflow specifications, PostgreSQL/HTTP integration tests, and reproducible experiments on the representation of inspection data.
+This repository accompanies **Verifying Temporal Guards and Transactional Decisions in an Event-Driven Apiary System**. It contains a Kotlin/Spring implementation, executable workflow specifications, PostgreSQL/HTTP integration tests, and reproducible experiments on the representation of inspection data.
 
 ## Reproduce the results
 
@@ -10,17 +10,24 @@ From the repository root:
 
 ```sh
 python research/analyze_beewise.py
+python research/analyze_clustered_records.py
+python research/analyze_adapter_sensitivity.py
 sh ./gradlew test --no-daemon
 python research/archive_verification.py
+python research/summarize_design_comparison.py
 ```
 
-On Windows, use `.\gradlew.bat test --no-daemon` for the second command. Set `JAVA_HOME` to a JDK 21 installation when another Java version is selected by the shell. Subsequent test runs can use `--offline` after dependencies have been downloaded. If native Windows `initdb` cannot handle characters in the temporary-directory path, supply an ASCII path with `-PtestTempDir=C:\Temp\apiary-tests`.
+On Windows, use `.\gradlew.bat test --no-daemon` for the Gradle command. Set `JAVA_HOME` to a JDK 21 installation when another Java version is selected by the shell. Subsequent test runs can use `--offline` after dependencies have been downloaded. If native Windows `initdb` cannot handle characters in the temporary-directory path, supply an ASCII path with `-PtestTempDir=C:\Temp\apiary-tests`.
 
 The archived run was verified on Windows x86_64. Native PostgreSQL requires compatible operating-system libraries; Linux runs require a non-root user, and Windows may require the Visual C++ runtime supported by the native binaries.
 
-The archived run contains **111 passing JUnit cases**: **103 integration cases** using actual HTTP and native PostgreSQL 14.22, and **8 service-level tests**. The workflow matrix covers 90 combinations of six operational states, five treatment conditions and three commands. Additional integration cases cover validation, durable rejection records, rollback, exact time boundaries, overlapping treatments, locking, and timestamp precision. Two service tests compare **6692 generated input configurations** with the Kotlin rule engine.
+The archived run contains **167 passing JUnit cases**. Actual HTTP and native PostgreSQL 14.22 support **115 workflow cases**, **33 design comparisons** and **10 mapped batch-release cases**. The remaining **9 service and fixture tests** include cross-language checks for **19,400 input evaluations**. The workflow matrix covers 90 combinations of six operational states, five treatment conditions and three commands. Twelve sequence cases verify that wintering persists through one or two treatments, with or without intervening inspections, before, at and after the final restriction endpoint. Other integration cases cover validation, durable rejection records, rollback, exact time boundaries, overlapping treatments, locking, and timestamp precision. Three fixture tests compare the base and adapter-factor evaluations with the Kotlin rule engine.
 
-The additional workflow fault-detection experiment runs the unchanged integration suite against ten specified code mutations. Its manifest, patches and all outcomes are in `research/mutation_results`; reproduction instructions are in [research/README.md](research/README.md#workflow-fault-detection-experiment). The implemented entry paths and reserved enum values are listed in [WORKFLOW_CONTRACT.md](WORKFLOW_CONTRACT.md#state-reachability-and-initialization).
+The additional workflow fault-detection experiment runs the integration suite against ten specified code mutations. The results in `research/mutation_results` document ten complete 115-case runs with the metadata and audit assertions. The earlier assertion assessment is retained in `research/mutation_results_assessment`. The same production code and fault definitions are used in both assessments. Reproduction instructions are in [research/README.md](research/README.md#workflow-fault-detection-experiment). The implemented entry paths and reserved enum values are listed in [WORKFLOW_CONTRACT.md](WORKFLOW_CONTRACT.md#state-reachability-and-initialization).
+
+Run `python research/analyze_clustered_records.py` to summarize repeated colony visits and obtain paired colony-cluster bootstrap intervals. It writes `research/outputs/clustered_record_summary.json` and `research/outputs/clustered_paired_visits.csv`, including the relationship between 359 visits, 120 colonies and the generated scorer evaluations.
+
+Run `python research/analyze_adapter_sensitivity.py` for the 36-scenario capacity, honey-conversion and Varroa experiment and its 12,708 JVM fixtures. Details are in `research/adapter_sensitivity.md`. The policy comparison is documented in `research/design_comparison/README.md`, and standard PIT reproduction in `research/pit.md`. PIT reports retain the first frozen assessment and the assessment after adding metadata, audit and replay observations.
 
 ## Artifact contents
 

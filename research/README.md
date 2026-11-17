@@ -8,8 +8,11 @@ Use Python 3.10 or later, with no third-party packages, from the repository root
 
 ```sh
 python research/analyze_beewise.py
+python research/analyze_clustered_records.py
+python research/analyze_adapter_sensitivity.py
 sh ./gradlew test --no-daemon
 python research/archive_verification.py
+python research/summarize_design_comparison.py
 ```
 
 On Windows use `.\gradlew.bat` instead of `./gradlew`. The analysis reads `research/upstream_41521e6.zip`, copies its four source inputs to `research/upstream`, generates all tables in `research/outputs`, and writes the fixture to `src/test/resources/jvm_cases.csv`. The Kotlin tests have their own packaged fixture and can run independently of the analysis script.
@@ -20,7 +23,9 @@ To run only cross-language fixture verification:
 sh ./gradlew test --tests '*BeewiseEvaluationBenchmarkTest' --no-daemon
 ```
 
-Run the complete suite before archiving verification results. The full suite has **111 passing JUnit cases** (103 HTTP/PostgreSQL integration cases and 8 service cases). The two fixture tests check **6672 field-derived input configurations and 20 author-defined scenarios**, comparing all emitted alert types, emitted scores and selected output classes.
+Run the complete suite before archiving verification results. The full suite has **167 passing JUnit cases** (115 workflow integration cases, 43 design and transfer cases, and 9 service and fixture cases). Twelve sequence cases preserve wintering across treatment, inspection and harvest. The three fixture tests check **6672 base field-derived evaluations, 20 author-defined scenarios and 12,708 adapter-factor evaluations**, comparing all emitted alert types, emitted scores and selected output classes.
+
+Run `python research/analyze_clustered_records.py` for paired visit-level and colony-level summaries with colony-cluster bootstrap intervals. The script samples 120 colonies with replacement in each of 20,000 replicates, retaining all visits of each drawn colony, using seed 20261117. Its JSON output records input hashes, interval definitions and the relationship between the generated input groups. Agreement with note-derived proxy labels measures internal consistency.
 
 ## Data and conventions
 
@@ -60,19 +65,19 @@ Proxy labels are computational rules based on note/exclusion keywords and bee-fr
 
 ## Workflow fault-detection experiment
 
-The workflow experiment asks whether the existing integration tests detect ten specified implementation faults. Its mutation set is fixed in `run_workflow_mutations.py` before execution. It changes interval endpoints, treatment precedence and expiry, a state guard, business-rejection exception handling, explicit locking, timestamp precision, and the transition-to-event association. Each variant changes one semantic condition and runs all 103 existing integration cases in an isolated source copy. No test assertions are changed in response to mutant outcomes.
+The workflow experiment asks whether the integration tests detect ten specified implementation faults. Its mutation set is fixed in `run_workflow_mutations.py` before execution. It changes interval endpoints, treatment precedence and expiry, a state guard, business-rejection exception handling, explicit locking, timestamp precision, and the transition-to-event association. Each variant changes one semantic condition and runs all 115 integration cases in an isolated source copy. Assertions are fixed within each recorded assessment. Assessment A is preserved in `mutation_results_assessment`; assessment B repeats the same fault definitions after strengthening checks in response to automated PIT findings. The A-to-B patch and test-source hashes document the changes within the same case identities.
 
-First reproduce and archive the complete 111-case baseline using the commands above. Then run:
+First reproduce and archive the complete 167-case baseline using the commands above. Then run:
 
 ```sh
 python research/run_workflow_mutations.py --work-dir ../workflow-mutation-runs --offline
 python research/summarize_workflow_mutations.py
 ```
 
-The work directory must be new or empty and outside the repository. It retains source copies and raw local build logs. The command uses JDK 21 and the same Gradle cache as the baseline. Omit `--offline` if dependencies are not cached. It publishes the complete prespecified manifest, one patch per mutant, per-test outcomes, and a summary under `research/mutation_results`. A mutant is counted as detected only when all 103 integration cases execute, at least one fails, and Gradle returns a failure. Compilation errors, skipped/incomplete runs, timeouts and infrastructure errors are separate outcomes. Surviving mutants are retained.
+The work directory must be new or empty and outside the repository. It retains source copies and raw local build logs. The command uses JDK 21 and the same Gradle cache as the baseline. Omit `--offline` if dependencies are not cached. It publishes the complete prespecified manifest, one patch per mutant, per-test outcomes, and a summary under `research/mutation_results`. A mutant is counted as detected only when all 115 integration cases execute, at least one fails, and Gradle returns a failure. Compilation errors, skipped/incomplete runs, timeouts and infrastructure errors are separate outcomes. Surviving mutants are retained.
 
-The summary script attributes recorded failures to the 90 matrix cases and 13 dedicated cases without executing tests again. `independent_failure_review.csv` records the subsequent manual comparison of failure messages with the corresponding assertions; it distinguishes the observed failure from broader claims that the failing test did not reach. Patch files use LF line endings, and their byte hashes match `manifest.json`.
+The summary script attributes recorded failures to the 90 matrix cases and 25 dedicated cases without executing tests again. `independent_failure_review.csv` records the subsequent manual comparison of failure messages with the corresponding checks; it distinguishes the observed failure from broader claims that the failing test did not reach. Patch files use LF line endings, and their byte hashes match `manifest.json`.
 
-The archived experiment executed all 103 integration cases for each of the ten variants. All ten compiled and were detected by assertion failures; none survived, timed out, or failed because of compilation or infrastructure. The 90-case matrix detected five of the specified faults. The complete suite detected all ten: the withdrawal endpoint, treatment-start endpoint, administration endpoint, explicit lock and timestamp-precision mutations were detected only by the dedicated cases. [The complete result table](mutation_results/README.md) includes every variant and its interpretation limits.
+Both archived assessments executed all 115 integration cases for each of the ten variants. All ten compiled and caused failed test cases; none survived, timed out, or failed because of compilation or infrastructure. M07 includes test-side UUID parsing exceptions after the mutated endpoint returns an error response, distinguished from assertion failures in the causal review. In each assessment, the 90-case matrix detected five of the specified faults and the complete suite detected all ten: the withdrawal endpoint, treatment-start endpoint, administration endpoint, explicit lock and timestamp-precision mutations were detected only by the dedicated cases. Assessment B adds 13 inspection-audit failures for M10 (43 to 56 failed cases); the failed-case identities for M01–M09 remain unchanged. [The complete result table](mutation_results/README.md) includes every variant and its interpretation limits.
 
 These are ten manually specified faults selected from the workflow contract, not an exhaustive mutation-operator population. The measured result concerns fault detection for this set and these test scenarios. It does not establish a correctness proof or coverage of all concurrent executions. The supported and reserved state values are distinguished in [WORKFLOW_CONTRACT.md](../WORKFLOW_CONTRACT.md#state-reachability-and-initialization).

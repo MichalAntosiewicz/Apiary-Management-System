@@ -1,0 +1,132 @@
+{
+  "total": 131,
+  "statuses": {
+    "EQUIVALENT": 0,
+    "KILLED": 49,
+    "MEMORY_ERROR": 0,
+    "NON_VIABLE": 0,
+    "NOT_STARTED": 0,
+    "NO_COVERAGE": 40,
+    "RUN_ERROR": 0,
+    "STARTED": 0,
+    "SURVIVED": 42,
+    "TIMED_OUT": 0
+  },
+  "killed_fraction_all": 0.37404580152671757,
+  "killed_fraction_killed_plus_survived": 0.5384615384615384,
+  "classes": {
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService": {
+      "KILLED": 9,
+      "SURVIVED": 13,
+      "NO_COVERAGE": 5
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService": {
+      "KILLED": 38,
+      "SURVIVED": 20,
+      "NO_COVERAGE": 32
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService": {
+      "SURVIVED": 9,
+      "KILLED": 2,
+      "NO_COVERAGE": 3
+    }
+  },
+  "methods": {
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.applyTreatment": {
+      "KILLED": 6,
+      "SURVIVED": 7
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.applyTreatment$lambda$5": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.attemptHoneyHarvest": {
+      "KILLED": 2,
+      "SURVIVED": 3
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.attemptHoneyHarvest$lambda$2": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.attemptHoneyHarvest$lambda$3": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.persistAndPublish": {
+      "SURVIVED": 2,
+      "KILLED": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.validate": {
+      "SURVIVED": 1,
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveOperationService.validate$lambda$1$lambda$0": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.evaluateOperationalStateOnInspection": {
+      "KILLED": 11,
+      "SURVIVED": 2
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onHoneyHarvestAttempted": {
+      "SURVIVED": 3,
+      "KILLED": 20
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onHoneyHarvestAttempted$lambda$2": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onInspectionRecorded": {
+      "NO_COVERAGE": 19,
+      "SURVIVED": 13,
+      "KILLED": 2
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onQueenReplaced": {
+      "NO_COVERAGE": 5
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onSwarmInterventionApplied": {
+      "NO_COVERAGE": 7
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.HiveStateMachineService.onTreatmentApplied": {
+      "SURVIVED": 2,
+      "KILLED": 5
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService.recordInspection": {
+      "SURVIVED": 9,
+      "KILLED": 2,
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService.recordInspection$lambda$1$lambda$0": {
+      "NO_COVERAGE": 1
+    },
+    "io.github.Michal_Antosiewicz.apiary_management_system.service.InspectionService.recordInspection$lambda$2": {
+      "NO_COVERAGE": 1
+    }
+  },
+  "mutations_xml_sha256": "6e8807245cc35bc7e2c04b13510f3641dfad966b82d24951165b8982dbb9d413",
+  "sources_sha256": {
+    "src\\main\\kotlin\\io\\github\\Michal_Antosiewicz\\apiary_management_system\\service\\HiveOperationService.kt": "177e2e1aa205e2cf582ba47c73c4d000ff5da60bf7d41f1947ee26796a3f3ade",
+    "src\\main\\kotlin\\io\\github\\Michal_Antosiewicz\\apiary_management_system\\service\\HiveStateMachineService.kt": "334d05d02863bed86be7cf727466c0626f7d375db2a12d64b6fc7ab116c7a572",
+    "src\\main\\kotlin\\io\\github\\Michal_Antosiewicz\\apiary_management_system\\service\\InspectionService.kt": "817df3ae4ad53bd0c0b63b2e74bdf73843d3d21fa38ad05d862ebce623da460e"
+  },
+  "sources_sha256_lf": {
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveOperationService.kt": "f41af4013a079a88f43a034f87b368c1df5bee165f98347a09a299ef862fc229",
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt": "8f4dd2ec5fd98b5d8f5ef700bbc594d5887e06c38e6355e866e535061091d07e",
+    "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/InspectionService.kt": "6b9c93ac9c1f8063311e6cc08f80d543409a388d16be8b485e6304212b2f4291"
+  },
+  "configuration_sha256": {
+    "build.gradle.kts": "8109fabdf9ff30480194d318c3e4406b7229ef4b248a6e4038cc76ac4fa59c0a",
+    "settings.gradle.kts": "e9928bfa994992fdbdebf6ccddd55bf9a1af96b9d3a5e09c8c2a64d7a6e0da88",
+    "gradle/wrapper/gradle-wrapper.properties": "b8177ad860b448b587e0702899283f932fe643c32c69acd3b36c8765a79b67cf",
+    "research/pit.gradle": "ff2438df156abb98b846ee8876d0142ae8d8b23acaf502085ed4c09e53efe0d7",
+    "research/run_pit.ps1": "e7ad623db0b4e0133bb7d769be67465f28d3539fd1d82d3d07411fbd297ebc53",
+    "src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowIntegrationTest.kt": "6c8a1a0067e2d853ca5ba69e42fd1e8f2dc6f00462fc529f4535147a2df0e8aa"
+  },
+  "configuration_sha256_lf": {
+    "build.gradle.kts": "cb415fb699388920caa74a0d049fe5d7c0ae86522f3d391bf0b38d0de05b6fc1",
+    "settings.gradle.kts": "c23a95471efcab55bf46421b74ea4d4c24526df728b7737c3eb7c5fa8dba84d2",
+    "gradle/wrapper/gradle-wrapper.properties": "d01b41913834fb3cb14e71f69a08898e6a47e663b08f5c9b8c7e0772c38889d2",
+    "research/pit.gradle": "ff2438df156abb98b846ee8876d0142ae8d8b23acaf502085ed4c09e53efe0d7",
+    "research/run_pit.ps1": "e7ad623db0b4e0133bb7d769be67465f28d3539fd1d82d3d07411fbd297ebc53",
+    "src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowIntegrationTest.kt": "82e1e574403babfe05f85c0d55f64abe268e4b6d0f94780a49adb099f58f6da6"
+  },
+  "hash_convention": {
+    "raw": "SHA256 of exact file bytes",
+    "canonical_lf": "SHA256 of file bytes after replacing CRLF with LF, with POSIX relative-path keys"
+  }
+}

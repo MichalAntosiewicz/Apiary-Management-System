@@ -3,13 +3,13 @@
   "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
   "title": "Omit transition event association",
   "rationale": "The transition exists but loses its relational link to the accepted command.",
-  "patch_sha256": "1ac8d0c1d19fd681b4873ab34be3d5f6d9b5f65c4abb910a97f4f0fca4612ed9",
+  "patch_sha256": "13b4426cf166c900a7b55dd3ee112499ae7a182bbe7a5da40200a156d43ae9f7",
   "status": "detected",
   "exit_code": 1,
-  "cases": 103,
-  "failures": 31,
+  "cases": 115,
+  "failures": 56,
   "skipped": 0,
-  "elapsed_seconds": 52.25,
+  "elapsed_seconds": 59.453,
   "command": [
     "cmd",
     "/d",
@@ -75,9 +75,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "PREPARATION/ADMINISTRATION/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -96,9 +96,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "PREPARATION/WITHDRAWAL/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -138,9 +138,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "PREPARATION/OVERLAP/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -180,9 +180,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "ACTIVE_HONEY_FLOW/ADMINISTRATION/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -201,9 +201,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "ACTIVE_HONEY_FLOW/WITHDRAWAL/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -243,9 +243,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "ACTIVE_HONEY_FLOW/OVERLAP/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -264,9 +264,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "TREATMENT_IN_PROGRESS/NONE/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -306,9 +306,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "TREATMENT_IN_PROGRESS/WITHDRAWAL/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -327,9 +327,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "TREATMENT_IN_PROGRESS/EXPIRED/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -369,9 +369,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "WITHDRAWAL/NONE/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -390,9 +390,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "WITHDRAWAL/ADMINISTRATION/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -432,9 +432,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "WITHDRAWAL/EXPIRED/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -453,9 +453,9 @@
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
       "name": "WITHDRAWAL/OVERLAP/INSPECTION",
-      "outcome": "passed",
-      "failure_type": "",
-      "failure_message": ""
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.AssertionFailedError",
+      "failure_message": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -711,7 +711,7 @@
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
-      "name": "[6] endpoint=treatments, body={hiveId=dce08f31-0419-477d-ad74-dd3c2d686291, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "name": "[6] endpoint=treatments, body={hiveId=8e732c34-b315-4c22-bdae-cf56fce68f9c, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
@@ -729,6 +729,90 @@
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (2 failures)"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",

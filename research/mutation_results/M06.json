@@ -3,13 +3,13 @@
   "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
   "title": "Remove the wintering harvest guard",
   "rationale": "A seasonal state restriction is omitted while other guards remain.",
-  "patch_sha256": "9d10c26fcbee1ab488a60f3ffadcbcee57b1db0b7327428dad2199891ddfb3d6",
+  "patch_sha256": "46b77bb3051cb625ab0f1ea497fa2879860a33e2c7cfb581dcf97d776a7798b1",
   "status": "detected",
   "exit_code": 1,
-  "cases": 103,
-  "failures": 5,
+  "cases": 115,
+  "failures": 17,
   "skipped": 0,
-  "elapsed_seconds": 59.969,
+  "elapsed_seconds": 58.0,
   "command": [
     "cmd",
     "/d",
@@ -469,7 +469,7 @@
       "name": "WINTERING/NONE/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"hiveId\":\"fc4a92a9-acbf-4cec-b6e1-7ab2daff50f7\",\"status\":\"APPROVED\",\"message\":\"No recorded treatment restriction is active; harvest permitted\",\"eventId\":\"fb245969-fe70-435d-8247-04e3a45dcd03\",\"reasonCode\":\"SANITARY_GUARD_CLEARED\",\"blockedUntil\":null} ==> expected: <409> but was: <200>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"hiveId\":\"39a9cbbb-5275-4ebe-bfc5-affed9c7faaf\",\"status\":\"APPROVED\",\"message\":\"No recorded treatment restriction is active; harvest permitted\",\"eventId\":\"7c5073e2-2b3f-46dd-aa01-cccdf9a2ce0e\",\"reasonCode\":\"SANITARY_GUARD_CLEARED\",\"blockedUntil\":null} ==> expected: <409> but was: <200>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -532,7 +532,7 @@
       "name": "WINTERING/EXPIRED/HARVEST",
       "outcome": "failed",
       "failure_type": "org.opentest4j.AssertionFailedError",
-      "failure_message": "org.opentest4j.AssertionFailedError: {\"hiveId\":\"5406f977-533e-4965-bb6d-84183e6794f4\",\"status\":\"APPROVED\",\"message\":\"No recorded treatment restriction is active; harvest permitted\",\"eventId\":\"08611f01-3acc-4a4a-8c03-2ea4039a250d\",\"reasonCode\":\"SANITARY_GUARD_CLEARED\",\"blockedUntil\":null} ==> expected: <409> but was: <200>"
+      "failure_message": "org.opentest4j.AssertionFailedError: {\"hiveId\":\"33c2b2f5-46f7-4be8-b82d-a8c2ef717a52\",\"status\":\"APPROVED\",\"message\":\"No recorded treatment restriction is active; harvest permitted\",\"eventId\":\"d65590dc-df10-49d5-95b4-3341fd0b525f\",\"reasonCode\":\"SANITARY_GUARD_CLEARED\",\"blockedUntil\":null} ==> expected: <409> but was: <200>"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
@@ -711,7 +711,7 @@
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
-      "name": "[6] endpoint=treatments, body={hiveId=1c983b32-2a7f-46a1-81e1-c6b52137dcee, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
+      "name": "[6] endpoint=treatments, body={hiveId=cfc5adf2-d6ea-4bb6-8308-3343f8231544, medicineName=TEST, activeSubstance=TEST, durationDays=1, withdrawalDays=1}",
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
@@ -729,6 +729,90 @@
       "outcome": "passed",
       "failure_type": "",
       "failure_message": ""
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (3 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (3 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=1, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (3 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=false, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=-1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (3 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=0",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
+    },
+    {
+      "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
+      "name": "wintering: courses=2, inspections=true, seconds from last expiry=1",
+      "outcome": "failed",
+      "failure_type": "org.opentest4j.MultipleFailuresError",
+      "failure_message": "org.opentest4j.MultipleFailuresError: Multiple Failures (5 failures)"
     },
     {
       "class_name": "io.github.Michal_Antosiewicz.apiary_management_system.WorkflowIntegrationTest",
