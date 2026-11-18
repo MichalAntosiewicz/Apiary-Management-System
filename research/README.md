@@ -2,6 +2,8 @@
 
 The analysis evaluates the effect of explicit data representations on a fixed rule engine. It preserves the original observations, source adapter, thresholds and scoring weights. Outputs describe computational agreement and sensitivity; they are not estimates of independently validated biological diagnosis accuracy.
 
+[Parameter provenance](rule_parameter_provenance.md) records the first author's heuristic choice of all numeric weights and cutoffs, the development use of Beewise for the stress rule, the raw mite-count convention and the biological literature context. Beewise serves as development data for that rule. The 20 authored scenarios retain 19/20 selected-class agreement and contain no positive stress/absconding case.
+
 ## Run
 
 Use Python 3.10 or later, with no third-party packages, from the repository root:
