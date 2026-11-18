@@ -27,6 +27,10 @@ sh ./gradlew test --tests '*BeewiseEvaluationBenchmarkTest' --no-daemon
 
 Run the complete suite before archiving verification results. The full suite has **167 passing JUnit cases** (115 workflow integration cases, 43 design and transfer cases, and 9 service and fixture cases). Twelve sequence cases preserve wintering across treatment, inspection and harvest. The three fixture tests check **6672 base field-derived evaluations, 20 author-defined scenarios and 12,708 adapter-factor evaluations**, comparing all emitted alert types, emitted scores and selected output classes.
 
+[`verification/wintering_counterexample.csv`](../verification/wintering_counterexample.csv) aligns the twelve sequence cases with the recorded failure output from source `84737ba` and the passing JUnit artifact. On `84737ba`, all twelve cases observed a lifecycle-state mismatch and eight returned HTTP 200 at or after the final expiry. The other four returned HTTP 409 for the active treatment rather than wintering. The lifecycle-preserving policy returns HTTP 409 with `OPERATIONAL_STATE_BLOCKED` in all twelve cases.
+
+Run `python research/analyze_capacity_swarm.py` for a capacity comparison with one assigned marginal queen cell open with a larva. Its 1059 Python evaluations complement the JVM-checked factorial scenarios. See [the adapter study](adapter_sensitivity.md) for the scenario and output files.
+
 Run `python research/analyze_clustered_records.py` for paired visit-level and colony-level summaries with colony-cluster bootstrap intervals. The script samples 120 colonies with replacement in each of 20,000 replicates, retaining all visits of each drawn colony, using seed 20261117. Its JSON output records input hashes, interval definitions and the relationship between the generated input groups. Agreement with note-derived proxy labels measures internal consistency.
 
 ## Data and conventions

@@ -30,6 +30,14 @@ At the reference 2 kg conversion, substituting the recorded rate changes seven s
 
 Changing only capacity from 20 to 10 frames changes swarming scores for 145 visits. Increasing it to 30 frames changes three scores. The resulting scores remain below the alert threshold, with zero swarming and supersedure alerts throughout this design. Counts and colony identifiers describe this fixed observed population. The report includes paired changes and affected-colony counts for every combination.
 
+## Capacity with one assigned queen cell
+
+Run `python research/analyze_capacity_swarm.py` for a separate Python calculation on the same 353 visits. It varies capacity across 10, 20 and 30 frames at the reference honey factor of 2 kg per frame and raw mite count. Each visit is assigned one marginal queen cell open with a larva, adding 0.35 to the swarming score. Queen age is one year, brood is compact and pest signs are false.
+
+The 1059 evaluations yield 147, 3 and 0 swarming alerts at 10, 20 and 30 frames. Compared with 20 frames, the 10-frame scenario changes 144 selected outputs in 86 colonies and the 30-frame scenario changes three outputs in two colonies. The queen-cell assignment is hypothetical. The results describe the software's response to that input and are separate from the 12,708 Python–JVM adapter checks.
+
+The script exports `outputs/capacity_swarm_cases.csv` with scores, emitted alerts and paired changes, and `outputs/capacity_swarm_summary.json` with counts, dataset and dependency hashes, and the CSV's SHA-256 under LF line endings.
+
 ## Outputs
 
 - `outputs/adapter_sensitivity_summary.json` records source hashes, units, formulas, fixed assignments, design, and scenario results.

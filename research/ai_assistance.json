@@ -9,9 +9,13 @@
     {
       "model": "gpt-6.1-sol",
       "recorded_use_dates": ["2026-11-17", "2026-11-18"]
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "recorded_use_dates": ["2026-11-18"]
     }
   ],
-  "identifier_source": "Model fields in the task's locally retained turn-context metadata, inspected through 18 November 2026.",
+  "identifier_source": "Model identifiers and dates are recorded in the task session metadata through 18 November 2026.",
   "uses": [
     "Code inspection and implementation",
     "Test design and implementation",
