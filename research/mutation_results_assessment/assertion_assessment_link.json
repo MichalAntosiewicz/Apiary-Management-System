@@ -1,0 +1,14 @@
+{
+  "assessment_A_tests": 167,
+  "assessment_B_tests": 167,
+  "workflow_cases_each": 115,
+  "same_case_identities": true,
+  "identity_normalization": "Synthetic UUID parameter values only",
+  "test_resources_unchanged": true,
+  "changed_source_file": "src/test/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/WorkflowIntegrationTest.kt",
+  "assessment_A_sha256_canonical_lf": "6534b4ead7792fcadcf153a942a013470e3342a54c73af44a8d29e2489099424",
+  "assessment_B_sha256_canonical_lf": "82e1e574403babfe05f85c0d55f64abe268e4b6d0f94780a49adb099f58f6da6",
+  "patch_direction": "A to B",
+  "patch_sha256": "6a00a0b896dc8ffb1e3d459f9019f5d6e335e1e429024a9a79d7b13611899eeb",
+  "within_case_changes": "Metadata and inspection-audit assertions, matching optional hiveId on treatment requests, and redelivery of an existing harvest event."
+}

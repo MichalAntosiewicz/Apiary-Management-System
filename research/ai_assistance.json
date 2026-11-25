@@ -1,0 +1,28 @@
+{
+  "tool": "OpenAI Codex",
+  "provider": "OpenAI",
+  "model_identifiers": [
+    {
+      "model": "gpt-6-astra",
+      "recorded_use_dates": ["2026-10-23", "2026-10-31", "2026-11-01", "2026-11-02", "2026-11-17"]
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "recorded_use_dates": ["2026-11-17", "2026-11-18"]
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "recorded_use_dates": ["2026-11-18"]
+    }
+  ],
+  "identifier_source": "Model identifiers and dates are recorded in the task session metadata through 18 November 2026.",
+  "uses": [
+    "Code inspection and implementation",
+    "Test design and implementation",
+    "Analysis-script preparation and execution",
+    "Manuscript drafting and editing",
+    "Preparation of diagram code"
+  ],
+  "numerical_outputs": "Produced by executing the supplied tests and analysis programs.",
+  "responsibility": "The authors are responsible for methods, results, interpretation and manuscript content."
+}

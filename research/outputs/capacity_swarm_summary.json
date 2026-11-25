@@ -1,0 +1,64 @@
+{
+  "dataset_sha256": "76b1b9ac4ba6109016fd424a08482178ec67ab5abf92e817b4fe2813f68949de",
+  "source_sha256_lf": {
+    "analyze_adapter_sensitivity.py": "cb819bf540cdbefebc4a098f4eb8cfa09993468a9d5536c3a919e69725f82351",
+    "analyze_beewise.py": "b5a1ffb01d67d04f2b323be9bf0c5a353e44d2dc73c36fe479de824e679237b3"
+  },
+  "case_selection_sha256_lf": "ceadafbb620f6444a345aaa60ebd183db13aa725972927719fa2c8be5dfb9eef",
+  "cases_file": "capacity_swarm_cases.csv",
+  "cases_sha256_lf": "a788a6b25d5b63657624652d777b6a9d2e83d95d88b8ed88a5c3b56a4852c673",
+  "visits": 353,
+  "colonies": 120,
+  "evaluations": 1059,
+  "reference_capacity_frames": 20,
+  "honey_factor_kg_per_frame": 2,
+  "varroa_representation": "raw_count",
+  "assigned_inputs": {
+    "queen_age": 1,
+    "brood_pattern": "SOLID_COMPACT",
+    "cell_count": 1,
+    "cell_placement": "MARGINAL",
+    "cell_stage": "OPEN_WITH_LARVA",
+    "pest_signs": false
+  },
+  "scenarios": [
+    {
+      "capacity_frames": 10,
+      "swarming_alerts": 147,
+      "colonies_with_swarming_alert": 87,
+      "stress_alerts": 8,
+      "changed_selected_visits": 144,
+      "colonies_with_changed_selection": 86,
+      "changed_alert_sets": 144,
+      "changed_swarming_scores": 145,
+      "class_transitions": {
+        "COLONY_ABSCONDING -> REPRODUCTIVE_SWARM": 1,
+        "NOMINAL -> REPRODUCTIVE_SWARM": 143
+      }
+    },
+    {
+      "capacity_frames": 20,
+      "swarming_alerts": 3,
+      "colonies_with_swarming_alert": 2,
+      "stress_alerts": 8,
+      "changed_selected_visits": 0,
+      "colonies_with_changed_selection": 0,
+      "changed_alert_sets": 0,
+      "changed_swarming_scores": 0,
+      "class_transitions": {}
+    },
+    {
+      "capacity_frames": 30,
+      "swarming_alerts": 0,
+      "colonies_with_swarming_alert": 0,
+      "stress_alerts": 8,
+      "changed_selected_visits": 3,
+      "colonies_with_changed_selection": 2,
+      "changed_alert_sets": 3,
+      "changed_swarming_scores": 3,
+      "class_transitions": {
+        "REPRODUCTIVE_SWARM -> NOMINAL": 3
+      }
+    }
+  ]
+}

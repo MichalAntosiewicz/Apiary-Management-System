@@ -1,0 +1,21 @@
+case_id,proxy_label,predicted,matches_scenario,rationale,rationale_status,swarming_score,supersedure_score,absconding_score
+SUP-01,SUPERSEDURE,SUPERSEDURE,True,Classic supersedure: 2 central cells with failing oviposition (Winston 1987),author_defined_not_independently_adjudicated,0.1,0.95,0.0
+SUP-02,SUPERSEDURE,SUPERSEDURE,True,Advanced supersedure: single sealed central cell on failing queen (Tarpy 2012),author_defined_not_independently_adjudicated,0.1,0.95,0.0
+SUP-03,SUPERSEDURE,SUPERSEDURE,True,Depleted spermatheca: drone-laying queen triggering emergency supersedure,author_defined_not_independently_adjudicated,0.1,1.0,0.0
+SUP-04,SUPERSEDURE,SUPERSEDURE,True,Total oviposition arrest: aging queen with zero worker brood,author_defined_not_independently_adjudicated,0.1,0.85,0.0
+SUP-05,SUPERSEDURE,SUPERSEDURE,True,Early physiological failure: poor brood pattern in young queen (Tarpy 2012),author_defined_not_independently_adjudicated,0.0,0.8,0.0
+SUP-06,SUPERSEDURE,SUPERSEDURE,True,Initial supersedure cup emergence on irregular brood face,author_defined_not_independently_adjudicated,0.1,0.95,0.0
+SUP-07,SUPERSEDURE,SUPERSEDURE,True,Upper boundary count: maximum typical central supersedure cells (Winston 1987),author_defined_not_independently_adjudicated,0.1,0.95,0.0
+SUP-08,SUPERSEDURE,NOMINAL,False,Pheromonal senescence: aging 3-year queen with temporarily solid brood,author_defined_not_independently_adjudicated,0.1,0.45,0.0
+SUP-09,SUPERSEDURE,SUPERSEDURE,True,Strong colony replacement: central cells without marginal swarming cups,author_defined_not_independently_adjudicated,0.35,0.95,0.0
+SUP-10,SUPERSEDURE,SUPERSEDURE,True,Coexistence phase: resident failing queen observed alongside mature central cell,author_defined_not_independently_adjudicated,0.1,0.95,0.0
+SWM-01,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,True,Textbook advanced swarm: severe congestion and marginal sealed cells (Winston 1980),author_defined_not_independently_adjudicated,1.0,0.0,0.0
+SWM-02,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,True,Impending swarm: high bee density with open marginal swarm cells,author_defined_not_independently_adjudicated,0.95,0.0,0.0
+SWM-03,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,True,Congestion-induced swarm with first-year queen in constrained cavity,author_defined_not_independently_adjudicated,0.95,0.0,0.0
+SWM-04,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,True,Severe swarming fever: numerous bottom-bar swarm cells (Seeley 2010),author_defined_not_independently_adjudicated,1.0,0.0,0.0
+SWM-05,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,True,Active reproductive impulse triggered by brood nest space exhaustion,author_defined_not_independently_adjudicated,0.95,0.0,0.0
+NOM-01,NOMINAL,NOMINAL,True,Nominal equilibrium: young queen with ample comb space and solid brood,author_defined_not_independently_adjudicated,0.0,0.0,0.0
+NOM-02,NOMINAL,NOMINAL,True,Healthy growing colony: balanced stores and active oviposition without queen cells,author_defined_not_independently_adjudicated,0.0,0.0,0.0
+NOM-03,NOMINAL,NOMINAL,True,Stable mid-season maintenance: two-year queen with normal brood compactness,author_defined_not_independently_adjudicated,0.1,0.0,0.0
+NOM-04,NOMINAL,NOMINAL,True,Productive foraging colony: adequate storage space without congestion,author_defined_not_independently_adjudicated,0.1,0.0,0.0
+NOM-05,NOMINAL,NOMINAL,True,Early spring expanding unit: ample free comb space with zero stress markers,author_defined_not_independently_adjudicated,0.0,0.0,0.0

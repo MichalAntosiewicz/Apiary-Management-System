@@ -38,5 +38,8 @@ class DecisionAlert(
     var isAcknowledged: Boolean = false,
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    val createdAt: Instant = Instant.now()
+    val createdAt: Instant = Instant.now(),
+
+    @Column(name = "event_id")
+    val eventId: UUID? = null
 )

@@ -1,0 +1,21 @@
+scenarioId,framesOfBees,framesOfBrood,honeyStoresKg,freeCombSpacePercent,queenSeen,broodPattern,queenCellsCount,queenCellsPlacement,queenCellsStage,varroaMiteCount,signsOfPests,queenAgeYears,expectedClass,biologicalRationale
+SUP-01,8,5,8.0,35.0,true,SPOTTY,2,CENTRAL,OPEN_WITH_LARVA,2,false,3,SUPERSEDURE,Classic supersedure: 2 central cells with failing oviposition (Winston 1987)
+SUP-02,7,4,6.5,40.0,true,SPOTTY,1,CENTRAL,SEALED,1,false,2,SUPERSEDURE,Advanced supersedure: single sealed central cell on failing queen (Tarpy 2012)
+SUP-03,6,3,5.0,45.0,true,DRONE_BROOD_ONLY,2,CENTRAL,OPEN_WITH_LARVA,3,false,2,SUPERSEDURE,Depleted spermatheca: drone-laying queen triggering emergency supersedure
+SUP-04,5,2,4.0,50.0,true,ABSENT,3,CENTRAL,OPEN_WITH_LARVA,2,false,3,SUPERSEDURE,Total oviposition arrest: aging queen with zero worker brood
+SUP-05,9,6,7.0,30.0,true,SPOTTY,2,CENTRAL,OPEN_WITH_LARVA,1,false,1,SUPERSEDURE,Early physiological failure: poor brood pattern in young queen (Tarpy 2012)
+SUP-06,8,5,8.5,35.0,true,SPOTTY,1,CENTRAL,CUP,2,false,2,SUPERSEDURE,Initial supersedure cup emergence on irregular brood face
+SUP-07,7,4,6.0,40.0,true,SPOTTY,4,CENTRAL,OPEN_WITH_LARVA,2,false,2,SUPERSEDURE,Upper boundary count: maximum typical central supersedure cells (Winston 1987)
+SUP-08,8,5,7.5,35.0,true,SOLID_COMPACT,2,CENTRAL,OPEN_WITH_LARVA,1,false,3,SUPERSEDURE,Pheromonal senescence: aging 3-year queen with temporarily solid brood
+SUP-09,11,7,12.0,20.0,true,SPOTTY,3,CENTRAL,OPEN_WITH_LARVA,3,false,2,SUPERSEDURE,Strong colony replacement: central cells without marginal swarming cups
+SUP-10,7,4,5.5,45.0,true,SPOTTY,2,CENTRAL,SEALED,2,false,3,SUPERSEDURE,Coexistence phase: resident failing queen observed alongside mature central cell
+SWM-01,12,8,14.0,5.0,true,SOLID_COMPACT,10,MARGINAL,SEALED,1,false,2,REPRODUCTIVE_SWARM,Textbook advanced swarm: severe congestion and marginal sealed cells (Winston 1980)
+SWM-02,11,7,11.0,8.0,true,SOLID_COMPACT,8,MARGINAL,OPEN_WITH_LARVA,2,false,2,REPRODUCTIVE_SWARM,Impending swarm: high bee density with open marginal swarm cells
+SWM-03,10,6,10.0,9.0,true,SOLID_COMPACT,6,MARGINAL,SEALED,2,false,1,REPRODUCTIVE_SWARM,Congestion-induced swarm with first-year queen in constrained cavity
+SWM-04,11,7,12.5,7.0,true,SOLID_COMPACT,12,MARGINAL,SEALED,1,false,3,REPRODUCTIVE_SWARM,Severe swarming fever: numerous bottom-bar swarm cells (Seeley 2010)
+SWM-05,10,6,9.5,10.0,true,SOLID_COMPACT,7,MARGINAL,OPEN_WITH_LARVA,2,false,2,REPRODUCTIVE_SWARM,Active reproductive impulse triggered by brood nest space exhaustion
+NOM-01,8,5,10.0,40.0,true,SOLID_COMPACT,0,NONE,NONE,1,false,1,NOMINAL,Nominal equilibrium: young queen with ample comb space and solid brood
+NOM-02,9,6,12.0,35.0,true,SOLID_COMPACT,0,NONE,NONE,2,false,1,NOMINAL,Healthy growing colony: balanced stores and active oviposition without queen cells
+NOM-03,7,4,8.0,45.0,true,SOLID_COMPACT,0,NONE,NONE,1,false,2,NOMINAL,Stable mid-season maintenance: two-year queen with normal brood compactness
+NOM-04,10,6,15.0,30.0,true,SOLID_COMPACT,0,NONE,NONE,2,false,1,NOMINAL,Productive foraging colony: adequate storage space without congestion
+NOM-05,6,3,6.0,55.0,true,SOLID_COMPACT,0,NONE,NONE,1,false,1,NOMINAL,Early spring expanding unit: ample free comb space with zero stress markers

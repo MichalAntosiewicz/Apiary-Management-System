@@ -24,6 +24,7 @@ class SanitaryGuardFsmVerificationTest {
     private lateinit var treatmentRepository: TreatmentRepository
     private lateinit var transitionRepository: HiveStateTransitionRepository
     private lateinit var alertRepository: DecisionAlertRepository
+    private val decisions: io.github.Michal_Antosiewicz.apiary_management_system.repository.HarvestDecisionRepository = mock()
     private lateinit var fsmService: HiveStateMachineService
 
     private val hiveId = UUID.randomUUID()
@@ -58,12 +59,13 @@ class SanitaryGuardFsmVerificationTest {
             hiveRepository,
             treatmentRepository,
             transitionRepository,
-            alertRepository
+            alertRepository,
+            decisions
         )
     }
 
     @Test
-    fun `scenario 1 - should reject harvest during active medical treatment and throw SanitaryViolationException`() {
+    fun `scenario 1 - should reject harvest during active medical treatment and persist rejected decision`() {
         val activeTreatment = mock<Treatment> {
             on { medicineName } doReturn "Apivar"
             on { withdrawalEndDate } doReturn now.plus(14, ChronoUnit.DAYS)
@@ -78,12 +80,11 @@ class SanitaryGuardFsmVerificationTest {
             targetSuperCount = 2
         )
 
-        val exception = assertThrows(SanitaryViolationException::class.java) {
-            fsmService.onHoneyHarvestAttempted(harvestEvent)
-        }
-
-        assertEquals("Apivar", exception.medicineName)
-        assertEquals(dummyHive.id, exception.hiveId)
+        fsmService.onHoneyHarvestAttempted(harvestEvent)
+        val result = argumentCaptor<HarvestDecision>()
+        verify(decisions).save(result.capture())
+        assertEquals(false, result.firstValue.approved)
+        assertEquals("ACTIVE_WITHDRAWAL", result.firstValue.reasonCode)
         verify(alertRepository).save(any<DecisionAlert>())
         verify(transitionRepository).save(any<HiveStateTransition>())
     }
@@ -104,11 +105,11 @@ class SanitaryGuardFsmVerificationTest {
             targetSuperCount = 1
         )
 
-        val exception = assertThrows(SanitaryViolationException::class.java) {
-            fsmService.onHoneyHarvestAttempted(harvestEvent)
-        }
-
-        assertEquals("Bayvarol", exception.medicineName)
+        fsmService.onHoneyHarvestAttempted(harvestEvent)
+        val result = argumentCaptor<HarvestDecision>()
+        verify(decisions).save(result.capture())
+        assertEquals(false, result.firstValue.approved)
+        assertEquals("ACTIVE_WITHDRAWAL", result.firstValue.reasonCode)
         verify(alertRepository).save(any<DecisionAlert>())
     }
 

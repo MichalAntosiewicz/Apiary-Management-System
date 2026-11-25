@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.time.Year
+import java.time.ZoneOffset
 
 @Service
 class DecisionSupportEngine(
@@ -25,7 +25,7 @@ class DecisionSupportEngine(
         val hive = hiveRepository.findById(event.hiveId).orElse(null) ?: return
         val activeQueen = queenRepository.findByHiveIdAndIsActiveTrue(event.hiveId).orElse(null)
 
-        val currentYear = Year.now().value
+        val currentYear = event.occurredAt.atZone(ZoneOffset.UTC).year
         val queenAgeYears = activeQueen?.let { currentYear - it.emergenceYear } ?: 0
 
         // 1. Evaluate Differential Diagnosis
@@ -75,17 +75,21 @@ class DecisionSupportEngine(
         return when {
             riskScore >= BigDecimal("0.750") -> DecisionAlert(
                 hive = hive,
+                eventId = event.eventId,
+                createdAt = event.occurredAt,
                 alertType = AlertType.REPRODUCTIVE_SWARM,
                 severity = AlertSeverity.CRITICAL,
                 riskScore = riskScore,
-                recommendationText = "Critical swarming threshold exceeded ($riskScore). Marginal queen cells and severe congestion detected. Immediate artificial swarm, split, or comb volume expansion required."
+                recommendationText = "Swarming indicators exceed the high heuristic threshold ($riskScore). Review queen cells and available comb space with an experienced beekeeper before choosing an intervention."
             )
             riskScore >= BigDecimal("0.450") -> DecisionAlert(
                 hive = hive,
+                eventId = event.eventId,
+                createdAt = event.occurredAt,
                 alertType = AlertType.REPRODUCTIVE_SWARM,
                 severity = AlertSeverity.WARNING,
                 riskScore = riskScore,
-                recommendationText = "Moderate swarming preparation detected ($riskScore). Brood area congestion rising. Provide empty wax foundation frames to stimulate comb building."
+                recommendationText = "Swarming indicators exceed the advisory threshold ($riskScore). Review congestion, queen cells and local conditions before changing comb space."
             )
             else -> null
         }
@@ -121,10 +125,12 @@ class DecisionSupportEngine(
         return if (riskScore >= BigDecimal("0.550")) {
             DecisionAlert(
                 hive = hive,
+                eventId = event.eventId,
+                createdAt = event.occurredAt,
                 alertType = AlertType.SUPERSEDURE,
                 severity = AlertSeverity.INFO,
                 riskScore = riskScore,
-                recommendationText = "Active natural supersedure detected ($riskScore). Do NOT destroy queen cells. The colony is replacing a failing or depleted queen."
+                recommendationText = "Inspection indicators are consistent with possible supersedure ($riskScore). Review queen status and brood pattern with an experienced beekeeper before intervening."
             )
         } else null
     }
@@ -164,10 +170,12 @@ class DecisionSupportEngine(
             val severity = if (riskScore >= BigDecimal("0.750")) AlertSeverity.CRITICAL else AlertSeverity.WARNING
             DecisionAlert(
                 hive = hive,
+                eventId = event.eventId,
+                createdAt = event.occurredAt,
                 alertType = AlertType.COLONY_ABSCONDING,
                 severity = severity,
                 riskScore = riskScore,
-                recommendationText = "High absconding risk ($riskScore). Stress factors detected (parasite load, severe resource dearth, or pest disturbance). Immediate veterinary intervention or supplemental feeding necessary."
+                recommendationText = "Recorded stress indicators exceed the advisory threshold ($riskScore). Check measurement context, food stores and pests; seek qualified advice on management where needed."
             )
         } else null
     }

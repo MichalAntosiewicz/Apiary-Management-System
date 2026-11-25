@@ -1,0 +1,5 @@
+variant,n,matching,agreement,macro_f1,swarm_alerts,supersedure_alerts,absconding_alerts
+legacy_note_features,359,282,0.7855153203342619,0.5394552562226699,20,18,7
+no_note_features,359,249,0.6935933147632312,0.24751604468742572,0,0,8
+no_note_numeric_complete,306,227,0.7418300653594772,0.2547348484848485,0,0,7
+brood_agnostic_complete,353,247,0.6997167138810199,0.25412065495294567,0,0,8

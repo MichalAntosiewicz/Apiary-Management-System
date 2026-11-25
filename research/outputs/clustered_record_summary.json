@@ -1,0 +1,196 @@
+{
+  "inputs_sha256": {
+    "case_results.csv": "ceadafbb620f6444a345aaa60ebd183db13aa725972927719fa2c8be5dfb9eef",
+    "jvm_cases.csv": "80f3eb1b6d45203b74d701dda5fc06afab1c3db75a5116f660235aca488d4790"
+  },
+  "input_hash_convention": "UTF-8 CSV bytes with CRLF converted to LF",
+  "paired_case_output": "clustered_paired_visits.csv",
+  "retained_visits": 359,
+  "unique_colonies": 120,
+  "colonies_by_number_of_retained_visits": {
+    "2": 1,
+    "3": 119
+  },
+  "changed_visits": 38,
+  "colonies_with_a_changed_visit": 31,
+  "colonies_by_number_of_changed_visits": {
+    "0": 89,
+    "1": 24,
+    "2": 7
+  },
+  "by_assessment_round": {
+    "1": {
+      "retained_visits": 120,
+      "changed_visits": 0
+    },
+    "2": {
+      "retained_visits": 120,
+      "changed_visits": 20
+    },
+    "3": {
+      "retained_visits": 119,
+      "changed_visits": 18
+    }
+  },
+  "changed_selected_classes_note_derived_to_disabled": [
+    {
+      "from": "REPRODUCTIVE_SWARM",
+      "to": "COLONY_ABSCONDING",
+      "visits": 1
+    },
+    {
+      "from": "REPRODUCTIVE_SWARM",
+      "to": "NOMINAL",
+      "visits": 19
+    },
+    {
+      "from": "SUPERSEDURE",
+      "to": "NOMINAL",
+      "visits": 18
+    }
+  ],
+  "class_order": [
+    "REPRODUCTIVE_SWARM",
+    "SUPERSEDURE",
+    "COLONY_ABSCONDING",
+    "NOMINAL"
+  ],
+  "internal_proxy_rows_by_selected_output_columns": {
+    "legacy_note_features": [
+      [
+        20,
+        1,
+        0,
+        17
+      ],
+      [
+        0,
+        13,
+        0,
+        31
+      ],
+      [
+        0,
+        4,
+        3,
+        20
+      ],
+      [
+        0,
+        0,
+        4,
+        246
+      ]
+    ],
+    "no_note_features": [
+      [
+        0,
+        0,
+        1,
+        37
+      ],
+      [
+        0,
+        0,
+        0,
+        44
+      ],
+      [
+        0,
+        0,
+        3,
+        24
+      ],
+      [
+        0,
+        0,
+        4,
+        246
+      ]
+    ]
+  },
+  "bootstrap": {
+    "method": "Paired nonparametric colony-cluster percentile bootstrap",
+    "replicates": 20000,
+    "seed": 20261117,
+    "sampling": "Python random.Random(seed).choices: sample the observed number of colonies uniformly with replacement from sorted hive IDs. Keep every available paired visit in each drawn colony, including repeated draws.",
+    "estimands": "Pool all sampled visits for output changes, internal proxy agreement and macro-F1. Use one indicator per sampled colony for at least one changed visit. Both adapter variants use the same draws.",
+    "macro_f1": "Unweighted mean across four fixed classes, F1 = 2TP/(proxy support + predicted count), zero when both counts are zero.",
+    "interval": "2.5% and 97.5% empirical quantiles with linear interpolation at (B-1)p.",
+    "interpretation": "Intervals describe between-colony sampling variation in these paired records. The text-derived inputs and proxy labels share source material; proxy agreement measures internal consistency.",
+    "estimates_and_intervals": {
+      "changed_visit_fraction": {
+        "estimate": 0.10584958217270195,
+        "lower_95": 0.07242339832869081,
+        "upper_95": 0.14045932900775354
+      },
+      "fraction_of_colonies_with_a_changed_visit": {
+        "estimate": 0.25833333333333336,
+        "lower_95": 0.18333333333333332,
+        "upper_95": 0.3333333333333333
+      },
+      "legacy_note_features_agreement": {
+        "estimate": 0.7855153203342619,
+        "lower_95": 0.7437325905292479,
+        "upper_95": 0.8268156424581006
+      },
+      "legacy_note_features_macro_f1": {
+        "estimate": 0.5394552562226699,
+        "lower_95": 0.47007321762977194,
+        "upper_95": 0.6007768846483958
+      },
+      "no_note_features_agreement": {
+        "estimate": 0.6935933147632312,
+        "lower_95": 0.6406685236768802,
+        "upper_95": 0.7465181058495822
+      },
+      "no_note_features_macro_f1": {
+        "estimate": 0.24751604468742572,
+        "lower_95": 0.2048088122298466,
+        "upper_95": 0.2927181959202807
+      },
+      "disabled_minus_note_derived_agreement": {
+        "estimate": -0.0919220055710307,
+        "lower_95": -0.125,
+        "upper_95": -0.06128133704735372
+      },
+      "disabled_minus_note_derived_macro_f1": {
+        "estimate": -0.29193921153524416,
+        "lower_95": -0.34039307822094983,
+        "upper_95": -0.23195428556778602
+      }
+    }
+  },
+  "fixture_evaluations": {
+    "field_evaluations_by_group": {
+      "legacy_note_features": 359,
+      "no_note_features": 359,
+      "no_note_numeric_complete": 306,
+      "brood_agnostic_complete": 1412,
+      "age_brood_grid": 4236
+    },
+    "field_evaluations": 6672,
+    "author_defined_scenarios": 20,
+    "total_evaluations": 6692,
+    "age_brood_grid_visits": 353,
+    "evaluations_within_age_brood_grid": 4236,
+    "distinct_visit_input_pairs": 4301,
+    "repeated_field_evaluations": 2371,
+    "deduplication_key": [
+      "case_id",
+      "inspection_date",
+      "queen_age_assumed",
+      "frames_of_bees",
+      "frames_of_brood",
+      "honey_kg",
+      "free_space_percent",
+      "brood_pattern",
+      "queen_cells_count",
+      "queen_cells_placement",
+      "queen_cells_stage",
+      "varroa_count",
+      "signs_of_pests"
+    ],
+    "age_one_grid_pairs_also_in_four_pattern_group": 1412
+  }
+}

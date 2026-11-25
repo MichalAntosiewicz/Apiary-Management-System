@@ -1,0 +1,39 @@
+case_id,inspection_date,proxy_label,legacy_prediction,no_note_prediction,morphology_source,label_rule,notes,au_reason
+40888_B4-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,provision queen cell; likely swarmed,swarmed
+40888_A2-V2,2025-04-28,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,4/11/2025 queen cells; 4/22/2025 queen cells,
+40823_A2-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"newly released caged queen (5/21/25) ; 4/22/25 swarmed queenless, drone layer, attemting to make a queen, queen cell knocked down",
+40905_A4-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,emerged queen cell; likely swarmed; pos virgin; req for queen,swarmed
+40905_A4-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"5/21/25 drone brood & no queen, 4/22/25-no queen, swarmed 4/18/25",
+40823_A3-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,sealed swarm cells,
+40858_A4-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,"queen cells, foul brood, multiple eggs in cell - possible lame worker",
+40823_B1-V2,2025-04-28,REPRODUCTIVE_SWARM,SUPERSEDURE,NOMINAL,notes_queen_synthetic,swarm_keyword,capped queen cells,swarmed
+40851_A2-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:qcell;bees>=3,4/22/25- qcells: emereged qcells,
+40869_B2-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,capped queen cell; mite on bee; lots of queen cells; likely swarmed,swarmed
+40869_A1-V2,2025-04-29,COLONY_ABSCONDING,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:ql;bees<3,multi queen cells; pos queen death; lors of emergencey cells; mite on bee,ql
+40868_A1-V2,2025-04-28,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,provisioned queen cell,
+40868_A2-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,4/11/25 queen cells; 4/18/25 vq swarmed; 4/24/25 q laying; capped swarm cell & capped queen cell,swarmed
+40855_A4-V2,2025-04-30,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,capped queen cell,
+40855_A4-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,"queen cells 4/22/25, queen cells 5/20/25 (knocked down)",
+40887_B1-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,chewed out queen cell; queemless - likely swarmed,
+40887_B3-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,capped queen cell; recent;y swarmed; queen;ess; lots of queen cells,swarmed
+40887_B3-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"ql - might be a new queen - no worker brood: previous notes 4/18/25 ql swarm, 4/11/25 queeb cells, 4/25/25 (queen laying ?)",
+40851_A3-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,queen cell likely swarmed,swarmed
+40827_A4-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,recent swarm; likely recently requeened,swarmed
+40827_A4-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"previously noted: swarmed 4& queenless 4/18/25, queen cells 4/24/25",
+40868_A3-V2,2025-04-28,COLONY_ABSCONDING,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees<3,queen cells - did not shake,weak
+40858_A2-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:new queen;bees>=3,"5/11/25 ql new queen, no brood, mite sample from honey frame",
+40858_B1-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"foul brood, 4/22/25 swarme & qless",
+40855_A3-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees>=3,queen cell 4/22/25,
+40868_B3-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,caps swarm cells,
+40827_B4-V2,2025-04-28,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,likely swarmed; recently requeened,swarmed
+40822_A2-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,multiple foul brood; likely swarmed; recently requeened,
+40822_A2-V3,2025-05-20,COLONY_ABSCONDING,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:new queen;bees<3,"previous notes: 4/18/25 ql, 4/22/25 new queen",
+40887_A4-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:ql;bees>=3,5/22/25 possible ql - old brood and no young larvae,ql
+40869_A3-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:new queen;bees>=3,"dwv, foul brood : previous note 4/16/25 qless - new queen",
+40887_A2-V2,2025-04-29,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,likely swarmed recently: requeened(?),swarmed
+40887_A2-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,NOMINAL,notes_swarm_synthetic,swarm_keyword,"previous notes - 4/11/25 qcell, 4/22/25 no queen - swarmed",
+40910_B3-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:ql;bees>=3,"previously noted: 4/18/22 qloss, queen found 5/21/25",
+40909_A1-V3,2025-05-20,REPRODUCTIVE_SWARM,REPRODUCTIVE_SWARM,COLONY_ABSCONDING,notes_swarm_synthetic,swarm_keyword,"previously noted: 4/18/25 swarm -ql, 4/22/25 qr",
+40905_B2-V2,2025-04-28,COLONY_ABSCONDING,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:queen cell;bees<3,capped queen cell found & destroyed,
+40905_B2-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:ql;bees>=3,previosly noted qloss3/24/25,
+40851_B1-V3,2025-05-20,SUPERSEDURE,SUPERSEDURE,NOMINAL,notes_queen_synthetic,queen_keyword:qcell;bees>=3,virgin seen: emerged qcells and capped qcell,

@@ -8,22 +8,23 @@ import io.github.Michal_Antosiewicz.apiary_management_system.domain.CellStage
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
+import jakarta.validation.constraints.*
 
 data class CreateInspectionRequest(
     val hiveId: UUID,
-    val framesOfBees: Int,
-    val framesOfBrood: Int,
-    val honeyStoresKg: BigDecimal,
-    val freeCombSpacePercent: BigDecimal,
+    @field:Min(0) val framesOfBees: Int,
+    @field:Min(0) val framesOfBrood: Int,
+    @field:DecimalMin("0.0") @field:Digits(integer = 3, fraction = 2) val honeyStoresKg: BigDecimal,
+    @field:DecimalMin("0.0") @field:DecimalMax("100.0") @field:Digits(integer = 3, fraction = 2) val freeCombSpacePercent: BigDecimal,
     val queenSeen: Boolean = false,
     val broodPattern: BroodPattern,
-    val queenCellsCount: Int = 0,
+    @field:Min(0) val queenCellsCount: Int = 0,
     val queenCellsPlacement: CellPlacement = CellPlacement.NONE,
     val queenCellsStage: CellStage = CellStage.NONE,
-    val varroaMiteCount: Int = 0,
+    @field:Min(0) val varroaMiteCount: Int = 0,
     val signsOfPests: Boolean = false,
-    val temperamentScore: Int? = null,
-    val notes: String? = null
+    @field:Min(1) @field:Max(5) val temperamentScore: Int? = null,
+    @field:Size(max = 4000) val notes: String? = null
 )
 
 data class InspectionResponse(

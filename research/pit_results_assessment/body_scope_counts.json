@@ -1,0 +1,23 @@
+{
+  "Operational harvest, treatment and reconciliation listener bodies": {
+    "KILLED": 27,
+    "SURVIVED": 16,
+    "NO_COVERAGE": 1
+  },
+  "Inspection biological-rule body": {
+    "NO_COVERAGE": 19,
+    "SURVIVED": 11
+  },
+  "Inspection listener lookup, guard and operational delegation": {
+    "SURVIVED": 2,
+    "KILLED": 2
+  },
+  "Biological intervention listener bodies": {
+    "NO_COVERAGE": 12
+  },
+  "Transactional command-service bodies": {
+    "KILLED": 10,
+    "SURVIVED": 23,
+    "NO_COVERAGE": 8
+  }
+}

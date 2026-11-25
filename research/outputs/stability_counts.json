@@ -1,0 +1,10 @@
+{
+  "n": 353,
+  "stable_over_entire_age_brood_grid": 0,
+  "stable_over_brood_states_by_age": {
+    "0": 353,
+    "1": 353,
+    "2": 0
+  },
+  "interpretation": "Counterfactual coverage of missing inputs, not observed queen ages or biological brood states"
+}

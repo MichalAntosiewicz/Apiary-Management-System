@@ -1,0 +1,72 @@
+[
+  {
+    "id": "M01",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt",
+    "title": "Include the withdrawal endpoint",
+    "rationale": "An off-by-one interval error retains a restriction at its exact endpoint.",
+    "patch_sha256": "cc340be6ae0d0359b5eb3b94a76a37dadb6df36b11ce77a93490f87a7cd8ef65"
+  },
+  {
+    "id": "M02",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt",
+    "title": "Exclude the treatment start",
+    "rationale": "An off-by-one interval error allows harvest at the exact treatment start.",
+    "patch_sha256": "51fc565ac53a4895304c766d7584b9e6684f8978614e75fb1bc56c5a86e895af"
+  },
+  {
+    "id": "M03",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Include the administration endpoint",
+    "rationale": "Administration incorrectly takes precedence at its exact end.",
+    "patch_sha256": "aefdb93e5021413fc0aaf870e503cf1fcb096dd3d791a20d838c3762839590c8"
+  },
+  {
+    "id": "M04",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Require every active treatment to be in administration",
+    "rationale": "Overlapping administration and withdrawal incorrectly select WITHDRAWAL.",
+    "patch_sha256": "ecfdf31b9542bf9f289e7409da6eae0d27d9d93e81acc63e5beb47206349c017"
+  },
+  {
+    "id": "M05",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Retain expired treatment state",
+    "rationale": "A missed inspection window leaves a stale treatment or withdrawal state.",
+    "patch_sha256": "8145748d0750c9766d412cef0039c0ba841811433d462839fc3807ada29ab734"
+  },
+  {
+    "id": "M06",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Remove the wintering harvest guard",
+    "rationale": "A seasonal state restriction is omitted while other guards remain.",
+    "patch_sha256": "46b77bb3051cb625ab0f1ea497fa2879860a33e2c7cfb581dcf97d776a7798b1"
+  },
+  {
+    "id": "M07",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Throw after recording business rejection",
+    "rationale": "A business rejection is represented as an unchecked exception and rolls back its audit.",
+    "patch_sha256": "e138349d525eb65184537bd7793769e5b1770b762ee69b2bca361afa0e3ed3ce"
+  },
+  {
+    "id": "M08",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/domain/Repositories.kt",
+    "title": "Remove explicit per-hive write lock",
+    "rationale": "Concurrent operations no longer acquire the declared common lock before assigning event time.",
+    "patch_sha256": "a7e3db38056f6be0111a32e97eeba1630ac0469c9ccef35771a46425da78914a"
+  },
+  {
+    "id": "M09",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveOperationService.kt",
+    "title": "Keep nanoseconds in harvest event time",
+    "rationale": "JSON event time diverges from PostgreSQL timestamp precision.",
+    "patch_sha256": "30ef759b9c566b2647cbe7e4e4ced792fef8d668f2153bbd063fd9ff093ae00a"
+  },
+  {
+    "id": "M10",
+    "file": "src/main/kotlin/io/github/Michal_Antosiewicz/apiary_management_system/service/HiveStateMachineService.kt",
+    "title": "Omit transition event association",
+    "rationale": "The transition exists but loses its relational link to the accepted command.",
+    "patch_sha256": "13b4426cf166c900a7b55dd3ee112499ae7a182bbe7a5da40200a156d43ae9f7"
+  }
+]
